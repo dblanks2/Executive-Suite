@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DBRE Land &amp; Acreage Seller Consultation Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --charcoal:   #1C1C1E;
+    --gold:       #C9A84C;
+    --gold-mid:   #B8892A;
+    --gold-light: #D4AF6A;
+    --cream:      #FAF7F2;
+    --cream-dark: #F0EBE0;
+    --body:       #3A3A3A;
+    --light:      #AAAAAA;
+    --white:      #FFFFFF;
+    --orange:     #C8601A;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: var(--cream); color: var(--body); }
+
+  .site-header { background: var(--charcoal); border-bottom: 2px solid var(--gold); padding: 18px 48px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+  .site-header .brand { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .18em; color: var(--gold); text-transform: uppercase; }
+  .site-header .sub   { font-family: 'Montserrat', sans-serif; font-size: 11px; color: var(--light); letter-spacing: .06em; }
+
+  .hero { background: var(--charcoal); text-align: center; padding: 72px 48px 60px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 100%, rgba(201,168,76,.12) 0%, transparent 70%); pointer-events: none; }
+  .hero .eyebrow { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: .25em; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 58px); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 12px; }
+  .hero .tagline { font-family: 'Playfair Display', serif; font-size: 16px; font-style: italic; color: var(--gold-light); margin-bottom: 32px; }
+  .hero-rule { width: 80px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 0 auto 32px; }
+  .hero .subtitle { font-size: 14px; color: var(--light); letter-spacing: .04em; }
+
+  .nav-pills { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; padding: 24px 48px; background: var(--cream-dark); border-bottom: 1px solid rgba(201,168,76,.2); }
+  .nav-pills a { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--body); text-decoration: none; padding: 8px 18px; border: 1px solid rgba(184,137,42,.4); border-radius: 2px; transition: all .2s; }
+  .nav-pills a:hover { background: var(--charcoal); color: var(--gold); border-color: var(--gold); }
+
+  .section { max-width: 1000px; margin: 0 auto; padding: 64px 48px; }
+  .section + .section { border-top: 1px solid rgba(201,168,76,.2); }
+  .section-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3.5vw, 40px); font-weight: 700; color: var(--charcoal); margin-bottom: 16px; }
+  .section-intro { font-size: 14.5px; color: var(--body); line-height: 1.75; max-width: 720px; margin-bottom: 28px; }
+  .gold-rule { height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light), transparent); margin-bottom: 32px; border: none; width: 100%; }
+
+  .info-table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-bottom: 28px; }
+  .info-table th { background: var(--charcoal); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .08em; padding: 12px 16px; text-align: left; }
+  .info-table td { padding: 11px 16px; border-bottom: 1px solid rgba(0,0,0,.06); vertical-align: top; line-height: 1.65; }
+  .info-table tr:nth-child(even) td { background: var(--cream); }
+  .info-table tr:nth-child(odd)  td { background: var(--white); }
+  .info-table .lc { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-mid); width: 200px; }
+
+  .tagline-box { background: var(--charcoal); padding: 28px 36px; margin-top: 8px; text-align: center; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); }
+  .tagline-box p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 17px; color: var(--gold-light); line-height: 1.7; }
+
+  .steps-grid { display: flex; flex-direction: column; gap: 0; margin-bottom: 32px; }
+  .step { display: flex; gap: 0; border-bottom: 1px solid rgba(0,0,0,.06); }
+  .step:nth-child(odd)  .step-body { background: var(--white); }
+  .step:nth-child(even) .step-body { background: var(--cream); }
+  .step-num-wrap { background: var(--charcoal); min-width: 64px; display: flex; align-items: flex-start; justify-content: center; padding: 20px 0 0; }
+  .step-num { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: var(--gold); }
+  .step-body { flex: 1; padding: 20px 24px; }
+  .step-body h4 { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-mid); margin-bottom: 6px; }
+  .step-body p  { font-size: 13.5px; color: var(--body); line-height: 1.7; }
+
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-bottom: 28px; }
+  .data-table th { background: var(--charcoal); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: .08em; padding: 12px 16px; text-align: left; }
+  .data-table td { padding: 11px 16px; border-bottom: 1px solid rgba(0,0,0,.06); vertical-align: top; line-height: 1.65; }
+  .data-table tr:nth-child(even) td { background: var(--cream); }
+  .data-table tr:nth-child(odd)  td { background: var(--white); }
+  .data-table .lc { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-mid); width: 220px; }
+
+  .warning-box { border-left: 3px solid var(--orange); background: rgba(200,96,26,.06); padding: 16px 20px; margin: 20px 0; }
+  .warning-box strong { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--orange); display: block; margin-bottom: 6px; }
+  .warning-box p { font-size: 13.5px; color: var(--body); line-height: 1.7; }
+
+  .content-h3 { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-mid); margin: 28px 0 10px; }
+  .content-body { font-size: 14px; color: var(--body); line-height: 1.75; margin-bottom: 14px; }
+
+  .q-category { font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin: 28px 0 12px; }
+  .q-list { list-style: none; padding: 0; margin: 0 0 8px; }
+  .q-list li { display: flex; gap: 12px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 14.5px; color: var(--charcoal); line-height: 1.65; padding: 10px 0; border-bottom: 1px solid rgba(201,168,76,.15); }
+  .q-list li::before { content: '\276E'; font-family: 'Montserrat', sans-serif; font-style: normal; font-size: 10px; color: var(--gold); flex-shrink: 0; margin-top: 5px; font-weight: 700; }
+
+  .site-footer { background: var(--charcoal); border-top: 2px solid var(--gold); padding: 48px; text-align: center; }
+  .footer-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+  .footer-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 15px; color: var(--gold-mid); }
+
+  @media (max-width: 720px) {
+    .site-header { padding: 14px 20px; flex-direction: column; gap: 4px; text-align: center; }
+    .hero { padding: 48px 24px 40px; }
+    .section { padding: 48px 24px; }
+    .nav-pills { padding: 16px 20px; gap: 8px; }
+    .step-num-wrap { min-width: 48px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <span class="brand">Dana Blanks Real Estate™</span>
+  <span class="sub">Land &amp; Acreage Seller Consultation Guide</span>
+</header>
+
+<section class="hero">
+  <p class="eyebrow">Land &amp; Acreage Seller Services</p>
+  <h1>Land &amp; Acreage<br>Seller Consultation Guide</h1>
+  <p class="tagline">"Where Luxury Service Meets Genuine Connection"</p>
+  <div class="hero-rule"></div>
+  <p class="subtitle">Everything you need to know about selling land or acreage with Dana Blanks Real Estate™</p>
+</section>
+
+<nav class="nav-pills">
+  <a href="#who-we-are">Who We Are</a>
+  <a href="#process">The Process</a>
+  <a href="#what-buyers-evaluate">What Buyers Evaluate</a>
+  <a href="#pricing">Pricing Your Land</a>
+  <a href="#offers">Offers &amp; Due Diligence</a>
+  <a href="#compensation">Compensation</a>
+  <a href="#discovery">Discovery</a>
+  <a href="#next-steps">Next Steps</a>
+</nav>
+
+<!-- 01 · WHO WE ARE -->
+<div id="who-we-are" class="section">
+  <hr class="gold-rule">
+  <p class="section-eyebrow">01 &nbsp;·&nbsp; About Us</p>
+  <h2 class="section-title">Who We Are</h2>
+  <p class="section-intro">Dana Blanks Real Estate™ is a boutique luxury brokerage founded in 2008 and licensed in North Carolina, South Carolina, and Georgia. We are woman and minority-owned, and we operate as a fully virtual firm — which means our advisors are embedded in your market, not tied to a desk.</p>
+  <p class="content-body">Land transactions demand a different level of expertise than residential sales. Buyers evaluate land through an entirely different lens — soil composition, perc testing, zoning, utilities, access, and buildability all shape what a parcel is worth and who will buy it. Our advisors understand this, and we bring that knowledge to every land listing we take on.</p>
+  <table class="info-table">
+    <thead><tr><th style="width:200px">Category</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td class="lc">Markets Served</td><td>Wilmington · New Hanover County · Brunswick County · Pender County and surrounding areas<br>Charleston · Columbia, SC · Savannah and surrounding areas</td></tr>
+      <tr><td class="lc">Licensed In</td><td>North Carolina &nbsp;·&nbsp; South Carolina &nbsp;·&nbsp; Georgia</td></tr>
+      <tr><td class="lc">Founded</td><td>2008</td></tr>
+      <tr><td class="lc">Ownership</td><td>Woman and minority-owned boutique brokerage</td></tr>
+      <tr><td class="lc">Land Specialty</td><td>Residential lots &nbsp;·&nbsp; Acreage &nbsp;·&nbsp; Coastal and rural land &nbsp;·&nbsp; Builder and investor parcels</td></tr>
+    </tbody>
+  </table>
+  <div class="tagline-box">
+    <p>Land Is Not a Simpler Transaction — It Is a Different One.<br>We bring the expertise, the patience, and the market knowledge to position your property for the buyers who will truly value it.</p>
+  </div>
+</div>
+
+<!-- 02 · THE PROCESS -->
+<div id="process" class="section">
+  <hr class="gold-rule">
+  <p class="section-eyebrow">02 &nbsp;·&nbsp; Step by Step</p>
+  <h2 class="section-title">The Land Selling Process</h2>
+  <p class="section-intro">Selling land takes longer and requires more upfront groundwork than a residential sale. Understanding the timeline and the steps involved puts you in a stronger position from the start.</p>
+  <div class="steps-grid">
+    <div class="step"><div class="step-num-wrap"><span class="step-num">1</span></div><div class="step-body"><h4>Seller Consultation</h4><p>We begin here. Your advisor learns about the property, your goals, and your timeline. We discuss what information and documentation we will need, what buyers in this category are looking for, and how we approach pricing land without a finished structure to anchor the value.</p></div></div>
+    <div class="step"><div class="step-num-wrap"><span class="step-num">2</span></div><div class="step-body"><h4>Documentation &amp; Due Diligence Preparation</h4><p>Before going to market, we gather everything a serious buyer will want to see — existing surveys, plats, soil test results, perc test results if available, deed, tax records, zoning confirmation, and any existing easements or restrictions. The more complete your documentation package, the more confidently buyers can move.</p></div></div>
+    <div class="step"><div class="step-num-wrap"><span class="step-num">3</span></div><div class="step-body"><h4>Soil &amp; Perc Testing (if not yet complete)</h4><p>If your parcel has not been perc tested — and you intend to market it as suitable for a septic system — your advisor will discuss whether completing testing before listing is in your interest. A passing perc test can meaningfully expand your buyer pool and support your pricing. A failed test is not the end, but it must be disclosed.</p></div></div>
+    <div class="step"><div class="step-num-wrap"><span class="step-num">4</span></div><div class="step-body"><h4>Pricing Strategy</h4><p>Your advisor prepares a land-specific market analysis based on comparable land sales, lot characteristics, buildability, location, and current demand from builders, developers, and individual buyers. Pricing land requires a different methodology than pricing a home — we will walk you through it in detail.</p></div></div>
+    <div class="step"><div class="step-num-wrap"><span class="step-num">5</span></div><div class="step-body"><h4>Listing &amp; Marketing Launch</h4><p>Your listing goes live on the MLS and is marketed to the audiences most likely to purchase — residential builders, developers, investors, and individual buyers seeking land for personal use. Aerial photography and clear parcel mapping are standard components of a well-prepared land listing.</p></div></div>
+    <div class="step"><div class="step-num-wrap"><span class="step-num">6</span></div><div class="step-body"><h4>Receiving &amp; Negotiating Offers</h4><p>Land offers often include longer due diligence periods than residential transactions — buyers need time to complete their own soil testing, survey review, zoning verification, and financing arrangements. Your advisor will help you evaluate offer terms in full and negotiate a position that protects your interests.</p></div></div>
+    <div class="step"><div class="step-num-wrap"><span class="step-num">7</span></div><div class="step-body"><h4>Under Contract: Due Diligence</h4><p>During due diligence, the buyer is conducting their investigation of the property. Unlike residential transactions, land due diligence is often more intensive and may take longer. Your advisor manages the process and keeps you informed at every stage.</p></div></div>
+    <div class="step"><div class="step-num-wrap"><span class="step-num">8</span></div><div class="step-body"><h4>Closing Day</h4><p>Your closing attorney coordinates final documents and disburses proceeds. Land closings are typically straightforward once due diligence is complete. Your advisor is with you through the finish line.</p></div></div>
+  </div>
+</div>
+
+<!-- 03 · WHAT BUYERS EVALUATE -->
+<div id="what-buyers-evaluate" class="section">
+  <hr class="gold-rule">
+  <p class="section-eyebrow">03 &nbsp;·&nbsp; Understanding the Buyer's Lens</p>
+  <h2 class="section-title">What Land Buyers Evaluate</h2>
+  <p class="section-intro">Land buyers are not looking at finishes or square footage. They are evaluating a set of factors that determine whether a parcel can be built on, what it can support, and what it will cost them to get there. Understanding this helps you present your property effectively.</p>
+
+  <table class="data-table">
+    <thead><tr><th style="width:220px">Factor</th><th>Why It Matters to Buyers</th></tr></thead>
+    <tbody>
+      <tr><td class="lc">Soil &amp; Perc Testing</td><td>If public sewer is not available, a buyer needs to know the land can support a septic system. A completed, passing perc test removes a major uncertainty and expands your buyer pool. Your advisor will discuss whether testing before listing makes sense for your property.</td></tr>
+      <tr><td class="lc">Zoning &amp; Permitted Uses</td><td>Buyers want to know what they are legally permitted to build. Residential, agricultural, commercial — and the specific density or setback requirements that apply — all shape a buyer's assessment of the parcel's value and utility.</td></tr>
+      <tr><td class="lc">Survey &amp; Boundaries</td><td>A current, accurate survey establishes exactly what the buyer is purchasing. Unclear or outdated boundary information creates hesitation. If a recent survey exists, your advisor will make it part of the listing documentation.</td></tr>
+      <tr><td class="lc">Utilities &amp; Infrastructure</td><td>Is public water or sewer available — and if so, at what cost to connect? Is electrical service accessible? What about natural gas or road access? Each of these factors affects the buyer's total cost to develop and their willingness to pay your asking price.</td></tr>
+      <tr><td class="lc">Road Access &amp; Easements</td><td>Does the parcel have direct road frontage, or does it require an easement across another property for access? Are there existing easements — utility, drainage, or otherwise — that affect what can be built and where?</td></tr>
+      <tr><td class="lc">Flood Zone &amp; Wetlands</td><td>FEMA flood zone designation and the presence of jurisdictional wetlands can significantly limit buildable area and increase development costs. Buyers will research this — your advisor ensures accurate disclosure is part of the listing from the start.</td></tr>
+      <tr><td class="lc">Topography &amp; Clearing</td><td>Is the land cleared, wooded, or mixed? Is the topography flat or does it present grading challenges? These factors affect development cost and buyer appeal, and they inform both pricing and marketing positioning.</td></tr>
+      <tr><td class="lc">Timber &amp; Mineral Rights</td><td>If timber rights or mineral rights have been severed from the surface estate, buyers need to know. Your advisor ensures these details are researched and disclosed appropriately.</td></tr>
+      <tr><td class="lc">DOT &amp; Right-of-Way Exposure</td><td>Planned road projects, highway widening, or NCDOT right-of-way acquisition can affect a parcel's usable area and value — sometimes significantly. Buyers and their advisors will research this. Your advisor confirms DOT exposure as part of the pre-listing research process and ensures any known impacts are disclosed accurately.</td></tr>
+      <tr><td class="lc">Future Development in Proximity</td><td>Planned subdivisions, commercial projects, industrial facilities, or infrastructure near your parcel can affect its appeal positively or negatively depending on the buyer's intended use. Serious buyers will review county planning records — your advisor researches this proactively so you are not caught off guard during due diligence.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warning-box">
+    <strong>Disclosure Is Not Optional</strong>
+    <p>Known material facts about a property — including failed perc tests, wetland boundaries, easements, or deed restrictions — must be disclosed. Your advisor will help you navigate disclosure requirements accurately and completely. Attempting to conceal known issues creates legal exposure and almost always surfaces during due diligence anyway.</p>
+  </div>
+</div>
+
+<!-- 04 · PRICING -->
+<div id="pricing" class="section">
+  <hr class="gold-rule">
+  <p class="section-eyebrow">04 &nbsp;·&nbsp; Strategy &amp; Market Position</p>
+  <h2 class="section-title">Pricing Your Land</h2>
+  <p class="section-intro">Pricing land is not the same as pricing a home. There is no square footage formula, no bedroom count to anchor against. Value is determined by what the land can support, who will buy it, and what comparable parcels have actually sold for.</p>
+
+  <p class="content-h3">How We Determine Pricing</p>
+  <p class="content-body">Your advisor conducts a land-specific comparative market analysis — reviewing recent sales of comparable parcels in terms of acreage, zoning, location, utility access, and buildability. When strong comparable sales exist, we use them. When the parcel is more unique, we discuss a range and a rationale. The goal is a price that attracts the right buyer pool without leaving value on the table or creating extended market time that signals something is wrong.</p>
+
+  <table class="data-table">
+    <thead><tr><th style="width:220px">Pricing Factor</th><th>How It Affects Value</th></tr></thead>
+    <tbody>
+      <tr><td class="lc">Perc Test Status</td><td>A passing perc test typically supports a meaningfully higher price than an untested or failed parcel. Buyers price in uncertainty — removing it removes their discount.</td></tr>
+      <tr><td class="lc">Zoning &amp; Buildability</td><td>A parcel zoned for residential development in a high-demand area commands different pricing than agricultural land with no near-term development path. Permitted use drives value.</td></tr>
+      <tr><td class="lc">Utility Access</td><td>Parcels with public water and sewer available at the road are generally worth more than those requiring well and septic — particularly to buyers who are not developers and cannot easily absorb infrastructure costs.</td></tr>
+      <tr><td class="lc">Location &amp; Access</td><td>Road frontage, proximity to growth corridors, and neighborhood context all factor into what buyers will pay. A parcel near established residential development or amenities has a different value story than raw rural acreage.</td></tr>
+      <tr><td class="lc">Size &amp; Usability</td><td>Total acreage matters — but usable acreage matters more. Wetlands, easements, and topographic constraints can significantly reduce the buildable footprint, and sophisticated buyers will know this.</td></tr>
+      <tr><td class="lc">Market Conditions</td><td>Builder and developer activity, interest rates, and local inventory levels all affect land demand. Your advisor will give you an honest read on current market conditions and how they shape your positioning.</td></tr>
+    </tbody>
+  </table>
+
+  <p class="content-h3">Tiered Pricing Considerations</p>
+  <p class="content-body">In some cases — particularly when perc test results are pending, or when a parcel could be marketed to either individual buyers or developers at different price points — a tiered pricing strategy makes sense. Your advisor will discuss whether this applies to your property, how to structure it, and how to communicate it clearly to the market without creating confusion.</p>
+
+  <div class="warning-box">
+    <strong>Land Takes Longer to Sell</strong>
+    <p>The buyer pool for land is smaller than for residential property, and buyers typically move more slowly — they are making a longer-horizon investment decision. Extended market time on a land listing is common and does not carry the same stigma it does for a home, provided the pricing and positioning are sound. Your advisor will set realistic timeline expectations from the start.</p>
+  </div>
+</div>
+
+<!-- 05 · OFFERS & DUE DILIGENCE -->
+<div id="offers" class="section">
+  <hr class="gold-rule">
+  <p class="section-eyebrow">05 &nbsp;·&nbsp; Offers · Due Diligence · Closing</p>
+  <h2 class="section-title">After Your Land Goes Under Contract</h2>
+  <p class="section-intro">Land contracts follow the same general structure as residential contracts in NC, SC, and GA — but due diligence periods are often longer and buyer investigation is more intensive. Here is what to expect.</p>
+
+  <p class="content-h3">Evaluating Land Offers</p>
+  <p class="content-body">Price is one element. For land transactions, the due diligence period length and the due diligence fee deserve particular attention — buyers typically request more time to complete soil testing, survey review, zoning verification, and financing arrangements. Your advisor will help you evaluate what is reasonable versus what represents unnecessary exposure for you as the seller.</p>
+
+  <table class="data-table">
+    <thead><tr><th style="width:220px">Offer Element</th><th>What to Know</th></tr></thead>
+    <tbody>
+      <tr><td class="lc">Purchase Price</td><td>The offered price. Land transactions are more often cash or land-loan financed — appraisal requirements vary by lender and loan type. Your advisor will help you understand how the buyer's financing affects your risk exposure.</td></tr>
+      <tr><td class="lc">Due Diligence Period</td><td>Expect longer due diligence windows for land — 30 to 60 days is not uncommon, particularly if the buyer needs to complete soil testing or secure financing. The due diligence fee is your compensation for taking the property off the market during this time.</td></tr>
+      <tr><td class="lc">Due Diligence Fee</td><td>Paid directly to you at contract execution — non-refundable regardless of outcome. For land transactions, this fee is an important signal of buyer seriousness. Your advisor will discuss appropriate fee expectations for your market.</td></tr>
+      <tr><td class="lc">Earnest Money</td><td>A good-faith deposit held in escrow. If the buyer terminates after the due diligence period expires without a valid contractual basis, you may be entitled to the earnest money. Your advisor will walk you through the specifics.</td></tr>
+      <tr><td class="lc">Contingencies</td><td>Land buyers may request contingencies tied to perc test results, rezoning approval, or subdivision plat approval — particularly if their intended use depends on these outcomes. Your advisor will help you evaluate whether to accept, counter, or decline contingency-based offers.</td></tr>
+      <tr><td class="lc">Closing Timeline</td><td>Land closings can sometimes be extended by title or survey issues. Ensure the proposed timeline is realistic for your situation and build in flexibility where possible.</td></tr>
+    </tbody>
+  </table>
+
+  <p class="content-h3">What Buyers Do During Due Diligence</p>
+  <p class="content-body">During the due diligence period, expect the buyer to conduct soil and perc testing if not already completed, commission a survey, review zoning and deed restrictions, verify utility availability and connection costs, assess flood zone and wetland status, and arrange financing. This investigation is their right — and your advisor will help you navigate any issues that surface without losing the transaction unnecessarily.</p>
+
+  <table class="data-table">
+    <thead><tr><th style="width:220px">Scenario</th><th>What It Means for You</th></tr></thead>
+    <tbody>
+      <tr><td class="lc">Buyer Requests Price Reduction</td><td>If due diligence reveals something the buyer did not anticipate — a partially failed perc test, unexpected wetlands, or infrastructure costs — they may request a price adjustment. Your advisor will help you evaluate the legitimacy of the concern and your options.</td></tr>
+      <tr><td class="lc">Buyer Terminates in Due Diligence</td><td>The buyer may terminate for any reason before the deadline. You retain the due diligence fee. Your advisor will assess whether to relist at the same price, adjust strategy, or address any identified issues before returning to market.</td></tr>
+      <tr><td class="lc">Appraisal or Financing Issues</td><td>Land appraisals can be challenging, particularly for unique or rural parcels with limited comparable sales. If the buyer's lender requires an appraisal that comes in below contract price, your advisor will walk you through your negotiating position.</td></tr>
+      <tr><td class="lc">Buyer Proceeds Past Due Diligence</td><td>Once the due diligence period expires, you have meaningful certainty the transaction will close. The buyer's earnest money is now at risk. This is the clearest signal of commitment you will receive before closing day.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="warning-box">
+    <strong>Wire Fraud Advisory</strong>
+    <p>Wire fraud targeting real estate closings is increasingly common and affects land transactions as well as residential ones. Never rely solely on email instructions for any wire or disbursement. Confirm all wire details directly with your closing attorney using a phone number you have independently verified before any funds move.</p>
+  </div>
+</div>
+
+<!-- 06 · COMPENSATION -->
+<div id="compensation" class="section">
+  <hr class="gold-rule">
+  <p class="section-eyebrow">06 &nbsp;·&nbsp; How We Are Paid</p>
+  <h2 class="section-title">Compensation &amp; Transparency</h2>
+  <p class="section-intro">We believe you deserve to understand exactly how your advisor is compensated. There are no surprises, no hidden fees, and no pressure. Here is how it works.</p>
+  <p class="content-body">As your listing agent, DBRE and your advisor are compensated through the Listing Agreement, which establishes the scope of representation, marketing commitments, compensation terms, and the duration of our working relationship. All compensation is a negotiated term and will be disclosed in writing before you sign anything.</p>
+  <table class="data-table">
+    <thead><tr><th style="width:220px">Item</th><th>Details</th></tr></thead>
+    <tbody>
+      <tr><td class="lc">Listing Agreement</td><td>A written agreement between you and DBRE that defines the listing period, marketing plan, compensation structure, and the terms of our representation</td></tr>
+      <tr><td class="lc">Listing Commission</td><td>Compensation for DBRE as your listing broker — negotiated and disclosed in writing before the agreement is executed</td></tr>
+      <tr><td class="lc">Buyer's Agent Compensation</td><td>Compensation offered to a cooperating buyer's agent, if any, is negotiated directly between the parties as part of the transaction. Your advisor will discuss this as part of the pricing and strategy conversation.</td></tr>
+      <tr><td class="lc">No Hidden Fees</td><td>DBRE does not charge hidden fees to seller clients. All compensation is disclosed in the Listing Agreement before you are obligated to anything.</td></tr>
+      <tr><td class="lc">Your Questions Are Welcome</td><td>Ask your advisor about compensation at any time. Transparency is not optional here — it is standard.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 07 · DISCOVERY -->
+<div id="discovery" class="section">
+  <hr class="gold-rule">
+  <p class="section-eyebrow">07 &nbsp;·&nbsp; Seller Discovery</p>
+  <h2 class="section-title">Getting to Know You &amp; Your Property</h2>
+  <p class="section-intro">The more we understand about you and your land, the better we can position it. Your advisor will ask questions like these during the consultation — there are no wrong answers.</p>
+
+  <p class="q-category">Your Goals &amp; Timeline</p>
+  <ul class="q-list">
+    <li>What is driving your decision to sell — is this a financial decision, an estate matter, a lifestyle change, or something else?</li>
+    <li>Do you have a target timeline for closing? Is there a specific date, event, or financial goal driving that?</li>
+    <li>Are you flexible on timeline, or is there urgency we should factor into the pricing and marketing strategy?</li>
+    <li>Have you sold land before, or is this your first time navigating a land transaction as a seller?</li>
+  </ul>
+
+  <p class="q-category">Your Property</p>
+  <ul class="q-list">
+    <li>How long have you owned the parcel, and how did you come to own it — purchase, inheritance, subdivision of a larger tract?</li>
+    <li>Has a soil or perc test ever been conducted on the property? If so, do you have the results?</li>
+    <li>Is there a current survey on file, or is the boundary information based on older documents?</li>
+    <li>Are there any known easements, deed restrictions, or covenants that affect the property?</li>
+    <li>What utilities are available — public water, public sewer, electric, gas? Are any currently connected or stubbed to the property?</li>
+    <li>Are any portions of the property in a FEMA flood zone or known to contain jurisdictional wetlands?</li>
+    <li>Is the land cleared, wooded, or a mix? Are there any structures, wells, or improvements currently on the parcel?</li>
+  </ul>
+
+  <p class="q-category">Pricing &amp; Expectations</p>
+  <ul class="q-list">
+    <li>Do you have a number in mind for what you are hoping to net from the sale? Understanding your goal helps us build the right strategy.</li>
+    <li>Have you looked at what comparable land in your area has sold for recently, or would you like us to walk you through that data together?</li>
+    <li>Are you open to entertaining offers from developers or builders, or do you have a preference for the type of buyer?</li>
+    <li>How do you feel about contingency-based offers — for example, a buyer whose purchase depends on perc test results or rezoning approval?</li>
+  </ul>
+
+  <p class="q-category">The Process</p>
+  <ul class="q-list">
+    <li>How do you prefer to communicate — calls, texts, email? How much detail do you like in updates, and how quickly do you typically respond?</li>
+    <li>Are there other people involved in this decision — a co-owner, estate trustee, family member, or legal or financial advisor — who should be part of our conversations?</li>
+    <li>Is there anything about the land selling process that feels unclear or that you would like us to walk through before we move forward?</li>
+  </ul>
+</div>
+
+<!-- 08 · NEXT STEPS -->
+<div id="next-steps" class="section">
+  <hr class="gold-rule">
+  <p class="section-eyebrow">08 &nbsp;·&nbsp; Your Next Steps</p>
+  <h2 class="section-title">What Happens Next</h2>
+  <p class="section-intro">Here is what to expect in the days following our consultation.</p>
+  <div class="steps-grid">
+    <div class="step"><div class="step-num-wrap"><span class="step-num">1</span></div><div class="step-body"><h4>Consultation Follow-Up</h4><p>Your advisor will send a follow-up summarizing what we discussed, any documentation needed from you, and the agreed-upon next steps before we move toward listing.</p></div></div>
+    <div class="step"><div class="step-num-wrap"><span class="step-num">2</span></div><div class="step-body"><h4>Documentation Gathering</h4><p>Your advisor will identify which documents are already available — survey, plat, deed, tax records, perc test results — and which may need to be ordered or confirmed before we go to market.</p></div></div>
+    <div class="step"><div class="step-num-wrap"><span class="step-num">3</span></div><div class="step-body"><h4>Pricing Analysis</h4><p>Your advisor prepares a land-specific comparative market analysis and presents a pricing recommendation with the rationale behind it. You make the final call — our job is to make sure you have the right information to do so confidently.</p></div></div>
+    <div class="step"><div class="step-num-wrap"><span class="step-num">4</span></div><div class="step-body"><h4>Sign Your Listing Agreement</h4><p>Before your property goes to market, we execute the Listing Agreement. This document protects both parties and outlines our responsibilities, the listing period, and compensation terms in writing.</p></div></div>
+    <div class="step"><div class="step-num-wrap"><span class="step-num">5</span></div><div class="step-body"><h4>Go Live &amp; Stay Informed</h4><p>Once your listing is live, you will receive regular updates on market activity and buyer interest. Land listings require patience — your advisor will keep you informed and will bring recommendations promptly if market conditions suggest any adjustments.</p></div></div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <p class="footer-title">Dana Blanks Real Estate™</p>
+  <p class="footer-quote">"Where Luxury Service Meets Genuine Connection"</p>
+</footer>
+
+</body>
+</html>
