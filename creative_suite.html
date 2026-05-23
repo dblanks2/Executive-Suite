@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Creative Suite · Dana Blanks Real Estate™</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold-warm: #C9A84C;
+    --gold-light: #D4AF6A;
+    --gold-mid: #B8892A;
+    --charcoal: #1C1C1E;
+    --charcoal-2: #2A2A2C;
+    --charcoal-3: #232323;
+    --charcoal-4: #2E2E2E;
+    --cream: #FAF7F2;
+    --cream-2: #F2EDE4;
+    --cream-3: #EDE6D9;
+    --white: #FFFFFF;
+    --text-dark: #1C1C1E;
+    --text-mid: #4A4A4A;
+    --text-light: #8A8A8A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    line-height: 1.6;
+  }
+
+  /* ── HERO — deep charcoal ── */
+  .hero {
+    position: relative;
+    background: var(--charcoal);
+    background-image: radial-gradient(ellipse at 60% 50%, rgba(201,168,76,0.10) 0%, transparent 65%);
+    padding: 72px 48px 64px;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 2px solid var(--gold-warm);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 2px,
+      rgba(255,255,255,0.012) 2px, rgba(255,255,255,0.012) 4px
+    );
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold-warm);
+    background: rgba(201,168,76,0.10);
+    border: 1px solid rgba(201,168,76,0.28);
+    padding: 6px 20px;
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.0;
+    letter-spacing: 0.01em;
+    margin-bottom: 6px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-warm);
+  }
+
+  .hero-rule {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-warm), transparent);
+    margin: 24px auto 20px;
+  }
+
+  .hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── START HERE — cream background for contrast ── */
+  .section-start {
+    background: var(--cream-2);
+    padding: 56px 48px;
+    border-bottom: 1px solid var(--cream-3);
+  }
+
+  /* ── FEATURED TEMPLATES — medium charcoal ── */
+  .section-templates {
+    background: var(--charcoal-3);
+    background-image: radial-gradient(ellipse at 80% 30%, rgba(201,168,76,0.07) 0%, transparent 55%);
+    padding: 56px 48px;
+    border-top: 1px solid rgba(201,168,76,0.2);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+
+  /* ── FOUNDATION — cream ── */
+  .section-foundation {
+    background: var(--cream);
+    padding: 56px 48px;
+    border-bottom: 1px solid var(--cream-3);
+  }
+
+  /* ── EXCELLENCE — slightly deeper cream ── */
+  .section-excellence {
+    background: var(--cream-2);
+    padding: 56px 48px;
+  }
+
+  /* ── SHARED SECTION ELEMENTS ── */
+  .section-eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-mid);
+    margin-bottom: 10px;
+  }
+
+  .section-eyebrow.on-dark { color: var(--gold-warm); }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .section-title.on-light { color: var(--text-dark); }
+  .section-title.on-dark  { color: var(--white); }
+
+  .section-desc {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.7;
+    max-width: 600px;
+    margin-bottom: 36px;
+  }
+
+  .section-desc.on-light { color: var(--text-mid); }
+  .section-desc.on-dark  { color: rgba(255,255,255,0.5); }
+
+  .section-rule {
+    width: 48px;
+    height: 1px;
+    background: var(--gold-warm);
+    margin: 16px 0 32px;
+  }
+
+  /* ── TOOLKIT GRID ── */
+  .toolkit-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .toolkit-card {
+    background: var(--white);
+    border: 1px solid var(--cream-3);
+    border-radius: 4px;
+    padding: 24px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+
+  .toolkit-card:hover {
+    border-color: var(--gold-warm);
+    box-shadow: 0 4px 20px rgba(201,168,76,0.12);
+    transform: translateY(-2px);
+  }
+
+  .toolkit-card-icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 14px;
+  }
+
+  .toolkit-card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+
+  .toolkit-card-desc {
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--text-light);
+    line-height: 1.65;
+    flex: 1;
+    margin-bottom: 16px;
+  }
+
+  .toolkit-card-links {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    width: 100%;
+    border-top: 1px solid var(--cream-3);
+    padding-top: 12px;
+  }
+
+  .toolkit-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .toolkit-link:hover { color: var(--charcoal); }
+
+  .toolkit-link::after { content: '→'; font-size: 10px; }
+
+  .toolkit-link.secondary {
+    color: var(--text-light);
+  }
+
+  .toolkit-link.secondary:hover { color: var(--text-dark); }
+
+  /* ── TEMPLATE CARDS (on dark) ── */
+  .templates-subsection { margin-bottom: 48px; }
+  .templates-subsection:last-child { margin-bottom: 0; }
+
+  .templates-sub-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 20px;
+  }
+
+  .templates-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+  }
+
+  .template-card {
+    text-decoration: none;
+    display: block;
+    transition: transform 0.2s;
+  }
+
+  .template-card:hover { transform: translateY(-3px); }
+
+  .template-thumb {
+    aspect-ratio: 1;
+    background: var(--charcoal-2);
+    border: 1px solid rgba(201,168,76,0.55);
+    border-radius: 3px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
+  .template-card:hover .template-thumb {
+    border-color: var(--gold-warm);
+    box-shadow: 0 0 12px rgba(201,168,76,0.25), inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
+  .template-thumb-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    background: linear-gradient(145deg, #2E2A22 0%, #1E1A14 100%);
+  }
+
+  .template-thumb-label {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 11px;
+    color: var(--gold-warm);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .template-thumb-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: rgba(201,168,76,0.18);
+    position: absolute;
+    bottom: 4px;
+    right: 8px;
+    line-height: 1;
+  }
+
+  .template-name {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  /* ── FOUNDATION DOCS (on cream) ── */
+  .foundation-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+  }
+
+  .foundation-card {
+    background: var(--white);
+    border: 1px solid var(--cream-3);
+    border-radius: 4px;
+    padding: 20px 16px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+
+  .foundation-card:hover {
+    border-color: var(--gold-warm);
+    box-shadow: 0 4px 16px rgba(201,168,76,0.10);
+    transform: translateY(-2px);
+  }
+
+  .foundation-icon { width: 26px; height: 26px; }
+
+  .foundation-name {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--text-dark);
+    line-height: 1.45;
+    flex: 1;
+  }
+
+  .foundation-arrow {
+    font-size: 11px;
+    color: var(--gold-mid);
+  }
+
+  /* ── FOLDER CARDS (on cream-2) ── */
+  .folder-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .folder-card {
+    text-decoration: none;
+    display: block;
+    background: var(--charcoal);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .folder-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--gold-warm);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+  }
+
+  .folder-card-thumb {
+    height: 140px;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .folder-card-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 80px;
+    font-weight: 300;
+    color: rgba(201,168,76,0.10);
+    position: absolute;
+    right: 12px;
+    bottom: -8px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .folder-card-eyebrow {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold-warm);
+    background: rgba(201,168,76,0.10);
+    border: 1px solid rgba(201,168,76,0.22);
+    padding: 3px 10px;
+    border-radius: 2px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .folder-card-body {
+    padding: 16px 18px 18px;
+    border-top: 1px solid rgba(201,168,76,0.12);
+  }
+
+  .folder-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+
+  .folder-card-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .folder-card-link {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-warm);
+    margin-top: 10px;
+    display: block;
+  }
+
+  .tint-01 { background-color: #1C1C1E; }
+  .tint-02 { background-color: #262018; }
+  .tint-03 { background-color: #1C2420; }
+  .tint-04 { background-color: #201C28; }
+
+  /* ── FOOTER ── */
+  .page-footer {
+    background: var(--charcoal);
+    padding: 28px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-rule {
+    width: 1px;
+    height: 24px;
+    background: rgba(201,168,76,0.2);
+  }
+
+  .footer-tagline {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO — deep charcoal ── -->
+<div class="hero">
+  <div class="hero-eyebrow">Executive Suite · Channel 02</div>
+  <h1>The Creative<br><em style="letter-spacing:-0.02em;">Suite</em></h1>
+  <div class="hero-rule"></div>
+  <p class="hero-subtitle">Brand Identity · Seller & Buyer Presentations · Social Media Marketing</p>
+  <p class="hero-tagline">Your complete branded toolkit — organized by purpose, ready for every client interaction.</p>
+</div>
+
+<!-- ── START HERE — cream ── -->
+<div class="section-start">
+  <div class="section-eyebrow">Start Here</div>
+  <div class="section-title on-light">Your Creative Toolkit</div>
+  <div class="section-rule"></div>
+  <p class="section-desc on-light">Access your brand's core creative tools in one click. These links connect directly to the DBRE Canva workspace — always use the branded templates and never edit the master files.</p>
+
+  <div class="toolkit-grid">
+
+    <div class="toolkit-card">
+      <svg class="toolkit-card-icon" viewBox="0 0 32 32" fill="none"><rect x="4" y="4" width="24" height="24" rx="2" stroke="#C9A84C" stroke-width="1.5"/><path d="M9 20 L13 14 L17 17 L21 11 L23 14" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1.5" fill="#C9A84C"/></svg>
+      <div class="toolkit-card-title">CMA Canva Template</div>
+      <div class="toolkit-card-desc">Branded CMA template for seller presentations. Edit bracketed fields with property-specific data.</div>
+      <div class="toolkit-card-links">
+        <a href="https://canva.link/ndqf3bxxprhercd" target="_blank" class="toolkit-link">Open in Canva</a>
+      </div>
+    </div>
+
+    <div class="toolkit-card">
+      <svg class="toolkit-card-icon" viewBox="0 0 32 32" fill="none"><rect x="4" y="6" width="24" height="20" rx="2" stroke="#C9A84C" stroke-width="1.5"/><path d="M4 12h24" stroke="#C9A84C" stroke-width="1.5"/><path d="M11 4v4M21 4v4" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/><rect x="9" y="16" width="4" height="4" rx="1" fill="#C9A84C" opacity="0.5"/><rect x="19" y="16" width="4" height="4" rx="1" fill="#C9A84C" opacity="0.5"/></svg>
+      <div class="toolkit-card-title">Advisor Seasonal Content Guide</div>
+      <div class="toolkit-card-desc">Ready-to-post captions and a Canva brief for every seasonal and holiday posting moment.</div>
+      <div class="toolkit-card-links">
+        <a href="https://danablanksrealestate.sharepoint.com/:u:/s/DanaBlanksRealEstateInc/IQDlFnWGI-D8TK6D8jyrB_trAQYO4ShErcgNyRRrsADwIbY?e=0s9wzT" target="_blank" class="toolkit-link">Open Guide</a>
+      </div>
+    </div>
+
+    <div class="toolkit-card">
+      <svg class="toolkit-card-icon" viewBox="0 0 32 32" fill="none"><path d="M12 5 L10 27M22 5 L20 27M5 12 L27 12M5 20 L27 20" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div class="toolkit-card-title">Advisor Hashtag Quick Reference</div>
+      <div class="toolkit-card-desc">Your complete hashtag system by pillar, platform, and market — copy and paste ready.</div>
+      <div class="toolkit-card-links">
+        <a href="https://danablanksrealestate.sharepoint.com/:u:/s/DanaBlanksRealEstateInc/IQDV0ueDCHnCRZS-cqJzcOcDAf6EF2kYc3GSrD1V9A61GoI?e=hV57Ha" target="_blank" class="toolkit-link">Open Reference</a>
+      </div>
+    </div>
+
+    <div class="toolkit-card">
+      <svg class="toolkit-card-icon" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="10" stroke="#C9A84C" stroke-width="1.5"/><circle cx="16" cy="16" r="5" stroke="#C9A84C" stroke-width="1.5"/><path d="M16 6v4M16 22v4M6 16h4M22 16h4" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div class="toolkit-card-title">Brand Asset Library</div>
+      <div class="toolkit-card-desc">Logos · Color Palette · Typography · Brand guidelines — the source of truth for all DBRE creative work.</div>
+      <div class="toolkit-card-links">
+        <a href="https://canva.link/dbre-logos" target="_blank" class="toolkit-link">Open in Canva</a>
+      </div>
+    </div>
+
+    <div class="toolkit-card">
+      <svg class="toolkit-card-icon" viewBox="0 0 32 32" fill="none"><path d="M8 4h12l6 6v18H8V4z" stroke="#C9A84C" stroke-width="1.5" stroke-linejoin="round"/><path d="M20 4v6h6" stroke="#C9A84C" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 14h8M12 18h8M12 22h5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div class="toolkit-card-title">Seller Guide</div>
+      <div class="toolkit-card-desc">Your branded seller resource — share the corporate version or personalize the advisor edition in Canva.</div>
+      <div class="toolkit-card-links">
+        <a href="https://danablanksrealestate.sharepoint.com/:b:/s/DanaBlanksRealEstateInc/IQD2JVhsL6kPQ415O2A3Uc0QAa2bB4ouIzWC5rmGLF3wzAM?e=gNltkC" target="_blank" class="toolkit-link">Corporate PDF</a>
+        <a href="https://canva.link/uxtlshvo5j34td3" target="_blank" class="toolkit-link secondary">Advisor Edition (Canva)</a>
+      </div>
+    </div>
+
+    <div class="toolkit-card">
+      <svg class="toolkit-card-icon" viewBox="0 0 32 32" fill="none"><path d="M16 4 L28 10 V22 L16 28 L4 22 V10 Z" stroke="#C9A84C" stroke-width="1.5" stroke-linejoin="round"/><path d="M16 4v24M4 10l12 6 12-6" stroke="#C9A84C" stroke-width="1.5"/></svg>
+      <div class="toolkit-card-title">Buyer Guide</div>
+      <div class="toolkit-card-desc">Your branded buyer resource — share the corporate version or personalize the advisor edition in Canva.</div>
+      <div class="toolkit-card-links">
+        <a href="https://danablanksrealestate.sharepoint.com/:b:/s/DanaBlanksRealEstateInc/IQAlTlmAMm96RqAKYBYEEVlzAVszSywCqVRrpBl4Umoq3P0?e=Q0gglH" target="_blank" class="toolkit-link">Corporate PDF</a>
+        <a href="https://canva.link/2c3oa6mht6j26hy" target="_blank" class="toolkit-link secondary">Advisor Edition (Canva)</a>
+      </div>
+    </div>
+
+    <div class="toolkit-card">
+      <svg class="toolkit-card-icon" viewBox="0 0 32 32" fill="none"><rect x="4" y="6" width="24" height="20" rx="2" stroke="#C9A84C" stroke-width="1.5"/><rect x="9" y="11" width="7" height="5" rx="1" fill="#C9A84C" opacity="0.3"/><path d="M19 12h4M19 15h4M9 19h14M9 22h10" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div class="toolkit-card-title">Listing Presentation Template</div>
+      <div class="toolkit-card-desc">Branded Canva seller presentation — customize with property details and your advisor branding.</div>
+      <div class="toolkit-card-links">
+        <a href="https://canva.link/i0zw78te4ccew46" target="_blank" class="toolkit-link">Open in Canva</a>
+      </div>
+    </div>
+
+    <div class="toolkit-card">
+      <svg class="toolkit-card-icon" viewBox="0 0 32 32" fill="none"><rect x="4" y="4" width="11" height="11" rx="2" stroke="#C9A84C" stroke-width="1.5"/><rect x="17" y="4" width="11" height="11" rx="2" stroke="#C9A84C" stroke-width="1.5"/><rect x="4" y="17" width="11" height="11" rx="2" stroke="#C9A84C" stroke-width="1.5"/><rect x="17" y="17" width="11" height="11" rx="2" stroke="#C9A84C" stroke-width="1.5"/></svg>
+      <div class="toolkit-card-title">Canva Marketing Templates</div>
+      <div class="toolkit-card-desc">Ready-to-use branded templates for every post type — Just Listed, Just Sold, Market Updates, and more.</div>
+      <div class="toolkit-card-links">
+        <a href="https://canva.link/tsxyflrl224d35x" target="_blank" class="toolkit-link">Open in Canva</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── FEATURED TEMPLATES — charcoal ── -->
+<div class="section-templates">
+  <div class="section-eyebrow on-dark">Featured Templates</div>
+  <div class="section-title on-dark">Ready to Use in Canva</div>
+  <div class="section-rule"></div>
+
+  <div class="templates-subsection">
+    <div class="templates-sub-label">Social Media</div>
+    <div class="templates-grid">
+      <a href="https://www.canva.com/design/DAHAfeyMucs/DSpQKLFhdXsSpRK1It4BPg/view?utm_content=DAHAfeyMucs&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink&mode=preview" target="_blank" class="template-card">
+        <div class="template-thumb"><div class="template-thumb-inner"><div class="template-thumb-label">Just<br>Listed</div><div class="template-thumb-num">01</div></div></div>
+        <div class="template-name">Just Listed | Square</div>
+      </a>
+      <a href="https://www.canva.com/design/DAHAfd2gAzQ/p4zm9tpUf1T3pk-w93jCyw/view?utm_content=DAHAfd2gAzQ&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink&mode=preview" target="_blank" class="template-card">
+        <div class="template-thumb"><div class="template-thumb-inner"><div class="template-thumb-label">Just<br>Sold</div><div class="template-thumb-num">02</div></div></div>
+        <div class="template-name">Just Sold | Square</div>
+      </a>
+      <a href="https://www.canva.com/design/DAHAffli5OU/GRbKHzRj6FqD9QuwFRgLKw/view?utm_content=DAHAffli5OU&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink&mode=preview" target="_blank" class="template-card">
+        <div class="template-thumb"><div class="template-thumb-inner"><div class="template-thumb-label">Market<br>Update</div><div class="template-thumb-num">03</div></div></div>
+        <div class="template-name">Market Update | Graphic</div>
+      </a>
+      <a href="https://www.canva.com/design/DAHAfRLgns4/oJvFm4KZS81s8GSackb8vw/view?utm_content=DAHAfRLgns4&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink&mode=preview" target="_blank" class="template-card">
+        <div class="template-thumb"><div class="template-thumb-inner"><div class="template-thumb-label">Coming<br>Soon</div><div class="template-thumb-num">04</div></div></div>
+        <div class="template-name">Coming Soon | Square</div>
+      </a>
+      <a href="https://canva.link/f7njygwrl89829t" target="_blank" class="template-card">
+        <div class="template-thumb"><div class="template-thumb-inner"><div class="template-thumb-label">General<br>Brand</div><div class="template-thumb-num">05</div></div></div>
+        <div class="template-name">General Brand Graphic</div>
+      </a>
+      <a href="https://canva.link/g9acj3xo8g5aes8" target="_blank" class="template-card">
+        <div class="template-thumb"><div class="template-thumb-inner"><div class="template-thumb-label">Client<br>Testimonial</div><div class="template-thumb-num">06</div></div></div>
+        <div class="template-name">Testimonial | Graphic</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="templates-subsection">
+    <div class="templates-sub-label">Advisor Banners by Tier</div>
+    <div class="templates-grid">
+      <a href="https://www.canva.com/design/DAHC-12heCA/bFoRcEpgqXfKGsgQCud3Eg/view?utm_content=DAHC-12heCA&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink&mode=preview" target="_blank" class="template-card">
+        <div class="template-thumb"><div class="template-thumb-inner" style="background:linear-gradient(145deg,#3A2E18,#261E0E);"><div class="template-thumb-label" style="font-size:9px;">Real Estate<br><em style="font-size:11px;">Advisor</em></div><div class="template-thumb-num">01</div></div></div>
+        <div class="template-name">Facebook · Real Estate Advisor</div>
+      </a>
+      <a href="https://canva.link/r8gy3jcas9t1up0" target="_blank" class="template-card">
+        <div class="template-thumb"><div class="template-thumb-inner" style="background:linear-gradient(145deg,#3E2810,#2A1C08);"><div class="template-thumb-label" style="font-size:9px;">Senior<br><em style="font-size:11px;">Advisor</em></div><div class="template-thumb-num">02</div></div></div>
+        <div class="template-name">Facebook · Senior Advisor</div>
+      </a>
+      <a href="https://www.canva.com/design/DAHC-7THhSo/7QH5Oa9GiVqNj_JtulrpMw/view?utm_content=DAHC-7THhSo&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink&mode=preview" target="_blank" class="template-card">
+        <div class="template-thumb"><div class="template-thumb-inner" style="background:linear-gradient(145deg,#2A2420,#1A1614);"><div class="template-thumb-label" style="font-size:9px;">Elite<br><em style="font-size:11px;">Advisor</em></div><div class="template-thumb-num">03</div></div></div>
+        <div class="template-name">Facebook · Elite Advisor</div>
+      </a>
+      <a href="https://canva.link/4cse70bha8570vt" target="_blank" class="template-card">
+        <div class="template-thumb"><div class="template-thumb-inner" style="background:linear-gradient(145deg,#3A2E18,#261E0E);"><div class="template-thumb-label" style="font-size:9px;">Real Estate<br><em style="font-size:11px;">Advisor</em></div><div class="template-thumb-num">04</div></div></div>
+        <div class="template-name">LinkedIn · Real Estate Advisor</div>
+      </a>
+      <a href="https://www.canva.com/design/DAHC-4K_DAw/JhSXQQ0X84wkr2WfRr9LSg/view?utm_content=DAHC-4K_DAw&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink&mode=preview" target="_blank" class="template-card">
+        <div class="template-thumb"><div class="template-thumb-inner" style="background:linear-gradient(145deg,#3E2810,#2A1C08);"><div class="template-thumb-label" style="font-size:9px;">Senior<br><em style="font-size:11px;">Advisor</em></div><div class="template-thumb-num">05</div></div></div>
+        <div class="template-name">LinkedIn · Senior Advisor</div>
+      </a>
+      <a href="https://www.canva.com/design/DAHC-6BZn4g/IJwj05MA2gWKtfRkXCASdw/view?utm_content=DAHC-6BZn4g&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink&mode=preview" target="_blank" class="template-card">
+        <div class="template-thumb"><div class="template-thumb-inner" style="background:linear-gradient(145deg,#2A2420,#1A1614);"><div class="template-thumb-label" style="font-size:9px;">Elite<br><em style="font-size:11px;">Advisor</em></div><div class="template-thumb-num">06</div></div></div>
+        <div class="template-name">LinkedIn · Elite Advisor</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOUNDATION DOCS — cream ── -->
+<div class="section-foundation">
+  <div class="section-eyebrow">Essential Reading</div>
+  <div class="section-title on-light">Foundation Documents</div>
+  <div class="section-rule"></div>
+  <p class="section-desc on-light">Every DBRE advisor should read these five documents before publishing content, attending a listing appointment, or using any branded creative asset.</p>
+
+  <div class="foundation-grid">
+    <a href="https://danablanksrealestate.sharepoint.com/:u:/s/DanaBlanksRealEstateInc/IQDV0ueDCHnCRZS-cqJzcOcDAf6EF2kYc3GSrD1V9A61GoI?e=jTpIgV" target="_blank" class="foundation-card">
+      <svg class="foundation-icon" viewBox="0 0 28 28" fill="none"><path d="M7 4h10l5 5v15H7V4z" stroke="#C9A84C" stroke-width="1.2" stroke-linejoin="round"/><path d="M17 4v5h5" stroke="#C9A84C" stroke-width="1.2" stroke-linejoin="round"/><path d="M10 12h8M10 15h8M10 18h5" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round"/></svg>
+      <div class="foundation-name">Social Media Hashtag Reference</div>
+      <div class="foundation-arrow">→</div>
+    </a>
+    <a href="https://danablanksrealestate.sharepoint.com/:u:/s/DanaBlanksRealEstateInc/IQCuveW_S2HlR4PRlyR0vI9XAUsqtJ42GTzSYm7PwBAm8r4?e=5Wm2sQ" target="_blank" class="foundation-card">
+      <svg class="foundation-icon" viewBox="0 0 28 28" fill="none"><path d="M7 4h10l5 5v15H7V4z" stroke="#C9A84C" stroke-width="1.2" stroke-linejoin="round"/><path d="M17 4v5h5" stroke="#C9A84C" stroke-width="1.2" stroke-linejoin="round"/><path d="M10 12h8M10 15h8M10 18h5" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round"/></svg>
+      <div class="foundation-name">Brand Standards Guide</div>
+      <div class="foundation-arrow">→</div>
+    </a>
+    <a href="https://danablanksrealestate.sharepoint.com/:u:/s/DanaBlanksRealEstateInc/IQCL_mGpmM_gR6mH8ozy29l5ARwCR1DLgHB0UxfgtYWZtUI?e=XX0cAS" target="_blank" class="foundation-card">
+      <svg class="foundation-icon" viewBox="0 0 28 28" fill="none"><path d="M7 4h10l5 5v15H7V4z" stroke="#C9A84C" stroke-width="1.2" stroke-linejoin="round"/><path d="M17 4v5h5" stroke="#C9A84C" stroke-width="1.2" stroke-linejoin="round"/><path d="M10 12h8M10 15h8M10 18h5" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round"/></svg>
+      <div class="foundation-name">Advisor Headshot Standards</div>
+      <div class="foundation-arrow">→</div>
+    </a>
+    <a href="https://danablanksrealestate.sharepoint.com/:u:/s/DanaBlanksRealEstateInc/IQCYDjmq6X1sTKZZrcM6wu6jAXytoNBMouBrTwkDjBXow8E?e=OF9AmN" target="_blank" class="foundation-card">
+      <svg class="foundation-icon" viewBox="0 0 28 28" fill="none"><path d="M7 4h10l5 5v15H7V4z" stroke="#C9A84C" stroke-width="1.2" stroke-linejoin="round"/><path d="M17 4v5h5" stroke="#C9A84C" stroke-width="1.2" stroke-linejoin="round"/><path d="M10 12h8M10 15h8M10 18h5" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round"/></svg>
+      <div class="foundation-name">Social Media Policy</div>
+      <div class="foundation-arrow">→</div>
+    </a>
+    <a href="https://danablanksrealestate.sharepoint.com/:u:/s/DanaBlanksRealEstateInc/IQDZSRArx7mGRoyx2wg4JK1TAeQuE5vrmq1xim5zt8dIVH4?e=3ZhdHX" target="_blank" class="foundation-card">
+      <svg class="foundation-icon" viewBox="0 0 28 28" fill="none"><path d="M7 4h10l5 5v15H7V4z" stroke="#C9A84C" stroke-width="1.2" stroke-linejoin="round"/><path d="M17 4v5h5" stroke="#C9A84C" stroke-width="1.2" stroke-linejoin="round"/><path d="M10 12h8M10 15h8M10 18h5" stroke="#C9A84C" stroke-width="1.2" stroke-linecap="round"/></svg>
+      <div class="foundation-name">Canva Usage Guidelines</div>
+      <div class="foundation-arrow">→</div>
+    </a>
+  </div>
+</div>
+
+<!-- ── EXCELLENCE — cream-2 ── -->
+<div class="section-excellence">
+  <div class="section-eyebrow">Excellence Collection</div>
+  <div class="section-title on-light">Creative Suite Resources</div>
+  <div class="section-rule"></div>
+  <p class="section-desc on-light">Four curated collections of branded creative assets organized by purpose. Click any card to open the folder in your Creative Suite.</p>
+
+  <div class="folder-grid">
+    <a href="https://danablanksrealestate.sharepoint.com/sites/DanaBlanksRealEstateInc/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x012000514FC83DC9FA804584285B55D73B8DC8&id=%2Fsites%2FDanaBlanksRealEstateInc%2FShared%20Documents%2F02%20%C2%B7%20The%20Creative%20Suite%2F01%20%C2%B7%20Brand%20Identity%20Assets" target="_blank" class="folder-card">
+      <div class="folder-card-thumb tint-01">
+        <div class="folder-card-num">01</div>
+        <div class="folder-card-eyebrow">The Creative Suite</div>
+      </div>
+      <div class="folder-card-body">
+        <div class="folder-card-title">Brand Identity<br><em>Assets</em></div>
+        <div class="folder-card-link">Open Folder →</div>
+      </div>
+    </a>
+    <a href="https://danablanksrealestate.sharepoint.com/sites/DanaBlanksRealEstateInc/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x012000514FC83DC9FA804584285B55D73B8DC8&id=%2Fsites%2FDanaBlanksRealEstateInc%2FShared%20Documents%2F02%20%C2%B7%20The%20Creative%20Suite%2F02%20%C2%B7%20Seller%20Presentation%20Suite" target="_blank" class="folder-card">
+      <div class="folder-card-thumb tint-02">
+        <div class="folder-card-num">02</div>
+        <div class="folder-card-eyebrow">The Creative Suite</div>
+      </div>
+      <div class="folder-card-body">
+        <div class="folder-card-title">Seller Presentation<br><em>Suite</em></div>
+        <div class="folder-card-link">Open Folder →</div>
+      </div>
+    </a>
+    <a href="https://danablanksrealestate.sharepoint.com/sites/DanaBlanksRealEstateInc/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x012000514FC83DC9FA804584285B55D73B8DC8&id=%2Fsites%2FDanaBlanksRealEstateInc%2FShared%20Documents%2F02%20%C2%B7%20The%20Creative%20Suite%2F03%20%C2%B7%20Buyer%20Presentation%20Suite" target="_blank" class="folder-card">
+      <div class="folder-card-thumb tint-03">
+        <div class="folder-card-num">03</div>
+        <div class="folder-card-eyebrow">The Creative Suite</div>
+      </div>
+      <div class="folder-card-body">
+        <div class="folder-card-title">Buyer Presentation<br><em>Suite</em></div>
+        <div class="folder-card-link">Open Folder →</div>
+      </div>
+    </a>
+    <a href="https://danablanksrealestate.sharepoint.com/sites/DanaBlanksRealEstateInc/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x012000514FC83DC9FA804584285B55D73B8DC8&id=%2Fsites%2FDanaBlanksRealEstateInc%2FShared%20Documents%2F02%20%C2%B7%20The%20Creative%20Suite%2F04%20%C2%B7%20Social%20Media%20Marketing" target="_blank" class="folder-card">
+      <div class="folder-card-thumb tint-04">
+        <div class="folder-card-num">04</div>
+        <div class="folder-card-eyebrow">The Creative Suite</div>
+      </div>
+      <div class="folder-card-body">
+        <div class="folder-card-title">Social Media<br><em>Marketing</em></div>
+        <div class="folder-card-link">Open Folder →</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<div class="page-footer">
+  <div class="footer-brand">Dana Blanks Real Estate™</div>
+  <div class="footer-rule"></div>
+  <div class="footer-tagline">Where Luxury Service Meets Genuine Connection · Wilmington · Charleston · Savannah</div>
+</div>
+
+</body>
+</html>
