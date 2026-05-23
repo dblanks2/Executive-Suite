@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>05 · The Closing Table — DBRE Executive Suite</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:           #1C1C1C;
+    --cream:        #F5F0E8;
+    --card-dark:    #323232;
+    --gold-warm:    #C9A84C;
+    --gold-light:   #D4AF6A;
+    --gold-mid:     #B8892A;
+    --text-primary: #F5F0E8;
+    --text-muted:   #A89880;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 64px 60px 48px;
+    border-bottom: 1px solid rgba(201,168,76,0.18);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-warm);
+    margin-bottom: 14px;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 5vw, 52px);
+    font-weight: 500;
+    line-height: 1.12;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+
+  .hero-rule {
+    width: 56px;
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--gold-warm), var(--gold-light));
+    margin-bottom: 18px;
+  }
+
+  .hero-sub {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    line-height: 1.7;
+    max-width: 520px;
+  }
+
+  /* ── MAIN ── */
+  main {
+    flex: 1;
+    padding: 56px 60px 64px;
+    max-width: 960px;
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .section-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold-warm);
+    white-space: nowrap;
+  }
+  .section-rule {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold-warm) 0%, var(--gold-light) 40%, transparent 100%);
+    max-width: 320px;
+  }
+
+  /* ── SINGLE FEATURED FOLDER CARD ── */
+  .folder-card {
+    background: var(--card-dark);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    padding: 40px 40px 36px;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, background 0.25s, transform 0.2s;
+    max-width: 680px;
+  }
+  .folder-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--gold-warm), var(--gold-light));
+  }
+  .folder-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold-warm), var(--gold-light), transparent);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .folder-card:hover {
+    border-color: rgba(201,168,76,0.5);
+    background: #383838;
+    transform: translateY(-2px);
+  }
+  .folder-card:hover::after { opacity: 1; }
+
+  .folder-left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .folder-tag {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-warm);
+  }
+
+  .folder-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+
+  .folder-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.65;
+    max-width: 400px;
+    margin-top: 2px;
+  }
+
+  .folder-cta {
+    flex-shrink: 0;
+    padding: 11px 24px;
+    border: 1px solid var(--gold-warm);
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-warm);
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+  }
+  .folder-card:hover .folder-cta {
+    background: var(--gold-warm);
+    color: var(--bg);
+  }
+
+  /* ── CHANNEL NOTE ── */
+  .channel-note {
+    margin-top: 40px;
+    padding: 24px 28px;
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 4px;
+    background: rgba(201,168,76,0.03);
+    max-width: 680px;
+  }
+  .channel-note p {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+  .channel-note strong {
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 20px 60px;
+    border-top: 1px solid rgba(201,168,76,0.12);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gold-warm);
+    letter-spacing: 0.06em;
+  }
+  .footer-channel {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <p class="eyebrow">DBRE Executive Suite &nbsp;·&nbsp; Channel 05</p>
+  <h1 class="hero-title">The Closing Table</h1>
+  <div class="hero-rule"></div>
+  <p class="hero-sub">Where milestones are made. Closing announcements, transaction celebrations, and the moments that mark our advisors' success.</p>
+</div>
+
+<main>
+
+  <div class="section-header">
+    <span class="section-label">Resources</span>
+    <div class="section-rule"></div>
+  </div>
+
+  <a class="folder-card" href="https://danablanksrealestate.sharepoint.com/sites/DanaBlanksRealEstateInc/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x012000514FC83DC9FA804584285B55D73B8DC8&id=%2Fsites%2FDanaBlanksRealEstateInc%2FShared%20Documents%2F05%20%C2%B7%20The%20Closing%20Table%2FClosing%20Announcements%20Archive" target="_blank">
+    <div class="folder-left">
+      <span class="folder-tag">Archive</span>
+      <span class="folder-name">Closing Announcements Archive</span>
+      <span class="folder-desc">A running record of every DBRE closing celebration — the properties, the advisors, and the clients we've served.</span>
+    </div>
+    <span class="folder-cta">Open Archive</span>
+  </a>
+
+  <div class="channel-note">
+    <p><strong>How this channel works:</strong> When a transaction closes, a closing announcement is posted here in the Posts tab to celebrate the advisor and the milestone. Announcements are then archived to the folder above for the permanent record.</p>
+  </div>
+
+</main>
+
+<footer>
+  <span class="footer-brand">Dana Blanks Real Estate™</span>
+  <span class="footer-channel">05 · The Closing Table</span>
+</footer>
+
+</body>
+</html>
