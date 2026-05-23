@@ -7,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
     --bg:           #1C1C1C;
     --cream:        #F5F0E8;
@@ -18,7 +17,6 @@
     --text-primary: #F5F0E8;
     --text-muted:   #A89880;
   }
-
   body {
     background: var(--bg);
     color: var(--text-primary);
@@ -27,8 +25,6 @@
     display: flex;
     flex-direction: column;
   }
-
-  /* ── HERO ── */
   .hero {
     padding: 64px 60px 48px;
     border-bottom: 1px solid rgba(201,168,76,0.18);
@@ -42,9 +38,7 @@
     background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
     pointer-events: none;
   }
-
   .eyebrow {
-    font-family: 'Montserrat', sans-serif;
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.22em;
@@ -52,7 +46,6 @@
     color: var(--gold-warm);
     margin-bottom: 14px;
   }
-
   .hero-title {
     font-family: 'Playfair Display', serif;
     font-size: clamp(34px, 5vw, 52px);
@@ -61,14 +54,12 @@
     color: var(--cream);
     margin-bottom: 16px;
   }
-
   .hero-rule {
     width: 56px;
     height: 1.5px;
     background: linear-gradient(90deg, var(--gold-warm), var(--gold-light));
     margin-bottom: 18px;
   }
-
   .hero-sub {
     font-size: 13px;
     font-weight: 400;
@@ -77,15 +68,11 @@
     line-height: 1.7;
     max-width: 520px;
   }
-
-  /* ── MAIN ── */
   main {
     flex: 1;
     padding: 56px 60px 64px;
     max-width: 960px;
   }
-
-  /* ── SECTION HEADER ── */
   .section-header {
     display: flex;
     align-items: center;
@@ -106,23 +93,24 @@
     background: linear-gradient(90deg, var(--gold-warm) 0%, var(--gold-light) 40%, transparent 100%);
     max-width: 320px;
   }
-
-  /* ── SINGLE FEATURED FOLDER CARD ── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
   .folder-card {
     background: var(--card-dark);
     border: 1px solid rgba(201,168,76,0.2);
     border-radius: 4px;
-    padding: 40px 40px 36px;
+    padding: 36px 32px 32px;
     text-decoration: none;
     color: inherit;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
+    flex-direction: column;
+    gap: 10px;
     position: relative;
     overflow: hidden;
     transition: border-color 0.25s, background 0.25s, transform 0.2s;
-    max-width: 680px;
   }
   .folder-card::before {
     content: '';
@@ -146,13 +134,6 @@
     transform: translateY(-2px);
   }
   .folder-card:hover::after { opacity: 1; }
-
-  .folder-left {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
   .folder-tag {
     font-size: 9px;
     font-weight: 700;
@@ -160,42 +141,37 @@
     text-transform: uppercase;
     color: var(--gold-warm);
   }
-
   .folder-name {
     font-family: 'Playfair Display', serif;
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 500;
     color: var(--cream);
-    line-height: 1.2;
+    line-height: 1.25;
   }
-
   .folder-desc {
     font-size: 12px;
     color: var(--text-muted);
     line-height: 1.65;
-    max-width: 400px;
     margin-top: 2px;
   }
-
   .folder-cta {
-    flex-shrink: 0;
-    padding: 11px 24px;
-    border: 1px solid var(--gold-warm);
-    border-radius: 3px;
+    margin-top: auto;
+    padding-top: 20px;
     font-size: 10px;
-    font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--gold-warm);
-    white-space: nowrap;
-    transition: background 0.2s, color 0.2s;
+    color: var(--gold-mid);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
-  .folder-card:hover .folder-cta {
-    background: var(--gold-warm);
-    color: var(--bg);
+  .folder-cta::after {
+    content: '→';
+    transition: transform 0.2s;
   }
-
-  /* ── CHANNEL NOTE ── */
+  .folder-card:hover .folder-cta { color: var(--gold-warm); }
+  .folder-card:hover .folder-cta::after { transform: translateX(4px); }
   .channel-note {
     margin-top: 40px;
     padding: 24px 28px;
@@ -213,8 +189,6 @@
     color: var(--gold-light);
     font-weight: 600;
   }
-
-  /* ── FOOTER ── */
   footer {
     padding: 20px 60px;
     border-top: 1px solid rgba(201,168,76,0.12);
@@ -254,14 +228,23 @@
     <div class="section-rule"></div>
   </div>
 
-  <a class="folder-card" href="https://danablanksrealestate.sharepoint.com/sites/DanaBlanksRealEstateInc/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x012000514FC83DC9FA804584285B55D73B8DC8&id=%2Fsites%2FDanaBlanksRealEstateInc%2FShared%20Documents%2F05%20%C2%B7%20The%20Closing%20Table%2FClosing%20Announcements%20Archive" target="_blank">
-    <div class="folder-left">
+  <div class="cards-grid">
+
+    <a class="folder-card" href="https://danablanksrealestate.sharepoint.com/:l:/s/DanaBlanksRealEstateInc/JACrxpdjRODxRr69NN-XrPttAUiyFWM3z53SwParpdM0Mas?e=OL0eg2" target="_blank">
+      <span class="folder-tag">Calendar</span>
+      <span class="folder-name">Transaction Calendar</span>
+      <span class="folder-desc">Live view of all active transactions — key dates, deadlines, and closing milestones across the DBRE portfolio.</span>
+      <span class="folder-cta">Open Calendar</span>
+    </a>
+
+    <a class="folder-card" href="https://danablanksrealestate.sharepoint.com/sites/DanaBlanksRealEstateInc/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x012000514FC83DC9FA804584285B55D73B8DC8&id=%2Fsites%2FDanaBlanksRealEstateInc%2FShared%20Documents%2F05%20%C2%B7%20The%20Closing%20Table%2FClosing%20Announcements%20Archive" target="_blank">
       <span class="folder-tag">Archive</span>
       <span class="folder-name">Closing Announcements Archive</span>
       <span class="folder-desc">A running record of every DBRE closing celebration — the properties, the advisors, and the clients we've served.</span>
-    </div>
-    <span class="folder-cta">Open Archive</span>
-  </a>
+      <span class="folder-cta">Open Archive</span>
+    </a>
+
+  </div>
 
   <div class="channel-note">
     <p><strong>How this channel works:</strong> When a transaction closes, a closing announcement is posted here in the Posts tab to celebrate the advisor and the milestone. Announcements are then archived to the folder above for the permanent record.</p>
