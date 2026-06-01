@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DBRE Office Policy Manual v3.0 — Dana Blanks Real Estate™</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap');
+:root{
+  --charcoal:#1A1A1A;--charcoal-mid:#2A2A2A;--charcoal-soft:#333333;
+  --gold:#C9A84C;--gold-light:#D4AF6A;--gold-pale:#F5EDD8;--gold-border:rgba(201,168,76,0.25);
+  --cream:#FAF7F2;--cream-dark:#F0EBE0;--white:#FFFFFF;
+  --body:#3A3A3A;--body-mid:#5A5A5A;--muted:#7A7268;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--body);font-size:13.5px;line-height:1.75;}
+.site-header{background:var(--charcoal);padding:16px 48px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:200;}
+.header-brand{color:var(--gold);font-family:'Playfair Display',serif;font-size:15px;letter-spacing:0.08em;}
+.header-sub{color:rgba(255,255,255,0.4);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;margin-top:3px;}
+.header-badge{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.25);border:1px solid rgba(255,255,255,0.15);padding:4px 10px;}
+.hero{background:var(--charcoal-mid);padding:52px 48px 44px;border-bottom:1px solid var(--gold-border);}
+.hero-inner{max-width:960px;margin:0 auto;}
+.hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.hero h1{font-family:'Playfair Display',serif;font-size:40px;font-weight:700;color:#fff;line-height:1.15;margin-bottom:10px;}
+.hero-sub{color:rgba(255,255,255,0.45);font-size:13px;max-width:640px;line-height:1.75;margin-bottom:24px;}
+.gold-rule{width:48px;height:2px;background:var(--gold);border:none;margin:20px 0;}
+.hero-meta{display:flex;gap:24px;margin-top:20px;flex-wrap:wrap;}
+.hero-meta-item{font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.1em;text-transform:uppercase;}
+.hero-meta-item strong{color:rgba(201,168,76,0.7);font-weight:600;}
+.hero-promise{display:inline-block;font-size:11px;font-style:italic;color:rgba(201,168,76,0.75);border-top:1px solid rgba(201,168,76,0.25);padding-top:14px;}
+.tab-radio{display:none;}
+.phase-map{background:var(--charcoal-soft);border-bottom:1px solid var(--gold-border);padding:0 48px;display:flex;overflow-x:auto;gap:0;}
+.phase-map::-webkit-scrollbar{height:3px;}
+.phase-map::-webkit-scrollbar-thumb{background:rgba(201,168,76,0.3);}
+.ptab{padding:15px 20px;font-size:10px;font-weight:600;letter-spacing:0.07em;color:rgba(255,255,255,0.35);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;display:flex;align-items:center;gap:7px;font-family:'Montserrat',sans-serif;user-select:none;}
+.ptab:hover{color:var(--gold-light);}
+.ptab-num{width:20px;height:20px;background:rgba(201,168,76,0.15);color:var(--gold);border-radius:50%;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.main{max-width:960px;margin:0 auto;padding:48px 48px 80px;}
+.panel{display:none;}
+.phase-intro{margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--gold-border);}
+.phase-label{font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.phase-intro h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:var(--charcoal);margin-bottom:10px;}
+.phase-intro p{font-size:13px;color:var(--body-mid);max-width:680px;line-height:1.85;}
+.section-block{margin-bottom:36px;}
+.section-heading{font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--body-mid);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,0.15);}
+.step-block{display:flex;gap:18px;padding:16px 0;border-bottom:1px solid rgba(201,168,76,0.08);}
+.step-block:last-child{border-bottom:none;}
+.step-circle{min-width:28px;height:28px;background:var(--gold);color:var(--charcoal);font-size:11px;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:2px;flex-shrink:0;}
+.step-circle.alert{background:var(--charcoal);color:var(--gold);border:1px solid var(--gold);}
+.step-content{flex:1;}
+.step-title{font-size:13.5px;font-weight:700;color:var(--charcoal);margin-bottom:4px;}
+.step-body{font-size:12.5px;color:var(--body-mid);line-height:1.85;}
+.step-bullets{list-style:none;padding:0;margin:8px 0 0;}
+.step-bullets li{padding:4px 0 4px 16px;position:relative;font-size:12.5px;color:var(--body);border-bottom:1px solid rgba(201,168,76,0.07);line-height:1.75;}
+.step-bullets li:last-child{border-bottom:none;}
+.step-bullets li::before{content:'–';position:absolute;left:0;color:var(--gold);font-weight:600;}
+.callout{padding:13px 18px;margin:14px 0;font-size:12.5px;line-height:1.8;}
+.callout strong{display:inline;}
+.callout-standard{background:#FFFBF0;border:1px solid rgba(201,168,76,0.3);border-left:4px solid var(--gold);border-radius:0 3px 3px 0;}
+.callout-standard strong{color:#8B5E00;}
+.callout-dark{background:var(--charcoal);border:1px solid var(--gold-border);border-left:4px solid var(--gold);border-radius:0 3px 3px 0;color:rgba(255,255,255,0.78);}
+.callout-dark strong{color:var(--gold);}
+.callout-note{background:var(--white);border:1px solid var(--gold-border);border-left:4px solid var(--body-mid);border-radius:0 3px 3px 0;}
+.callout-note strong{color:var(--charcoal);}
+.callout-alert{background:#FFF8F0;border:1px solid rgba(201,168,76,0.4);border-left:4px solid #C9A84C;border-radius:0 3px 3px 0;}
+.callout-alert strong{color:#8B5E00;}
+.cross-ref{font-size:11px;color:var(--muted);font-style:italic;margin-top:10px;padding-top:8px;border-top:1px dashed var(--gold-border);}
+.cross-ref strong{color:var(--gold);font-style:normal;}
+.dbre-table{width:100%;border-collapse:collapse;font-size:12px;margin:12px 0;}
+.dbre-table th{background:var(--charcoal);color:var(--gold);font-weight:700;letter-spacing:0.08em;font-size:10px;text-transform:uppercase;padding:10px 14px;text-align:left;}
+.dbre-table td{padding:10px 14px;border-bottom:1px solid rgba(201,168,76,0.1);color:var(--body);vertical-align:top;}
+.dbre-table tr:last-child td{border-bottom:none;}
+.dbre-table tr:nth-child(even) td{background:rgba(201,168,76,0.03);}
+.dbre-table td:first-child{font-weight:600;color:var(--charcoal);}
+.dbre-table td.normal{font-weight:400;color:var(--body);}
+.fee-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+.fee-card{background:var(--white);border:1px solid var(--gold-border);border-radius:4px;padding:16px 18px;}
+.fee-card-label{font-size:9px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.fee-card-value{font-size:24px;font-weight:700;font-family:'Playfair Display',serif;color:var(--gold);}
+.fee-card-sub{font-size:11px;color:var(--body-mid);margin-top:4px;line-height:1.6;}
+.badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:2px 8px;border-radius:3px;}
+.badge-gold{background:rgba(201,168,76,0.15);color:var(--gold);}
+.badge-pending{background:rgba(122,114,104,0.1);color:var(--muted);}
+.badge-draft{background:rgba(201,168,76,0.1);color:#9A7030;}
+.flow-map{background:var(--white);border:1px solid var(--gold-border);border-radius:6px;padding:22px 26px;margin-bottom:32px;}
+.flow-map-label{font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.flow-steps{display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+.flow-step{display:flex;align-items:center;gap:7px;padding:6px 13px 6px 6px;background:var(--cream);border:1px solid var(--gold-border);border-radius:4px;font-size:11px;font-weight:500;color:var(--charcoal);}
+.flow-num{width:22px;height:22px;background:var(--gold);color:var(--charcoal);border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.flow-arrow{color:var(--gold);font-size:15px;padding:0 2px;}
+.flow-milestone{background:var(--charcoal);border-color:var(--gold);}
+.flow-milestone .flow-num{background:var(--charcoal-soft);}
+.flow-milestone span{color:var(--gold);font-weight:600;}
+.flow-decision{background:var(--gold-pale);border-color:var(--gold);border-radius:20px;}
+.script-card{margin-bottom:20px;border-radius:6px;overflow:hidden;border:1px solid var(--gold-border);}
+.script-card-header{background:var(--charcoal);padding:12px 20px;display:flex;align-items:center;gap:10px;}
+.script-icon{width:24px;height:24px;background:rgba(201,168,76,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;}
+.script-card-title{font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);}
+.script-card-body{background:var(--cream-dark);border-left:4px solid var(--gold);padding:18px 22px;font-size:12.5px;font-style:italic;color:var(--body);line-height:1.9;white-space:pre-line;}
+.tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0;}
+.tier-card{background:var(--white);border:1px solid var(--gold-border);border-radius:4px;padding:16px;}
+.tier-card.featured{border-color:var(--gold);border-width:2px;}
+.tier-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--charcoal);margin-bottom:4px;}
+.tier-split{font-size:28px;font-weight:700;font-family:'Playfair Display',serif;color:var(--gold);margin:8px 0 4px;}
+.tier-label{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);}
+.tier-details{margin-top:10px;font-size:11px;color:var(--body-mid);line-height:1.7;}
+.pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:14px 0;}
+.pillar-card{background:var(--charcoal);border:1px solid var(--gold-border);border-radius:4px;padding:18px 16px;}
+.pillar-num{font-size:28px;font-weight:700;font-family:'Playfair Display',serif;color:rgba(201,168,76,0.3);margin-bottom:6px;}
+.pillar-title{font-size:13px;font-weight:700;color:var(--gold);margin-bottom:6px;}
+.pillar-body{font-size:11.5px;color:rgba(255,255,255,0.55);line-height:1.7;}
+.site-footer{background:var(--charcoal);padding:24px 48px;text-align:center;border-top:2px solid var(--gold-border);font-size:10.5px;color:rgba(255,255,255,0.25);letter-spacing:0.06em;line-height:2;}
+@media(max-width:768px){
+  .site-header,.hero,.main{padding-left:20px;padding-right:20px;}
+  .phase-map{padding:0 20px;}
+  .flow-steps{flex-direction:column;align-items:flex-start;}
+  .hero h1{font-size:28px;}
+  .fee-grid,.tier-grid,.pillar-grid{grid-template-columns:1fr;}
+}
+
+/* ── CSS TAB SWITCHING ── */
+#tab-overview:checked ~ nav label[for="tab-overview"] { color: var(--gold); border-bottom-color: var(--gold); }
+#tab-overview:checked ~ nav label[for="tab-overview"] .ptab-num { background: var(--gold); color: var(--charcoal); }
+#tab-overview:checked ~ main #panel-overview { display: block !important; }
+#tab-s1:checked ~ nav label[for="tab-s1"] { color: var(--gold); border-bottom-color: var(--gold); }
+#tab-s1:checked ~ nav label[for="tab-s1"] .ptab-num { background: var(--gold); color: var(--charcoal); }
+#tab-s1:checked ~ main #panel-s1 { display: block !important; }
+#tab-s2:checked ~ nav label[for="tab-s2"] { color: var(--gold); border-bottom-color: var(--gold); }
+#tab-s2:checked ~ nav label[for="tab-s2"] .ptab-num { background: var(--gold); color: var(--charcoal); }
+#tab-s2:checked ~ main #panel-s2 { display: block !important; }
+#tab-s3:checked ~ nav label[for="tab-s3"] { color: var(--gold); border-bottom-color: var(--gold); }
+#tab-s3:checked ~ nav label[for="tab-s3"] .ptab-num { background: var(--gold); color: var(--charcoal); }
+#tab-s3:checked ~ main #panel-s3 { display: block !important; }
+#tab-s4:checked ~ nav label[for="tab-s4"] { color: var(--gold); border-bottom-color: var(--gold); }
+#tab-s4:checked ~ nav label[for="tab-s4"] .ptab-num { background: var(--gold); color: var(--charcoal); }
+#tab-s4:checked ~ main #panel-s4 { display: block !important; }
+#tab-s5:checked ~ nav label[for="tab-s5"] { color: var(--gold); border-bottom-color: var(--gold); }
+#tab-s5:checked ~ nav label[for="tab-s5"] .ptab-num { background: var(--gold); color: var(--charcoal); }
+#tab-s5:checked ~ main #panel-s5 { display: block !important; }
+#tab-s6:checked ~ nav label[for="tab-s6"] { color: var(--gold); border-bottom-color: var(--gold); }
+#tab-s6:checked ~ nav label[for="tab-s6"] .ptab-num { background: var(--gold); color: var(--charcoal); }
+#tab-s6:checked ~ main #panel-s6 { display: block !important; }
+#tab-s7:checked ~ nav label[for="tab-s7"] { color: var(--gold); border-bottom-color: var(--gold); }
+#tab-s7:checked ~ nav label[for="tab-s7"] .ptab-num { background: var(--gold); color: var(--charcoal); }
+#tab-s7:checked ~ main #panel-s7 { display: block !important; }
+#tab-s8:checked ~ nav label[for="tab-s8"] { color: var(--gold); border-bottom-color: var(--gold); }
+#tab-s8:checked ~ nav label[for="tab-s8"] .ptab-num { background: var(--gold); color: var(--charcoal); }
+#tab-s8:checked ~ main #panel-s8 { display: block !important; }
+#tab-s9:checked ~ nav label[for="tab-s9"] { color: var(--gold); border-bottom-color: var(--gold); }
+#tab-s9:checked ~ nav label[for="tab-s9"] .ptab-num { background: var(--gold); color: var(--charcoal); }
+#tab-s9:checked ~ main #panel-s9 { display: block !important; }
+#tab-s10:checked ~ nav label[for="tab-s10"] { color: var(--gold); border-bottom-color: var(--gold); }
+#tab-s10:checked ~ nav label[for="tab-s10"] .ptab-num { background: var(--gold); color: var(--charcoal); }
+#tab-s10:checked ~ main #panel-s10 { display: block !important; }
+#tab-s11:checked ~ nav label[for="tab-s11"] { color: var(--gold); border-bottom-color: var(--gold); }
+#tab-s11:checked ~ nav label[for="tab-s11"] .ptab-num { background: var(--gold); color: var(--charcoal); }
+#tab-s11:checked ~ main #panel-s11 { display: block !important; }
+#tab-s12:checked ~ nav label[for="tab-s12"] { color: var(--gold); border-bottom-color: var(--gold); }
+#tab-s12:checked ~ nav label[for="tab-s12"] .ptab-num { background: var(--gold); color: var(--charcoal); }
+#tab-s12:checked ~ main #panel-s12 { display: block !important; }
+#tab-s13:checked ~ nav label[for="tab-s13"] { color: var(--gold); border-bottom-color: var(--gold); }
+#tab-s13:checked ~ nav label[for="tab-s13"] .ptab-num { background: var(--gold); color: var(--charcoal); }
+#tab-s13:checked ~ main #panel-s13 { display: block !important; }
+#tab-s14:checked ~ nav label[for="tab-s14"] { color: var(--gold); border-bottom-color: var(--gold); }
+#tab-s14:checked ~ nav label[for="tab-s14"] .ptab-num { background: var(--gold); color: var(--charcoal); }
+#tab-s14:checked ~ main #panel-s14 { display: block !important; }
+#tab-s15:checked ~ nav label[for="tab-s15"] { color: var(--gold); border-bottom-color: var(--gold); }
+#tab-s15:checked ~ nav label[for="tab-s15"] .ptab-num { background: var(--gold); color: var(--charcoal); }
+#tab-s15:checked ~ main #panel-s15 { display: block !important; }
+#tab-s16:checked ~ nav label[for="tab-s16"] { color: var(--gold); border-bottom-color: var(--gold); }
+#tab-s16:checked ~ nav label[for="tab-s16"] .ptab-num { background: var(--gold); color: var(--charcoal); }
+#tab-s16:checked ~ main #panel-s16 { display: block !important; }
+#tab-s17:checked ~ nav label[for="tab-s17"] { color: var(--gold); border-bottom-color: var(--gold); }
+#tab-s17:checked ~ nav label[for="tab-s17"] .ptab-num { background: var(--gold); color: var(--charcoal); }
+#tab-s17:checked ~ main #panel-s17 { display: block !important; }
+#tab-s18:checked ~ nav label[for="tab-s18"] { color: var(--gold); border-bottom-color: var(--gold); }
+#tab-s18:checked ~ nav label[for="tab-s18"] .ptab-num { background: var(--gold); color: var(--charcoal); }
+#tab-s18:checked ~ main #panel-s18 { display: block !important; }
+/* First tab on by default */
+#tab-overview:checked ~ nav .ptab[for="tab-overview"],
+#tab-overview:checked ~ nav label[for="tab-overview"] { color: var(--gold); border-bottom-color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div>
+    <div class="header-brand">Dana Blanks Real Estate™</div>
+    <div class="header-sub">Office Policy Manual · v3.0 · Internal Use Only</div>
+  </div>
+  <div class="header-badge">NCREC c20805</div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Dana Blanks Real Estate™ · DBRE Brokerage System</div>
+    <h1>Office Policy Manual</h1>
+    <p class="hero-sub">The complete reference for Advisor standards, firm policies, compensation structure, and operating procedures. All 18 sections. Every policy cross-referenced. Built for daily use.</p>
+    <hr class="gold-rule">
+    <div class="hero-meta">
+      <div class="hero-meta-item"><strong>Version</strong> 3.0</div>
+      <div class="hero-meta-item"><strong>Supersedes</strong> v2.1</div>
+      <div class="hero-meta-item"><strong>License</strong> c20805</div>
+      <div class="hero-meta-item"><strong>Licensure</strong> NC · GA · SC</div>
+      <div class="hero-meta-item"><strong>Status</strong> Current</div>
+    </div>
+    <hr class="gold-rule">
+    <span class="hero-promise">"Where Luxury Service Meets Genuine Connection"</span>
+  </div>
+</div>
+
+<input type="radio" name="dbre-tab" id="tab-overview" class="tab-radio" checked>
+<input type="radio" name="dbre-tab" id="tab-s1" class="tab-radio">
+<input type="radio" name="dbre-tab" id="tab-s2" class="tab-radio">
+<input type="radio" name="dbre-tab" id="tab-s3" class="tab-radio">
+<input type="radio" name="dbre-tab" id="tab-s4" class="tab-radio">
+<input type="radio" name="dbre-tab" id="tab-s5" class="tab-radio">
+<input type="radio" name="dbre-tab" id="tab-s6" class="tab-radio">
+<input type="radio" name="dbre-tab" id="tab-s7" class="tab-radio">
+<input type="radio" name="dbre-tab" id="tab-s8" class="tab-radio">
+<input type="radio" name="dbre-tab" id="tab-s9" class="tab-radio">
+<input type="radio" name="dbre-tab" id="tab-s10" class="tab-radio">
+<input type="radio" name="dbre-tab" id="tab-s11" class="tab-radio">
+<input type="radio" name="dbre-tab" id="tab-s12" class="tab-radio">
+<input type="radio" name="dbre-tab" id="tab-s13" class="tab-radio">
+<input type="radio" name="dbre-tab" id="tab-s14" class="tab-radio">
+<input type="radio" name="dbre-tab" id="tab-s15" class="tab-radio">
+<input type="radio" name="dbre-tab" id="tab-s16" class="tab-radio">
+<input type="radio" name="dbre-tab" id="tab-s17" class="tab-radio">
+<input type="radio" name="dbre-tab" id="tab-s18" class="tab-radio">
+
+<nav class="phase-map"><label class="ptab" for="tab-overview"><span class="ptab-num">✦</span> Overview</label><label class="ptab" for="tab-s1"><span class="ptab-num">1</span> Company Overview</label><label class="ptab" for="tab-s2"><span class="ptab-num">2</span> Brokerage System</label><label class="ptab" for="tab-s3"><span class="ptab-num">3</span> Tiers &amp; ICA</label><label class="ptab" for="tab-s4"><span class="ptab-num">4</span> Commission</label><label class="ptab" for="tab-s5"><span class="ptab-num">5</span> MLS &amp; Listings</label><label class="ptab" for="tab-s6"><span class="ptab-num">6</span> Open House</label><label class="ptab" for="tab-s7"><span class="ptab-num">7</span> Buyer Rep</label><label class="ptab" for="tab-s8"><span class="ptab-num">8</span> Prof. Standards</label><label class="ptab" for="tab-s9"><span class="ptab-num">9</span> Media &amp; Consent</label><label class="ptab" for="tab-s10"><span class="ptab-num">10</span> Compliance</label><label class="ptab" for="tab-s11"><span class="ptab-num">11</span> CE &amp; Licensing</label><label class="ptab" for="tab-s12"><span class="ptab-num">12</span> Safety &amp; Cyber</label><label class="ptab" for="tab-s13"><span class="ptab-num">13</span> Onboarding</label><label class="ptab" for="tab-s14"><span class="ptab-num">14</span> IC Status</label><label class="ptab" for="tab-s15"><span class="ptab-num">15</span> Insurance &amp; Risk</label><label class="ptab" for="tab-s16"><span class="ptab-num">16</span> Violations</label><label class="ptab" for="tab-s17"><span class="ptab-num">17</span> Policy Directory</label><label class="ptab" for="tab-s18"><span class="ptab-num">18</span> Acknowledgment</label></nav>
+
+<main class="main">
+<div class="panel" id="panel-overview">
+<div class="phase-intro">
+  <div class="phase-label">Welcome</div>
+  <h2>This is not a rulebook. It is a standard of practice.</h2>
+  <p>Every policy in this manual reflects a deliberate decision about how Dana Blanks Real Estate™ operates, how Advisors represent clients, and what it means to carry this firm's name. Read it not as a compliance exercise, but as an orientation to who we are — and what we hold ourselves to.</p>
+</div>
+<div class="flow-map">
+  <div class="flow-map-label">Manual at a Glance — All 18 Sections</div>
+  <div class="flow-steps">
+    <div class="flow-step"><span class="flow-num">1</span><span>Company Overview</span></div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step"><span class="flow-num">2</span><span>Brokerage System</span></div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step"><span class="flow-num">3</span><span>Tiers &amp; ICA</span></div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step"><span class="flow-num">4</span><span>Commission</span></div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step"><span class="flow-num">5</span><span>MLS &amp; Listings</span></div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step"><span class="flow-num">6</span><span>Open House</span></div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step"><span class="flow-num">7</span><span>Buyer Rep</span></div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step"><span class="flow-num">8</span><span>Prof. Standards</span></div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step"><span class="flow-num">9</span><span>Media &amp; Consent</span></div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step"><span class="flow-num">10</span><span>Compliance</span></div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step"><span class="flow-num">11</span><span>CE &amp; Licensing</span></div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step"><span class="flow-num">12</span><span>Safety &amp; Cyber</span></div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step"><span class="flow-num">13</span><span>Onboarding</span></div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step"><span class="flow-num">14</span><span>IC Status</span></div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step"><span class="flow-num">15</span><span>Insurance</span></div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step"><span class="flow-num">16</span><span>Violations</span></div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step"><span class="flow-num">17</span><span>Policy Directory</span></div>
+    <div class="flow-arrow">›</div>
+    <div class="flow-step flow-milestone"><span class="flow-num">18</span><span>Acknowledgment</span></div>
+  </div>
+</div>
+<div class="callout callout-dark">
+  <strong>Dana Blanks Real Estate™</strong> · NCREC Firm License c20805 · NC · GA · SC · Founded 2008 · Woman &amp; Minority Owned<br>
+  <span style="font-size:11px;opacity:0.65;">10926 David Taylor Drive, PMB1374, Suite 120, Charlotte, NC 28262 &nbsp;·&nbsp; 910.800.0964 &nbsp;·&nbsp; team@danablanksrealestate.com &nbsp;·&nbsp; www.danablanksrealestate.com</span>
+</div>
+<div class="section-block" style="margin-top:28px;">
+  <div class="section-heading">About This Manual — v3.0</div>
+  <div class="step-block">
+    <div class="step-circle">v</div>
+    <div class="step-content">
+      <div class="step-title">Version 3.0 — Fully Rebuilt</div>
+      <div class="step-body">This is the v3.0 rebuild of the DBRE Office Policy Manual. It supersedes all prior versions including v2.1 and incorporates all finalized supplemental policies, updated brand standards, post-NAR settlement language, and corrected MLS deadlines. Where a section references a supplemental policy document, that document is the governing authority for full detail.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">!</div>
+    <div class="step-content">
+      <div class="step-title">Key changes from v2.1</div>
+      <ul class="step-bullets">
+        <li>NCREC license number corrected throughout: <strong>c20805</strong></li>
+        <li>MLS entry deadline corrected to <strong>1 business day</strong> (was 3 business days)</li>
+        <li>All address references updated to Charlotte PMB — Wilmington address removed</li>
+        <li>"WRAR" updated to <strong>Cape Fear Realtors®</strong> throughout</li>
+        <li>Cooperative compensation updated for post-NAR settlement (Form 220, no MLS co-op advertising)</li>
+        <li>"Agents" replaced with <strong>"Advisors"</strong> throughout</li>
+        <li>New sections: Multiple Offer Protocol, Open House Standards, Media &amp; Photography</li>
+        <li>Full Supplemental Policy Reference Directory added as Section 17</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+<div class="panel" id="panel-s1">
+<div class="phase-intro">
+  <div class="phase-label">Section 1</div>
+  <h2>Company Overview</h2>
+  <p>Dana Blanks Real Estate™ is an independent, boutique luxury real estate brokerage founded in 2008 and licensed in North Carolina, Georgia, and South Carolina. The firm operates under the DBRE Brokerage System — a proprietary framework designed to give independent Advisors the structure, tools, and support of a large firm while preserving the autonomy that defines boutique practice.</p>
+</div>
+<div class="section-block">
+  <div class="section-heading">Firm Identity</div>
+  <table class="dbre-table">
+    <tbody>
+      <tr><td>Firm Name</td><td class="normal">Dana Blanks Real Estate™</td></tr>
+      <tr><td>NCREC Firm License</td><td class="normal">c20805</td></tr>
+      <tr><td>Licensure</td><td class="normal">North Carolina · Georgia · South Carolina</td></tr>
+      <tr><td>Founded</td><td class="normal">2008</td></tr>
+      <tr><td>Ownership</td><td class="normal">Woman &amp; Minority Owned</td></tr>
+      <tr><td>Administrative Address</td><td class="normal">10926 David Taylor Drive, PMB1374, Suite 120, Charlotte, NC 28262</td></tr>
+      <tr><td>Phone</td><td class="normal">910.800.0964</td></tr>
+      <tr><td>Email</td><td class="normal">team@danablanksrealestate.com</td></tr>
+      <tr><td>Website</td><td class="normal">www.danablanksrealestate.com</td></tr>
+      <tr><td>Tagline</td><td class="normal"><em>Where Luxury Service Meets Genuine Connection</em></td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="section-block">
+  <div class="section-heading">Practice Philosophy</div>
+  <div class="step-block">
+    <div class="step-circle">✦</div>
+    <div class="step-content">
+      <div class="step-title">Luxury service is a standard, not a price point</div>
+      <div class="step-body">DBRE Advisors are expected to deliver a level of service that clients describe to others — not because of the transaction amount, but because of how they were made to feel throughout the process. Every client, every transaction.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">✦</div>
+    <div class="step-content">
+      <div class="step-title">Genuine connection is the differentiator</div>
+      <div class="step-body">DBRE does not compete on volume or commission discounting. The firm competes on relationship depth, local expertise, and the consistent delivery of an experience that clients cannot replicate with a discount brokerage or an algorithm.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">✦</div>
+    <div class="step-content">
+      <div class="step-title">The Advisor as the source</div>
+      <div class="step-body">DBRE clients should never need to turn to Zillow, Trulia, or any third-party platform to understand what is happening in their transaction or market. The Advisor is the source. This is not an aspiration — it is the standard.</div>
+    </div>
+  </div>
+</div>
+<div class="callout callout-dark">
+  <strong>BIC:</strong> Dana Blanks &nbsp;·&nbsp; <strong>License:</strong> c20805 &nbsp;·&nbsp; NC · GA · SC<br>
+  <span style="font-size:11px;opacity:0.6;">This manual is for internal use only and does not constitute a contract of employment or independent contractor agreement. All policies are subject to update at the discretion of the BIC.</span>
+</div>
+</div>
+<div class="panel" id="panel-s2">
+<div class="phase-intro">
+  <div class="phase-label">Section 2</div>
+  <h2>The DBRE Brokerage System</h2>
+  <p>The DBRE Brokerage System is the firm's proprietary operational framework. It provides Advisors with the infrastructure, tools, and support they need to operate as high-performing independent professionals — without building it themselves. The system rests on three pillars.</p>
+</div>
+<div class="section-block">
+  <div class="section-heading">The Three Pillars</div>
+  <div class="pillar-grid">
+    <div class="pillar-card">
+      <div class="pillar-num">01</div>
+      <div class="pillar-title">Infrastructure &amp; Operations</div>
+      <div class="pillar-body">Transaction coordination, document management, MLS entry support, and all back-office functions that allow Advisors to focus on clients rather than paperwork. Powered by the Advisor Boardroom and the Knowledge Vault.</div>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">02</div>
+      <div class="pillar-title">Brand &amp; Marketing</div>
+      <div class="pillar-body">Access to DBRE's brand system — templates, Canva assets, letterhead, and marketing materials — enabling every Advisor to present at the firm's luxury standard without individual design investment.</div>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">03</div>
+      <div class="pillar-title">Training &amp; Standards</div>
+      <div class="pillar-body">This policy manual, all SOPs, field guides, scripts, and transaction workflows. The complete DBRE playbook — so no Advisor ever has to figure out how to handle a situation alone.</div>
+    </div>
+  </div>
+</div>
+<div class="section-block">
+  <div class="section-heading">Communication Channels</div>
+  <div class="step-block">
+    <div class="step-circle">1</div>
+    <div class="step-content">
+      <div class="step-title">Advisor Boardroom</div>
+      <div class="step-body">The primary document repository. All transaction files, executed agreements, policy documents, and SOPs live here. Advisors are required to upload all executed contracts and documents to the Boardroom per DBRE document retention standards.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">2</div>
+    <div class="step-content">
+      <div class="step-title">Knowledge Vault</div>
+      <div class="step-body">The firm's resource library. Templates, forms, field guides, scripts, sign-in sheet backups, and reference documents. If you need it, it is in the Knowledge Vault.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">3</div>
+    <div class="step-content">
+      <div class="step-title">Teams Channels</div>
+      <div class="step-body">Day-to-day communication, announcements, and collaboration. All Advisors are expected to maintain active presence in designated channels. Policy updates and firm announcements are distributed via Teams.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">4</div>
+    <div class="step-content">
+      <div class="step-title">Message Center</div>
+      <div class="step-body">Client-facing email templates and communication sequences. Advisors use Message Center templates as the starting point for all standard client communications — consultation confirmations, showing follow-ups, offer notifications, and closing touchpoints.</div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="panel" id="panel-s3">
+<div class="phase-intro">
+  <div class="phase-label">Section 3</div>
+  <h2>Advisor Tiers, ICA Structure &amp; Fees</h2>
+  <p>All DBRE Advisors operate as independent contractors under the Independent Contractor Agreement (ICA v2.5). Tier placement is based on production volume and is reviewed annually. The commission splits and fees below reflect the current ICA structure.</p>
+</div>
+<div class="section-block">
+  <div class="section-heading">Advisor Tiers</div>
+  <div class="tier-grid">
+    <div class="tier-card">
+      <div class="tier-label">Tier</div>
+      <div class="tier-name">Associate</div>
+      <div class="tier-split">70/30</div>
+      <div class="tier-label">Advisor / DBRE</div>
+      <div class="tier-details">Entry-level tier. New Advisors and those in the first year of affiliation. Full access to all DBRE Brokerage System resources.</div>
+    </div>
+    <div class="tier-card featured">
+      <div class="tier-label">Tier</div>
+      <div class="tier-name">Senior</div>
+      <div class="tier-split">80/20</div>
+      <div class="tier-label">Advisor / DBRE</div>
+      <div class="tier-details">Advisors meeting production thresholds as defined in the ICA. Tier eligibility reviewed annually. Most active Advisors operate at this tier.</div>
+    </div>
+    <div class="tier-card">
+      <div class="tier-label">Tier</div>
+      <div class="tier-name">Principal</div>
+      <div class="tier-split">85/15</div>
+      <div class="tier-label">Advisor / DBRE</div>
+      <div class="tier-details">Top-producing Advisors. Requires sustained production at defined thresholds. Subject to broker review and approval. See ICA v2.5 for full criteria.</div>
+    </div>
+  </div>
+  <div class="callout callout-note">
+    <strong>ICA v2.5 is the controlling document</strong> for all split rates, tier criteria, and transition timelines. In any conflict between this manual and the ICA, the ICA governs.
+  </div>
+</div>
+<div class="section-block">
+  <div class="section-heading">Platform &amp; Transaction Fees</div>
+  <table class="dbre-table">
+    <thead><tr><th>Fee</th><th>Amount</th><th>Frequency</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Monthly Platform Fee</td><td class="normal">$150</td><td class="normal">Monthly</td><td class="normal">Reduced to $75/month during approved extended leave</td></tr>
+      <tr><td>TC Fee</td><td class="normal">$150</td><td class="normal">Per closed transaction</td><td class="normal">Transaction coordination support</td></tr>
+      <tr><td>E&amp;O Contribution</td><td class="normal">$25</td><td class="normal">Per closed transaction</td><td class="normal">See DBRE-POL-006 for full E&amp;O policy</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="section-block">
+  <div class="section-heading">Leave of Absence &amp; Inactive Status</div>
+  <div class="step-block">
+    <div class="step-circle">1</div>
+    <div class="step-content">
+      <div class="step-title">Extended leave: 50% monthly fee ($75/month)</div>
+      <div class="step-body">Advisors on approved extended leave pay a reduced platform fee of $75/month. Active status is suspended for leave periods of 30 days or more.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">2</div>
+    <div class="step-content">
+      <div class="step-title">Medical or family leave 30+ days: full fee waiver</div>
+      <div class="step-body">Platform fees are waived in full for qualifying medical or family leave of 30 days or more. Re-onboarding check-in required upon return to active status.</div>
+    </div>
+  </div>
+  <div class="cross-ref">Full policy: <strong>DBRE-POL-009</strong> · Leave of Absence &amp; Inactive Status · v2.0</div>
+</div>
+</div>
+<div class="panel" id="panel-s4">
+<div class="phase-intro">
+  <div class="phase-label">Section 4</div>
+  <h2>Commission &amp; Compensation Standards</h2>
+  <p>All commissions are negotiable. The rates below represent DBRE's standard structure and firm minimums. Any deviation below the stated minimums requires broker approval prior to execution of the listing or buyer representation agreement.</p>
+</div>
+<div class="section-block">
+  <div class="section-heading">Standard Commission Rates</div>
+  <div class="fee-grid">
+    <div class="fee-card">
+      <div class="fee-card-label">Residential — Standard</div>
+      <div class="fee-card-value">6%</div>
+      <div class="fee-card-sub">Minimum: 5%<br>Broker approval required below minimum</div>
+    </div>
+    <div class="fee-card">
+      <div class="fee-card-label">Land / Acreage — Standard</div>
+      <div class="fee-card-value">10%</div>
+      <div class="fee-card-sub">Minimum: 8%<br>Broker approval required below minimum</div>
+    </div>
+    <div class="fee-card">
+      <div class="fee-card-label">Buyer Rep Fee — Standard</div>
+      <div class="fee-card-value">2.5%</div>
+      <div class="fee-card-sub">Negotiable · Exclusive BRA required before any showing<br>Documented in Form 220 before showing</div>
+    </div>
+    <div class="fee-card">
+      <div class="fee-card-label">Referral Fee — Standard</div>
+      <div class="fee-card-value">25%</div>
+      <div class="fee-card-sub">Advisor discretion: up to 30%<br>Above 30%: broker approval required</div>
+    </div>
+  </div>
+</div>
+<div class="section-block">
+  <div class="section-heading">Cooperative Compensation — Post-NAR Settlement</div>
+  <div class="callout callout-standard">
+    <strong>NAR Settlement — Effective August 17, 2024:</strong> Cooperative compensation offers may no longer be published in the MLS. All compensation arrangements with cooperating brokers must be documented via Form 220 prior to any showing. Co-op amount is at Advisor discretion and must be documented in Form 220 and disclosed to the broker.
+  </div>
+  <table class="dbre-table">
+    <thead><tr><th>Transaction Type</th><th>Total</th><th>Listing Side</th><th>Co-op Side</th></tr></thead>
+    <tbody>
+      <tr><td>Residential — Standard</td><td class="normal">6%</td><td class="normal">3.5%</td><td class="normal">2.5%</td></tr>
+      <tr><td>Residential — Minimum</td><td class="normal">5%</td><td class="normal">2.5%</td><td class="normal">2.5%</td></tr>
+      <tr><td>Land — Standard</td><td class="normal">10%</td><td class="normal">6%</td><td class="normal">4%</td></tr>
+      <tr><td>Land — Minimum</td><td class="normal">8%</td><td class="normal">4%</td><td class="normal">4%</td></tr>
+    </tbody>
+  </table>
+  <div class="cross-ref">Full policy: <strong>DBRE-POL-012</strong> · Cooperative Compensation · v1.0</div>
+</div>
+<div class="section-block">
+  <div class="section-heading">Referral Fee Policy</div>
+  <div class="step-block">
+    <div class="step-circle">1</div>
+    <div class="step-content">
+      <div class="step-title">Standard referral fee: 25%</div>
+      <div class="step-body">The standard inbound and outbound referral fee is 25% of gross commission. Applies to all referrals unless an alternative is agreed upon in writing prior to the referral.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">2</div>
+    <div class="step-content">
+      <div class="step-title">Advisor discretion up to 30% — broker approval above 30%</div>
+      <div class="step-body">Advisors may agree to a referral fee up to 30% without broker approval. Any referral fee above 30% requires broker approval before the agreement is executed. All referral agreements must be in writing and retained in the transaction file.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">3</div>
+    <div class="step-content">
+      <div class="step-title">Payment: within 5 business days of closing</div>
+      <div class="step-body">All referral fees are paid within 5 business days of the closing at which the commission is received.</div>
+    </div>
+  </div>
+  <div class="cross-ref">Full policy: <strong>DBRE-POL-005</strong> · Referral Fee Policy &amp; Program Guidance · v2.0</div>
+</div>
+</div>
+<div class="panel" id="panel-s5">
+<div class="phase-intro">
+  <div class="phase-label">Section 5</div>
+  <h2>MLS, Listing &amp; Cooperative Compensation Standards</h2>
+  <p>All listings must comply with Cape Fear Realtors® MLS rules and DBRE's internal listing standards. MLS entry is handled exclusively by the BIC or Operations Specialist — Advisors submit the completed MLS Information Sheet and do not enter listings directly.</p>
+</div>
+<div class="section-block">
+  <div class="section-heading">MLS Entry Requirements</div>
+  <div class="step-block">
+    <div class="step-circle alert">!</div>
+    <div class="step-content">
+      <div class="step-title">Entry deadline: 1 business day from marketing commencement</div>
+      <div class="step-body">All listings must be entered into the MLS within <strong>1 business day</strong> of marketing commencement per Clear Cooperation (DBRE-POL-002). Any prior reference to a 3-business-day deadline is superseded. Advisors must submit the MLS Information Sheet in time to meet this deadline.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">2</div>
+    <div class="step-content">
+      <div class="step-title">MLS entry by BIC or Operations Specialist only</div>
+      <div class="step-body">Advisors do not enter listings into the MLS directly. All entries, status changes, and price adjustments are made by the BIC or Operations Specialist. Unauthorized MLS entries are a policy violation subject to disciplinary action.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">3</div>
+    <div class="step-content">
+      <div class="step-title">Coming Soon: 30-day maximum, no showings or offers</div>
+      <ul class="step-bullets">
+        <li>No showings or offers may be accepted during Coming Soon status</li>
+        <li>Coming Soon may not exceed 30 days before transitioning to Active</li>
+        <li>Pre-approval or proof of funds required before any showing after Active status is set</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout callout-alert">
+    <strong>SOP Note:</strong> DBRE-OPS-004 and DBRE-OPS-005 currently reference a 3-business-day MLS entry deadline. This is an error pending correction. The operative deadline is <strong>1 business day</strong> per DBRE-POL-002 in all cases.
+  </div>
+  <div class="cross-ref">Full policy: <strong>DBRE-POL-002</strong> · MLS Compliance &amp; Clear Cooperation · v2.0 &nbsp;|&nbsp; <strong>DBRE-OPS-004</strong> · Seller Workflow — Residential &nbsp;|&nbsp; <strong>DBRE-OPS-005</strong> · Seller Workflow — Land</div>
+</div>
+</div>
+<div class="panel" id="panel-s6">
+<div class="phase-intro">
+  <div class="phase-label">Section 6</div>
+  <h2>Open House Standards</h2>
+  <p>Open houses are a client experience — not merely a marketing activity. Every DBRE open house must reflect the firm's luxury service standard from the moment visitors arrive. This section is a summary; the complete governing policy is DBRE-POL-011.</p>
+</div>
+<div class="section-block">
+  <div class="section-heading">Required Steps</div>
+  <div class="step-block">
+    <div class="step-circle">1</div>
+    <div class="step-content">
+      <div class="step-title">Submit Open House Request Form — minimum 48 hours in advance</div>
+      <div class="step-body">The Open House Submission Form must be submitted at least 48 hours before the scheduled event. Coordinate with Carolyn Blue for sign pickup. Signs must be DBRE branded — no personal or third-party signage.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">2</div>
+    <div class="step-content">
+      <div class="step-title">DBRE Presentation Standard — non-negotiable</div>
+      <ul class="step-bullets">
+        <li><strong>Fresh flowers</strong> — required at every open house, no exceptions</li>
+        <li><strong>Music:</strong> low-volume jazz or classical only — no religious music, no pop</li>
+        <li><strong>Staging:</strong> light and tasteful — no heavy rearrangement without seller permission</li>
+        <li><strong>Scent:</strong> neutral — no candles, sprays, or diffusers</li>
+        <li><strong>Materials:</strong> DBRE Canva templates or brand-compliant self-created materials</li>
+      </ul>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">3</div>
+    <div class="step-content">
+      <div class="step-title">Sign-in required — digital preferred</div>
+      <div class="step-body">All visitors must sign in. Digital sign-in via tablet is preferred. Physical backup available in the Knowledge Vault. All records must be retained per DBRE document retention standards.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">4</div>
+    <div class="step-content">
+      <div class="step-title">Safety requirements</div>
+      <ul class="step-bullets">
+        <li>Share your open house schedule with a colleague or the office prior to the event</li>
+        <li>Avoid being alone with a single unknown visitor if possible</li>
+        <li>See DBRE-POL-011 for the complete safety protocol</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="section-block">
+  <div class="section-heading">Dual Agency at Open Houses</div>
+  <div class="callout callout-dark">
+    <strong>If a visitor expresses interest in making an offer and you represent the seller:</strong> dual agency must be disclosed immediately. Notify the broker and obtain written consent from both parties before proceeding. Prior broker approval is not required — immediate notification is. Document the disclosure in writing.
+  </div>
+  <div class="cross-ref">Full policy: <strong>DBRE-POL-011</strong> · Open House Policy &amp; Procedures · v2.0</div>
+</div>
+</div>
+<div class="panel" id="panel-s7">
+<div class="phase-intro">
+  <div class="phase-label">Section 7</div>
+  <h2>Buyer Representation Standards</h2>
+  <p>No DBRE Advisor may show property to a buyer without a signed Exclusive Buyer Representation Agreement in place. This is non-negotiable — it reflects both DBRE policy and the post-NAR settlement standard of practice.</p>
+</div>
+<div class="section-block">
+  <div class="section-heading">BRA Requirements</div>
+  <div class="step-block">
+    <div class="step-circle alert">!</div>
+    <div class="step-content">
+      <div class="step-title">BRA required before any showing — no exceptions</div>
+      <div class="step-body">The Exclusive Buyer Representation Agreement must be signed before any property is shown. Not after the first showing. Not at the consultation if a showing is scheduled before it. Before the showing. If a buyer is unwilling to sign a BRA, DBRE Advisors do not show property.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">2</div>
+    <div class="step-content">
+      <div class="step-title">Standard BRA terms</div>
+      <ul class="step-bullets">
+        <li><strong>Standard buyer rep fee:</strong> 2.5% (negotiable)</li>
+        <li><strong>Standard term:</strong> 90 days</li>
+        <li><strong>Form 220</strong> must be executed before showing to document co-op compensation terms</li>
+        <li>Executed BRA uploaded to Advisor Boardroom within 1 business day of execution</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="section-block">
+  <div class="section-heading">Multiple Offer Protocol</div>
+  <div class="callout callout-note">
+    <strong>Multiple offer situations require adherence to DBRE-POL-MOP-001</strong> on both the buyer and seller side. The protocol covers step-by-step process, communication standards, scripts, and disclosure obligations.
+  </div>
+  <div class="cross-ref">Full policy: <strong>DBRE-POL-003</strong> · Buyer Representation Agreement Policy · v2.0 &nbsp;|&nbsp; <strong>DBRE-POL-MOP-001</strong> · Multiple Offer Protocol · v1.0</div>
+</div>
+</div>
+<div class="panel" id="panel-s8">
+<div class="phase-intro">
+  <div class="phase-label">Section 8</div>
+  <h2>Professional Standards &amp; Fair Housing</h2>
+  <p>DBRE Advisors are expected to conduct themselves at the highest standard of professional practice at all times — in client interactions, in the MLS, in communications with cooperating brokers, and in the communities where they work.</p>
+</div>
+<div class="section-block">
+  <div class="section-heading">Code of Conduct</div>
+  <div class="step-block">
+    <div class="step-circle">1</div>
+    <div class="step-content">
+      <div class="step-title">NAR Code of Ethics compliance required</div>
+      <div class="step-body">All DBRE Advisors are required to know and comply with the NAR Code of Ethics. Ethics violations are treated as policy violations and may result in termination of the ICA.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">2</div>
+    <div class="step-content">
+      <div class="step-title">Fair housing — zero tolerance</div>
+      <div class="step-body">DBRE has a zero-tolerance policy for any conduct that violates the Fair Housing Act or its NC equivalents. This includes steering, discriminatory advertising language, selective disclosure, or any differential treatment based on race, color, national origin, religion, sex, familial status, disability, or any other protected class.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">3</div>
+    <div class="step-content">
+      <div class="step-title">Professional communication standards</div>
+      <ul class="step-bullets">
+        <li>Negative commentary about other brokerages, Advisors, or firms is strictly prohibited in any written or verbal form</li>
+        <li>Disputes with cooperating parties are handled through proper channels — not social media or group chats</li>
+        <li>Social media posts involving DBRE, clients, or transactions must comply with DBRE-POL-007</li>
+      </ul>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">4</div>
+    <div class="step-content">
+      <div class="step-title">Agency disclosure</div>
+      <div class="step-body">Advisors must provide the Working with Real Estate Agents brochure and make proper agency disclosure at first substantial contact with all buyers and sellers. Agency disclosure must be documented.</div>
+    </div>
+  </div>
+</div>
+<div class="section-block">
+  <div class="section-heading">Team Policy</div>
+  <div class="step-block">
+    <div class="step-circle">1</div>
+    <div class="step-content">
+      <div class="step-title">Team formation minimum: 6 months tenure + 6 closed transactions</div>
+      <div class="step-body">Advisors may not form a team under DBRE until they have been affiliated for at least 6 months and have closed at least 6 transactions at DBRE. Transferring teams: 90-day provisional period applies.</div>
+    </div>
+  </div>
+  <div class="cross-ref">Full policy: <strong>DBRE-POL-004</strong> · Real Estate Team Policy · v2.0</div>
+</div>
+</div>
+<div class="panel" id="panel-s9">
+<div class="phase-intro">
+  <div class="phase-label">Section 9</div>
+  <h2>Media, Photography &amp; Client Consent</h2>
+  <p>DBRE maintains strict standards for how client information, images, testimonials, and likeness are used in marketing and communications. Written consent is required before any client content is published. The complete governing policy is DBRE-POL-007.</p>
+</div>
+<div class="section-block">
+  <div class="section-heading">Client Consent Requirements</div>
+  <div class="step-block">
+    <div class="step-circle alert">!</div>
+    <div class="step-content">
+      <div class="step-title">DBRE-FORM-001 required before any client content is used</div>
+      <div class="step-body">No client name, photo, testimonial, transaction detail, or likeness may be used in any DBRE marketing material — social media, website, email, or print — without a signed Client Testimonial &amp; Content Consent Form (DBRE-FORM-001). This applies to all content regardless of how it was obtained or where it is published.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">2</div>
+    <div class="step-content">
+      <div class="step-title">Photography standards</div>
+      <ul class="step-bullets">
+        <li>All listing photography must be professionally produced</li>
+        <li>Photos must accurately represent the current condition of the property</li>
+        <li>Virtual staging must be clearly labeled as "virtually staged" in all uses</li>
+        <li>Drone photography requires FAA compliance — unlicensed drone use is prohibited</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="section-block">
+  <div class="section-heading">Review Platforms</div>
+  <div class="step-block">
+    <div class="step-circle">1</div>
+    <div class="step-content">
+      <div class="step-title">Google Business Profile — one shared firm-level profile</div>
+      <div class="step-body">DBRE maintains a single Google Business Profile managed by Dana / the Operations Specialist. Advisors may not create competing DBRE-branded Google Business Profiles.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">2</div>
+    <div class="step-content">
+      <div class="step-title">Zillow &amp; Realtor.com — individual profiles per Advisor</div>
+      <div class="step-body">Advisors maintain individual Zillow and Realtor.com profiles affiliated with DBRE. Profiles must reflect DBRE affiliation accurately and comply with all DBRE branding standards.</div>
+    </div>
+  </div>
+  <div class="cross-ref">Full policy: <strong>DBRE-POL-007</strong> · Media, Photography &amp; Client Consent · v2.0 &nbsp;|&nbsp; Consent form: <strong>DBRE-FORM-001</strong></div>
+</div>
+</div>
+<div class="panel" id="panel-s10">
+<div class="phase-intro">
+  <div class="phase-label">Section 10</div>
+  <h2>Compliance, Records &amp; Privacy</h2>
+  <p>All DBRE transaction records must be maintained for a minimum of 3 years from closing or agreement termination, per NCREC standards. All records are stored in the Advisor Boardroom.</p>
+</div>
+<div class="section-block">
+  <div class="section-heading">Document Retention</div>
+  <div class="step-block">
+    <div class="step-circle">1</div>
+    <div class="step-content">
+      <div class="step-title">Minimum 3 years from closing or termination</div>
+      <div class="step-body">All executed contracts, addenda, disclosure forms, agency agreements, correspondence, and transaction-related documents must be retained for a minimum of 3 years. DBRE recommends 5 years where practical.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">2</div>
+    <div class="step-content">
+      <div class="step-title">All records in the Advisor Boardroom</div>
+      <div class="step-body">No transaction is considered complete until all required documents have been uploaded and the file has been reviewed by the BIC or Operations Specialist.</div>
+    </div>
+  </div>
+  <div class="cross-ref">Full standards: <strong>DBRE-POL-008</strong> · Document Retention &amp; Digital File Standards · v1.0 Draft</div>
+</div>
+<div class="section-block">
+  <div class="section-heading">Client Privacy</div>
+  <div class="step-block">
+    <div class="step-circle">1</div>
+    <div class="step-content">
+      <div class="step-title">Client information is confidential</div>
+      <ul class="step-bullets">
+        <li>Client financial information, motivations, and personal details shared in confidence may not be disclosed to any third party without express client consent</li>
+        <li>This obligation survives the conclusion of the transaction and the termination of the ICA</li>
+        <li>Client data may not be used for any purpose other than the representation for which it was provided</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+<div class="panel" id="panel-s11">
+<div class="phase-intro">
+  <div class="phase-label">Section 11</div>
+  <h2>Continuing Education &amp; License Renewal</h2>
+  <p>All DBRE Advisors are required to maintain a current, active North Carolina real estate license. The firm's CE deadlines are set to keep Advisors ahead of the NCREC renewal calendar.</p>
+</div>
+<div class="section-block">
+  <div class="section-heading">Annual Requirements</div>
+  <div class="callout callout-dark">
+    <strong>Annual CE: 8 hours required</strong> &nbsp;·&nbsp; 4-hour GENUP or BICUP + 4-hour elective<br>
+    CE completion deadline: <strong>June 10</strong> &nbsp;·&nbsp; License renewal deadline: <strong>June 30</strong>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">1</div>
+    <div class="step-content">
+      <div class="step-title">CE completion deadline: June 10</div>
+      <div class="step-body">All required CE hours must be completed and documented by June 10 — DBRE's internal deadline, set earlier than the NCREC window to allow time to address any issues before June 30.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">2</div>
+    <div class="step-content">
+      <div class="step-title">License renewal deadline: June 30</div>
+      <div class="step-body">Advisors who have not renewed by June 30 will be placed on inactive status and may not represent clients or earn commissions until the license is reinstated.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">3</div>
+    <div class="step-content">
+      <div class="step-title">Upload proof of completion by June 10</div>
+      <div class="step-body">Proof of CE completion must be uploaded to the Advisor Boardroom by June 10. Advisors who do not submit documentation by the deadline will be contacted by the firm.</div>
+    </div>
+  </div>
+  <div class="cross-ref">Full policy: <strong>DBRE-POL-010</strong> · Continuing Education &amp; License Renewal · v1.0</div>
+</div>
+</div>
+<div class="panel" id="panel-s12">
+<div class="phase-intro">
+  <div class="phase-label">Section 12</div>
+  <h2>Safety &amp; Cybersecurity</h2>
+  <p>Advisor safety in the field and the security of firm and client data are operational priorities at DBRE. The policies below represent the minimum standard — Advisors are encouraged to develop personal safety habits that go beyond this baseline.</p>
+</div>
+<div class="section-block">
+  <div class="section-heading">Field Safety</div>
+  <div class="step-block">
+    <div class="step-circle">1</div>
+    <div class="step-content">
+      <div class="step-title">Know your client before any solo showing</div>
+      <ul class="step-bullets">
+        <li>Require pre-approval or proof of funds before scheduling any showing</li>
+        <li>Verify identity via government-issued ID at first in-person meeting when possible</li>
+        <li>Trust your instincts — if a situation feels unsafe, it is acceptable to reschedule or decline</li>
+      </ul>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">2</div>
+    <div class="step-content">
+      <div class="step-title">Always have a check-in contact</div>
+      <div class="step-body">Before any solo showing with a new or unverified client, notify a colleague of your location, the property address, and your expected return time. Check in after the showing.</div>
+    </div>
+  </div>
+</div>
+<div class="section-block">
+  <div class="section-heading">Cybersecurity</div>
+  <div class="step-block">
+    <div class="step-circle">1</div>
+    <div class="step-content">
+      <div class="step-title">Wire fraud prevention — mandatory client briefing</div>
+      <ul class="step-bullets">
+        <li>Instruct all clients at the start of every transaction: never wire funds based solely on an email instruction</li>
+        <li>DBRE will never send or change wiring instructions via email without independent verbal confirmation</li>
+        <li>If wire instructions arrive by email, clients must call the title company using a number obtained independently — not from the email</li>
+        <li>Any suspected wire fraud attempt must be reported to the BIC immediately</li>
+      </ul>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">2</div>
+    <div class="step-content">
+      <div class="step-title">Device and account security</div>
+      <ul class="step-bullets">
+        <li>Two-factor authentication required on all accounts containing client or transaction data</li>
+        <li>Do not access client files on unsecured public Wi-Fi without a VPN</li>
+        <li>Verify any unusual payment or document request by phone before acting</li>
+      </ul>
+    </div>
+  </div>
+  <div class="cross-ref">Open house safety: <strong>DBRE-POL-011</strong> · Open House Policy &amp; Procedures · v2.0</div>
+</div>
+</div>
+<div class="panel" id="panel-s13">
+<div class="phase-intro">
+  <div class="phase-label">Section 13</div>
+  <h2>Advisor Onboarding &amp; Offboarding</h2>
+  <p>A structured onboarding experience ensures that every new DBRE Advisor is set up to succeed — with the right access, the right training, and the right understanding of firm standards — before they represent a client under the DBRE name.</p>
+</div>
+<div class="section-block">
+  <div class="section-heading">Onboarding Requirements</div>
+  <div class="step-block">
+    <div class="step-circle">1</div>
+    <div class="step-content">
+      <div class="step-title">Execute ICA v2.5 before any client representation</div>
+      <div class="step-body">No Advisor may represent a client, enter an agreement, or conduct any business under the DBRE name before the ICA has been fully executed and uploaded to the Advisor Boardroom.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">2</div>
+    <div class="step-content">
+      <div class="step-title">Policy Manual acknowledgment</div>
+      <div class="step-body">New Advisors must read this manual in full and sign the Policy Acknowledgment (Section 18) as part of onboarding. The signed acknowledgment is uploaded to the Boardroom and retained.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">3</div>
+    <div class="step-content">
+      <div class="step-title">System access checklist</div>
+      <ul class="step-bullets">
+        <li>Advisor Boardroom access configured</li>
+        <li>Knowledge Vault access confirmed</li>
+        <li>Teams channels joined and active</li>
+        <li>MLS access confirmed (Cape Fear Realtors® membership required)</li>
+        <li>DBRE Canva templates access granted</li>
+        <li>Broker Bay scheduling access set up</li>
+        <li>E&amp;O contribution enrollment confirmed</li>
+      </ul>
+    </div>
+  </div>
+  <div class="cross-ref">CE onboarding requirements: <strong>DBRE-POL-010</strong> · Continuing Education &amp; License Renewal · v1.0</div>
+</div>
+<div class="section-block">
+  <div class="section-heading">Offboarding</div>
+  <div class="step-block">
+    <div class="step-circle">1</div>
+    <div class="step-content">
+      <div class="step-title">Notice and active transaction handling</div>
+      <div class="step-body">Departing Advisors must notify the BIC in writing. All active transactions must be disclosed and a transition plan agreed upon before the departure date.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">2</div>
+    <div class="step-content">
+      <div class="step-title">Access revocation</div>
+      <ul class="step-bullets">
+        <li>All DBRE system access is revoked upon departure</li>
+        <li>All transaction files must be complete and uploaded before departure</li>
+        <li>DBRE-branded materials may not be used after affiliation ends</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+<div class="panel" id="panel-s14">
+<div class="phase-intro">
+  <div class="phase-label">Section 14</div>
+  <h2>Independent Contractor Status</h2>
+  <p>All DBRE Advisors are independent contractors, not employees. This relationship has specific legal and tax implications that Advisors are responsible for understanding and managing.</p>
+</div>
+<div class="section-block">
+  <div class="section-heading">Key IC Principles</div>
+  <div class="step-block">
+    <div class="step-circle">1</div>
+    <div class="step-content">
+      <div class="step-title">DBRE does not withhold taxes</div>
+      <div class="step-body">DBRE does not withhold federal, state, or local income taxes from commission payments. Advisors are responsible for all self-employment taxes, estimated quarterly payments, and all applicable tax obligations. DBRE recommends all Advisors work with a CPA familiar with real estate IC taxation.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">2</div>
+    <div class="step-content">
+      <div class="step-title">Advisors set their own schedules</div>
+      <div class="step-body">DBRE does not control the hours, methods, or personal work practices of Advisors. Advisors are free to conduct business as they see fit, within the bounds of DBRE policy, the ICA, NCREC regulations, and NAR standards.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">3</div>
+    <div class="step-content">
+      <div class="step-title">Advisors are responsible for their own business expenses</div>
+      <div class="step-body">Business expenses — marketing, transportation, professional dues, CE, technology — are the Advisor's own responsibility unless otherwise specified in the ICA.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">4</div>
+    <div class="step-content">
+      <div class="step-title">IC status does not limit policy compliance</div>
+      <div class="step-body">Independent contractor status does not exempt Advisors from compliance with DBRE firm policies, NCREC regulations, or NAR standards. The ICA incorporates this manual by reference.</div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="panel" id="panel-s15">
+<div class="phase-intro">
+  <div class="phase-label">Section 15</div>
+  <h2>Insurance &amp; Risk Management</h2>
+  <p>DBRE maintains Errors &amp; Omissions (E&amp;O) insurance coverage for the firm and all affiliated Advisors. All Advisors contribute to the E&amp;O fund on a per-transaction basis. The complete policy is DBRE-POL-006.</p>
+</div>
+<div class="section-block">
+  <div class="section-heading">E&amp;O Insurance</div>
+  <table class="dbre-table">
+    <tbody>
+      <tr><td>Carrier</td><td class="normal">HDI Global</td></tr>
+      <tr><td>Policy Number</td><td class="normal">HGI-1063942-00</td></tr>
+      <tr><td>Coverage</td><td class="normal">$500,000 per claim / $500,000 aggregate</td></tr>
+      <tr><td>Retention (Deductible)</td><td class="normal">$2,500 per claim</td></tr>
+      <tr><td>Advisor Contribution</td><td class="normal">$25 per closed transaction (collected at closing)</td></tr>
+    </tbody>
+  </table>
+  <div class="callout callout-standard">
+    <strong>Coverage scope:</strong> E&amp;O coverage applies to professional liability arising from real estate brokerage services performed under the DBRE firm license. Consult the BIC before any potential claim situation arises — do not attempt to resolve independently.
+  </div>
+  <div class="cross-ref">Full policy: <strong>DBRE-POL-006</strong> · E&amp;O Insurance &amp; Risk Management · v2.0</div>
+</div>
+<div class="section-block">
+  <div class="section-heading">Risk Management Practices</div>
+  <div class="step-block">
+    <div class="step-circle">1</div>
+    <div class="step-content">
+      <div class="step-title">Document everything</div>
+      <div class="step-body">All material discussions with clients, cooperating parties, and third parties should be confirmed in writing. Oral agreements that are not documented do not exist for the purpose of a dispute.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">2</div>
+    <div class="step-content">
+      <div class="step-title">Report potential claims immediately to the BIC</div>
+      <div class="step-body">If an Advisor becomes aware of a situation that may result in a complaint, dispute, or claim, the BIC must be notified before responding to any other party.</div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="panel" id="panel-s16">
+<div class="phase-intro">
+  <div class="phase-label">Section 16</div>
+  <h2>Policy Violations &amp; Disciplinary Procedures</h2>
+  <p>DBRE takes policy compliance seriously. The firm's policies exist to protect clients, Advisors, and the firm's license and reputation. Violations are addressed promptly, consistently, and in proportion to their severity.</p>
+</div>
+<div class="section-block">
+  <div class="section-heading">Violation Categories</div>
+  <div class="step-block">
+    <div class="step-circle">1</div>
+    <div class="step-content">
+      <div class="step-title">Category 1 — Administrative violations</div>
+      <div class="step-body">Failure to upload documents on time, missed CE documentation deadlines, late form submission. Addressed with a written notice and corrective action deadline. Repeated Category 1 violations escalate to Category 2.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">2</div>
+    <div class="step-content">
+      <div class="step-title">Category 2 — Policy violations</div>
+      <div class="step-body">Showing property without a BRA, unauthorized MLS entries, missing the MLS entry deadline, failure to obtain required written consents, or violations of the cooperative compensation policy. Results in a formal written warning and may include a remediation plan.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">3</div>
+    <div class="step-content">
+      <div class="step-title">Category 3 — Serious violations</div>
+      <div class="step-body">Fair housing violations, wire fraud facilitation or negligence, misrepresentation, disclosure failures, conduct that exposes the firm to license jeopardy, or repeated Category 2 violations. May result in immediate suspension and ICA termination.</div>
+    </div>
+  </div>
+  <div class="callout callout-dark">
+    <strong>Termination for cause:</strong> Category 3 violations may result in immediate termination of the ICA without notice. The BIC retains sole discretion in determining category classification and response.
+  </div>
+</div>
+<div class="section-block">
+  <div class="section-heading">Process</div>
+  <div class="step-block">
+    <div class="step-circle">1</div>
+    <div class="step-content">
+      <div class="step-title">Written notification from the BIC</div>
+      <div class="step-body">The Advisor is notified of the alleged violation in writing. The notification includes the policy violated, the facts as understood, and the requested response.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">2</div>
+    <div class="step-content">
+      <div class="step-title">5 business days to respond in writing</div>
+      <div class="step-body">The Advisor has 5 business days to respond. The response is considered by the BIC before a final determination is made.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">3</div>
+    <div class="step-content">
+      <div class="step-title">Written resolution — retained in Advisor's file</div>
+      <div class="step-body">The BIC issues a written resolution. All materials related to the violation, response, and resolution are retained in the Advisor's file in the Boardroom.</div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="panel" id="panel-s17">
+<div class="phase-intro">
+  <div class="phase-label">Section 17</div>
+  <h2>Supplemental Policy Reference Directory</h2>
+  <p>A complete directory of all DBRE policies, SOPs, forms, and resource documents. Full documents are maintained in the Advisor Boardroom and Knowledge Vault.</p>
+</div>
+<div class="section-block">
+  <div class="section-heading">Policies (DBRE-POL)</div>
+  <table class="dbre-table">
+    <thead><tr><th>Document #</th><th>Title</th><th>Version</th><th>Section</th></tr></thead>
+    <tbody>
+      <tr><td>DBRE-POL-001</td><td class="normal">Lead Distribution Policy</td><td class="normal"><span class="badge badge-pending">Pending</span></td><td class="normal">—</td></tr>
+      <tr><td>DBRE-POL-002</td><td class="normal">MLS Compliance &amp; Clear Cooperation</td><td class="normal">v2.0</td><td class="normal">5</td></tr>
+      <tr><td>DBRE-POL-003</td><td class="normal">Buyer Representation Agreement Policy</td><td class="normal">v2.0</td><td class="normal">7</td></tr>
+      <tr><td>DBRE-POL-004</td><td class="normal">Real Estate Team Policy</td><td class="normal">v2.0</td><td class="normal">8</td></tr>
+      <tr><td>DBRE-POL-005</td><td class="normal">Referral Fee Policy &amp; Program Guidance</td><td class="normal">v2.0</td><td class="normal">4</td></tr>
+      <tr><td>DBRE-POL-006</td><td class="normal">E&amp;O Insurance &amp; Risk Management</td><td class="normal">v2.0</td><td class="normal">3, 15</td></tr>
+      <tr><td>DBRE-POL-007</td><td class="normal">Media, Photography &amp; Client Consent</td><td class="normal">v2.0</td><td class="normal">9</td></tr>
+      <tr><td>DBRE-POL-008</td><td class="normal">Document Retention &amp; Digital File Standards</td><td class="normal"><span class="badge badge-draft">v1.0 Draft</span></td><td class="normal">10</td></tr>
+      <tr><td>DBRE-POL-009</td><td class="normal">Leave of Absence &amp; Inactive Status</td><td class="normal">v2.0</td><td class="normal">3</td></tr>
+      <tr><td>DBRE-POL-010</td><td class="normal">Continuing Education &amp; License Renewal</td><td class="normal">v1.0</td><td class="normal">11, 13</td></tr>
+      <tr><td>DBRE-POL-011</td><td class="normal">Open House Policy &amp; Procedures</td><td class="normal">v2.0</td><td class="normal">6</td></tr>
+      <tr><td>DBRE-POL-012</td><td class="normal">Cooperative Compensation</td><td class="normal">v1.0</td><td class="normal">4, 5</td></tr>
+      <tr><td>DBRE-POL-MOP-001</td><td class="normal">Multiple Offer Protocol</td><td class="normal">v1.0</td><td class="normal">7</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="section-block">
+  <div class="section-heading">Forms, SOPs &amp; Resources</div>
+  <table class="dbre-table">
+    <thead><tr><th>Document #</th><th>Title</th><th>Version</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>DBRE-FIN-001</td><td class="normal">Commission Fee Policy (client-facing)</td><td class="normal">v1.1</td><td class="normal">—</td></tr>
+      <tr><td>DBRE-FORM-001</td><td class="normal">Client Testimonial &amp; Content Consent Form</td><td class="normal">v1.0</td><td class="normal">—</td></tr>
+      <tr><td>DBRE-OPS-004</td><td class="normal">Seller-Side Transaction Workflow — Residential</td><td class="normal">v1.1</td><td class="normal">MLS deadline update pending</td></tr>
+      <tr><td>DBRE-OPS-005</td><td class="normal">Seller-Side Transaction Workflow — Land/Acreage</td><td class="normal">v1.2</td><td class="normal">MLS deadline update pending</td></tr>
+      <tr><td>DBRE-OPS-LG-001</td><td class="normal">Lead Generation Strategy (3-Track Framework)</td><td class="normal">Current</td><td class="normal">Knowledge Vault</td></tr>
+      <tr><td>DBRE-OPS-LG-002</td><td class="normal">Advisor Lead Gen Decision Guide</td><td class="normal">Current</td><td class="normal">Knowledge Vault</td></tr>
+      <tr><td>DBRE-RES-003</td><td class="normal">Online Referral Platform Guide</td><td class="normal">v1.0</td><td class="normal">Knowledge Vault</td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="callout callout-note">
+  <strong>Outstanding items:</strong> DBRE-POL-001 pending Dana locating the original. DBRE-POL-008 in draft pending folder/naming structure. DBRE-OPS-004 and OPS-005 reference a 3-business-day MLS entry deadline — operative deadline is 1 business day per DBRE-POL-002; correction pending next revision cycle.
+</div>
+</div>
+<div class="panel" id="panel-s18">
+<div class="phase-intro">
+  <div class="phase-label">Section 18</div>
+  <h2>Policy Acknowledgment</h2>
+  <p>All Advisors are required to sign and return the Policy Acknowledgment as part of onboarding and upon each manual update. The signed acknowledgment is retained in the Advisor's file in the Advisor Boardroom. The acknowledgment form is provided as a separate Word document.</p>
+</div>
+<div class="section-block">
+  <div class="section-heading">Acknowledgment Language</div>
+  <div class="callout callout-dark">
+    <strong>By signing the acknowledgment form, the Advisor confirms:</strong><br><br>
+    <span style="font-size:12px;line-height:2.1;">
+    1. I have read the DBRE Office Policy Manual v3.0 in full.<br>
+    2. I understand the policies, standards, and procedures contained in this manual.<br>
+    3. I agree to comply with all DBRE policies as a condition of my affiliation with Dana Blanks Real Estate™.<br>
+    4. I understand that this manual is updated periodically and that I am responsible for reviewing and complying with updates as distributed.<br>
+    5. I understand that this acknowledgment does not constitute a contract of employment or a guarantee of any duration of affiliation.<br>
+    6. I understand that violations of firm policy may result in disciplinary action up to and including termination of my Independent Contractor Agreement.
+    </span>
+  </div>
+</div>
+<div class="section-block">
+  <div class="section-heading">Process</div>
+  <div class="step-block">
+    <div class="step-circle">1</div>
+    <div class="step-content">
+      <div class="step-title">Review this manual in full</div>
+      <div class="step-body">Advisors should read every section before signing. Questions about any policy should be directed to the BIC before the acknowledgment is executed.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">2</div>
+    <div class="step-content">
+      <div class="step-title">Sign and return the Word document form</div>
+      <div class="step-body">The Policy Acknowledgment is a separate Word document provided by the firm. Complete, sign, and return it to the BIC. Do not sign this digital manual — it is a reference tool only.</div>
+    </div>
+  </div>
+  <div class="step-block">
+    <div class="step-circle">3</div>
+    <div class="step-content">
+      <div class="step-title">Filing</div>
+      <div class="step-body">The executed acknowledgment is uploaded to the Advisor's file in the Advisor Boardroom and retained for the duration of the affiliation.</div>
+    </div>
+  </div>
+  <div class="callout callout-note">
+    <strong>Signature form:</strong> DBRE_PolicyAcknowledgment_v3.0.docx — available in the Knowledge Vault or from the BIC directly.
+  </div>
+</div>
+</div>
+</main>
+
+<footer class="site-footer">
+  Dana Blanks Real Estate™ &nbsp;·&nbsp; Office Policy Manual v3.0 &nbsp;·&nbsp; NCREC Firm License c20805<br>
+  10926 David Taylor Drive, PMB1374, Suite 120, Charlotte, NC 28262 &nbsp;·&nbsp; 910.800.0964 &nbsp;·&nbsp; team@danablanksrealestate.com<br>
+  NC · GA · SC &nbsp;·&nbsp; Woman &amp; Minority Owned &nbsp;·&nbsp; Founded 2008 &nbsp;·&nbsp; Internal Use Only — Confidential
+</footer>
+
+</body>
+</html>
