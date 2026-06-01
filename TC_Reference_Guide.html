@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TC Reference Guide — DBRE</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#C9A84C;--gold-mid:#B8892A;--gold-border:rgba(201,168,76,0.22);
+  --charcoal:#1A1A1A;--charcoal-mid:#2A2A2A;--charcoal-soft:#333;
+  --cream:#FAF7F2;--cream-dark:#F0EBE0;--white:#fff;
+  --body:#3A3A3A;--body-mid:#5A5A5A;--muted:#7A7268;
+  --green:#2E7D52;--green-light:#EAF5EE;
+  --blue:#1A3A5C;--blue-light:#EAF0F8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--body);font-size:13.5px;line-height:1.8;}
+
+.hdr{background:var(--charcoal);padding:12px 48px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:100;}
+.hdr-brand{color:var(--gold);font-family:'Playfair Display',serif;font-size:14px;letter-spacing:0.08em;}
+.hdr-sub{color:rgba(255,255,255,0.35);font-size:9px;letter-spacing:0.14em;text-transform:uppercase;margin-top:2px;}
+.badge{font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.22);border:1px solid rgba(255,255,255,0.12);padding:5px 10px;}
+
+.hero{background:var(--charcoal-mid);padding:40px 48px;border-bottom:1px solid var(--gold-border);}
+.hero-inner{max-width:920px;margin:0 auto;}
+.hero-eyebrow{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.hero h1{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#fff;margin-bottom:8px;}
+.hero-sub{color:rgba(255,255,255,0.42);font-size:13px;max-width:620px;line-height:1.75;margin-bottom:18px;}
+.gold-rule{width:40px;height:2px;background:var(--gold);border:none;margin:14px 0;}
+.hero-promise{font-size:11px;font-style:italic;color:rgba(201,168,76,0.65);}
+
+/* TAB NAV — pure CSS radio tabs */
+.tab-radio{display:none;}
+.tab-nav{background:var(--charcoal-soft);border-bottom:1px solid var(--gold-border);padding:0 48px;display:flex;overflow-x:auto;}
+.tab-lbl{padding:15px 20px;font-size:11px;font-weight:600;letter-spacing:0.06em;color:rgba(255,255,255,0.35);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;display:flex;align-items:center;gap:7px;}
+.tab-lbl:hover{color:rgba(255,255,255,0.65);}
+.tab-num{width:20px;height:20px;background:rgba(201,168,76,0.15);color:var(--gold);border-radius:50%;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+
+#t1:checked ~ .tab-nav label[for=t1],
+#t2:checked ~ .tab-nav label[for=t2],
+#t3:checked ~ .tab-nav label[for=t3],
+#t4:checked ~ .tab-nav label[for=t4],
+#t5:checked ~ .tab-nav label[for=t5],
+#t6:checked ~ .tab-nav label[for=t6]{color:var(--gold);border-bottom-color:var(--gold);}
+#t1:checked ~ .tab-nav label[for=t1] .tab-num,
+#t2:checked ~ .tab-nav label[for=t2] .tab-num,
+#t3:checked ~ .tab-nav label[for=t3] .tab-num,
+#t4:checked ~ .tab-nav label[for=t4] .tab-num,
+#t5:checked ~ .tab-nav label[for=t5] .tab-num,
+#t6:checked ~ .tab-nav label[for=t6] .tab-num{background:var(--gold);color:var(--charcoal);}
+
+.panel{display:none;}
+#t1:checked ~ main #p1{display:block;}
+#t2:checked ~ main #p2{display:block;}
+#t3:checked ~ main #p3{display:block;}
+#t4:checked ~ main #p4{display:block;}
+#t5:checked ~ main #p5{display:block;}
+#t6:checked ~ main #p6{display:block;}
+
+main{max-width:920px;margin:0 auto;padding:44px 48px 80px;}
+
+/* SECTION HEADINGS */
+.section-eyebrow{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.section-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:600;color:var(--charcoal);margin-bottom:10px;}
+.section-intro{font-size:13px;color:var(--body-mid);max-width:700px;line-height:1.85;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid var(--gold-border);}
+
+/* CONCEPT BLOCKS */
+.concept{margin-bottom:36px;}
+.concept-label{font-size:12px;font-weight:700;color:var(--charcoal);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+.concept-num{width:24px;height:24px;background:var(--gold);color:var(--charcoal);font-size:11px;font-weight:700;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.concept-body{font-size:12.5px;color:var(--body);line-height:1.85;}
+.concept-body p{margin-bottom:10px;}
+.concept-body p:last-child{margin-bottom:0;}
+
+/* EXAMPLE BOXES */
+.example{background:var(--charcoal);border-left:4px solid var(--gold);border-radius:3px;padding:16px 20px;margin:14px 0;font-size:12.5px;color:rgba(255,255,255,0.78);line-height:1.85;}
+.example-label{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.example strong{color:var(--gold);}
+
+/* CALLOUT BOXES */
+.callout{padding:13px 18px;margin:14px 0;font-size:12.5px;line-height:1.8;border-radius:3px;}
+.callout strong{color:var(--charcoal);}
+.callout-note{background:var(--white);border:1px solid var(--gold-border);border-left:4px solid var(--body-mid);}
+.callout-important{background:#FFFBF0;border:1px solid rgba(201,168,76,0.3);border-left:4px solid var(--gold);}
+.callout-important strong{color:#8B5E00;}
+.callout-dbre{background:var(--green-light);border:1px solid rgba(46,125,82,0.2);border-left:4px solid var(--green);}
+.callout-dbre strong{color:var(--green);}
+.callout-remember{background:var(--blue-light);border:1px solid rgba(26,58,92,0.15);border-left:4px solid var(--blue);}
+.callout-remember strong{color:var(--blue);}
+
+/* COMPARISON TABLE */
+.compare-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:12.5px;}
+.compare-table th{background:var(--charcoal);color:var(--gold);padding:10px 14px;text-align:left;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
+.compare-table td{padding:11px 14px;border-bottom:1px solid var(--gold-border);vertical-align:top;line-height:1.7;}
+.compare-table tr:nth-child(even) td{background:var(--cream-dark);}
+.compare-table tr:nth-child(odd) td{background:var(--white);}
+.compare-table .col-buyer{color:var(--blue);font-weight:600;}
+.compare-table .col-seller{color:var(--green);font-weight:600;}
+
+/* DIVIDERS */
+.divider{border:none;border-top:1px solid var(--gold-border);margin:32px 0;}
+
+/* PARTY CARDS */
+.party-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:16px 0;}
+.party-card{background:var(--white);border:1px solid var(--gold-border);border-radius:5px;padding:16px 18px;}
+.party-card-title{font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;}
+.party-card-role{font-size:12px;font-weight:700;color:var(--charcoal);margin-bottom:6px;}
+.party-card-body{font-size:12px;color:var(--body-mid);line-height:1.7;}
+
+/* DOC ROWS */
+.doc-row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid rgba(201,168,76,0.08);align-items:flex-start;}
+.doc-row:last-child{border-bottom:none;}
+.doc-tag{display:inline-block;font-size:9px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;padding:2px 7px;border-radius:2px;white-space:nowrap;flex-shrink:0;margin-top:2px;}
+.tag-buyer{background:rgba(26,58,92,0.1);color:var(--blue);}
+.tag-seller{background:rgba(46,125,82,0.1);color:var(--green);}
+.tag-both{background:rgba(201,168,76,0.15);color:var(--gold-mid);}
+.doc-content{flex:1;}
+.doc-name{font-size:12.5px;font-weight:700;color:var(--charcoal);margin-bottom:2px;}
+.doc-desc{font-size:12px;color:var(--body-mid);line-height:1.7;}
+
+.ftr{background:var(--charcoal);padding:16px 48px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--gold-border);margin-top:60px;}
+.ftr-l{font-size:11px;color:rgba(255,255,255,0.3);}
+.ftr-r{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.18);}
+
+@media(max-width:680px){.hdr,.hero,main,.tab-nav,.ftr{padding-left:20px;padding-right:20px;}}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div><div class="hdr-brand">Dana Blanks Real Estate™</div><div class="hdr-sub">TC Reference Guide · MJ Pagalan</div></div>
+  <div class="badge">Internal Use Only</div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Dana Blanks Real Estate™ · Transaction Coordination</div>
+    <h1>TC Reference Guide</h1>
+    <p class="hero-sub">A plain-language reference covering the key concepts, parties, documents, and money flows you'll encounter on every DBRE transaction. Start here when something on a checklist doesn't make sense.</p>
+    <hr class="gold-rule">
+    <span class="hero-promise">"Where Luxury Service Meets Genuine Connection"</span>
+  </div>
+</div>
+
+<input type="radio" name="tc-tab" id="t1" style="display:none" checked>
+<input type="radio" name="tc-tab" id="t2" style="display:none">
+<input type="radio" name="tc-tab" id="t3" style="display:none">
+<input type="radio" name="tc-tab" id="t4" style="display:none">
+<input type="radio" name="tc-tab" id="t5" style="display:none">
+<input type="radio" name="tc-tab" id="t6" style="display:none">
+
+<nav class="tab-nav">
+  <label class="tab-lbl" for="t1"><span class="tab-num">1</span> The Parties</label>
+  <label class="tab-lbl" for="t2"><span class="tab-num">2</span> Commission</label>
+  <label class="tab-lbl" for="t3"><span class="tab-num">3</span> DD &amp; Earnest Money</label>
+  <label class="tab-lbl" for="t4"><span class="tab-num">4</span> Key Documents</label>
+  <label class="tab-lbl" for="t5"><span class="tab-num">5</span> Buyer vs. Seller</label>
+  <label class="tab-lbl" for="t6"><span class="tab-num">6</span> Quick Reference</label>
+</nav>
+
+<main>
+
+<!-- ═══════ TAB 1: THE PARTIES ═══════ -->
+<div class="panel" id="p1">
+  <div class="section-eyebrow">Section 1</div>
+  <h2 class="section-title">Who Is Who in a Real Estate Transaction</h2>
+  <p class="section-intro">Every transaction involves the same core group of people. Knowing who each person is and what their job is will help you understand why a document belongs to one person and not another — and who to contact when something needs to happen.</p>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">1</span> The Seller</div>
+    <div class="concept-body">
+      <p>The seller is the person (or people) who currently owns the property and wants to sell it. They sign the listing agreement, the disclosures, and the final contract. On the checklist, any time you see "seller signs" or "seller confirms" — that's this person.</p>
+      <p>On a DBRE seller-side transaction, the seller is our client. We represent them.</p>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">2</span> The Buyer</div>
+    <div class="concept-body">
+      <p>The buyer is the person who wants to purchase the property. They sign the offer, the buyer agency agreement, and the disclosures. On a DBRE buyer-side transaction, the buyer is our client. We represent them.</p>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">3</span> The Listing Agent / Listing Firm</div>
+    <div class="concept-body">
+      <p>The listing agent (also called the seller's agent) is the real estate advisor who represents the seller. The listing firm is the company that agent works for. On DBRE seller-side transactions, <strong>DBRE is the listing firm</strong> and the advisor on the checklist is the listing agent.</p>
+      <div class="callout callout-note"><strong>Note:</strong> You will see "listing agent" and "seller's agent" used interchangeably throughout real estate documents. They mean the same thing.</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">4</span> The Buyer's Agent / Selling Firm</div>
+    <div class="concept-body">
+      <p>The buyer's agent (also called the selling agent or cooperating agent) is the real estate advisor who represents the buyer. The firm they work for is called the selling firm or cooperating firm.</p>
+      <div class="callout callout-important"><strong>Important — These terms are confusing:</strong> "Selling agent" does NOT mean the agent selling the home. It means the agent who brought the buyer to the sale. "Listing agent" is the one who listed the home for sale. "Selling agent" is the one who sold it to their buyer client. These terms are used interchangeably in real estate documents — when you see "selling firm" or "cooperating firm," it always means the buyer's agent's firm.</div>
+      <p>On DBRE buyer-side transactions, <strong>DBRE is the selling/cooperating firm</strong> and the advisor is the buyer's agent.</p>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">5</span> The Transaction Coordinator (TC)</div>
+    <div class="concept-body">
+      <p>That's you. Your job is to manage the paperwork and the timeline from contract to close. You make sure every document is collected, signed, uploaded to the right gallery, and that deadlines are tracked. You do not advise clients — that's the advisor's job. You manage the file.</p>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">6</span> The Closing Attorney / Settlement Agent</div>
+    <div class="concept-body">
+      <p>In North Carolina, all real estate closings must be handled by a licensed attorney. The closing attorney (also called the settlement agent) handles the legal transfer of the property, collects and distributes all funds, prepares the closing documents, and records the deed. They are a neutral party — they represent neither the buyer nor the seller. They represent the transaction itself.</p>
+      <p>The earnest money is held by the closing attorney. The commission is paid out through the closing attorney at the closing table.</p>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">7</span> The Lender</div>
+    <div class="concept-body">
+      <p>If the buyer is financing the purchase (taking out a loan), the lender is the bank or mortgage company providing that loan. The lender orders the appraisal, approves the buyer's financing, and issues the Clear to Close before closing day. On cash transactions, there is no lender.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-eyebrow">At a Glance</div>
+  <div class="party-grid">
+    <div class="party-card"><div class="party-card-title">Seller</div><div class="party-card-role">Property owner selling</div><div class="party-card-body">Signs listing agreement, disclosures, and contract. Receives proceeds at closing.</div></div>
+    <div class="party-card"><div class="party-card-title">Buyer</div><div class="party-card-role">Person purchasing</div><div class="party-card-body">Signs offer, buyer agency agreement, disclosures. Pays at closing.</div></div>
+    <div class="party-card"><div class="party-card-title">Listing Agent</div><div class="party-card-role">Also: Seller's Agent</div><div class="party-card-body">Represents the seller. Lists the property on MLS. On seller transactions, this is the DBRE advisor.</div></div>
+    <div class="party-card"><div class="party-card-title">Buyer's Agent</div><div class="party-card-role">Also: Selling Agent, Cooperating Agent</div><div class="party-card-body">Represents the buyer. On buyer transactions, this is the DBRE advisor.</div></div>
+    <div class="party-card"><div class="party-card-title">TC</div><div class="party-card-role">Transaction Coordinator</div><div class="party-card-body">Manages paperwork and timeline. Does not advise clients.</div></div>
+    <div class="party-card"><div class="party-card-title">Closing Attorney</div><div class="party-card-role">Also: Settlement Agent</div><div class="party-card-body">Required in NC. Holds earnest money. Distributes all funds at closing including commission.</div></div>
+    <div class="party-card"><div class="party-card-title">Lender</div><div class="party-card-role">Bank / Mortgage Company</div><div class="party-card-body">Provides buyer's loan. Orders appraisal. Issues Clear to Close. Not present on cash deals.</div></div>
+  </div>
+</div>
+
+<!-- ═══════ TAB 2: COMMISSION ═══════ -->
+<div class="panel" id="p2">
+  <div class="section-eyebrow">Section 2</div>
+  <h2 class="section-title">How Commission Works</h2>
+  <p class="section-intro">Commission is one of the most confusing parts of real estate for anyone new to the industry. This section explains how it works step by step, using real numbers, and then explains exactly which documents cover which part of the commission arrangement.</p>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">1</span> The Basic Idea</div>
+    <div class="concept-body">
+      <p>Commission is the fee paid to the real estate firms involved in the transaction. It is almost always paid by the seller out of the proceeds from the sale. It is calculated as a percentage of the sale price.</p>
+      <p>There are two firms involved in most transactions: the <strong>listing firm</strong> (represents the seller) and the <strong>selling/cooperating firm</strong> (represents the buyer). Each firm earns a portion of the total commission.</p>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">2</span> How the Split Works — Worked Example</div>
+    <div class="concept-body">
+      <div class="example">
+        <div class="example-label">Example — $300,000 Sale Price</div>
+        <p><strong>Step 1 — DBRE charges the seller 6% total commission</strong><br>6% of $300,000 = <strong>$18,000</strong> total commission paid by seller at closing</p>
+        <p><strong>Step 2 — DBRE (as listing firm) offers to share part of that with the buyer's agent's firm</strong><br>DBRE offers 2.5% to the cooperating firm (buyer's agent's firm)<br>2.5% of $300,000 = <strong>$7,500</strong> paid to the buyer's agent's firm</p>
+        <p><strong>Step 3 — DBRE keeps the remainder</strong><br>6% − 2.5% = 3.5% kept by DBRE (listing firm)<br>3.5% of $300,000 = <strong>$10,500</strong> kept by DBRE</p>
+      </div>
+      <div class="callout callout-important"><strong>This is what Form 220 documents.</strong> Form 220 (Cooperating Compensation Agreement) is the agreement between the listing firm (DBRE) and the selling/cooperating firm (buyer's agent's firm) that documents what the listing firm has agreed to pay the cooperating firm. It has nothing to do with what the buyer pays.</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">3</span> When the Buyer Owes a Portion — The Gap</div>
+    <div class="concept-body">
+      <p>Sometimes the buyer's agent charges their client more than what the listing firm has agreed to pay. When that happens, the buyer is responsible for paying the difference — the "gap." This is covered in the Exclusive Buyer Agency Agreement.</p>
+      <div class="example">
+        <div class="example-label">Example — Buyer Responsible for the Gap</div>
+        <p><strong>The buyer's agent charges their client 3%</strong> (per their Exclusive Buyer Agency Agreement)</p>
+        <p><strong>The listing firm offers to pay only 2.5%</strong> (per Form 220)</p>
+        <p><strong>The gap = 3% − 2.5% = 0.5%</strong></p>
+        <p>On a $300,000 sale: 0.5% of $300,000 = <strong>$1,500 owed by the buyer</strong></p>
+        <p>This $1,500 is paid by the buyer at closing — it is NOT the total commission. It is only the portion not covered by the listing firm's offer.</p>
+      </div>
+      <div class="callout callout-important"><strong>This is the most common confusion — remember this:</strong> When you see a buyer responsibility for a commission amount on a document, that is NEVER the total commission. It is only the gap between what the buyer's agent charges and what the listing firm agreed to pay. The total commission (paid by the seller) is a completely separate, much larger number.</div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">4</span> Which Document Covers Which Part</div>
+    <div class="concept-body">
+      <table class="compare-table">
+        <thead><tr><th>Document</th><th>What It Covers</th><th>Who Signs It</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Cooperating Compensation Form 220</strong></td><td>The agreement between the listing firm and the buyer's agent's firm (cooperating/selling firm) on how much the listing firm will pay the cooperating firm. Has nothing to do with the buyer directly.</td><td>Listing firm + cooperating firm (both advisors / brokers sign)</td></tr>
+          <tr><td><strong>Exclusive Buyer Agency Agreement</strong></td><td>The agreement between the buyer and their agent's firm (DBRE on buyer-side transactions) that states what fee the buyer's agent's firm charges for their services — and that the buyer will cover any gap not paid by the listing firm.</td><td>Buyer + buyer's agent / DBRE</td></tr>
+          <tr><td><strong>Listing Agreement (Exclusive Right to Sell)</strong></td><td>The agreement between the seller and DBRE (as listing firm) that states the total commission DBRE charges for selling the property.</td><td>Seller + listing advisor / DBRE</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">5</span> How Commission Is Paid</div>
+    <div class="concept-body">
+      <p>Commission is not paid directly by anyone to anyone during the transaction. It is all handled at the closing table by the closing attorney. Here is the flow:</p>
+      <div class="example">
+        <div class="example-label">Commission Flow at Closing</div>
+        <p>1. The buyer brings their funds (down payment + closing costs + any gap amount) to the closing attorney</p>
+        <p>2. The lender wires the loan proceeds to the closing attorney (if financed)</p>
+        <p>3. On a cash transaction, the buyer wires their full purchase funds directly to the closing attorney</p>
+        <p>4. The closing attorney deducts all costs including commission from the seller's proceeds</p>
+        <p>5. The closing attorney writes checks (or wires) to: the listing firm (DBRE), the cooperating firm, the seller (their net proceeds)</p>
+        <p>6. The deed is recorded and the property officially transfers to the buyer</p>
+      </div>
+      <div class="callout callout-dbre"><strong>DBRE-Specific:</strong> After closing, Derrick coordinates the commission disbursement and posts the commission statement to the advisor's boardroom. This is Derrick's responsibility — it is not part of the TC's post-closing tasks.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ TAB 3: DD & EARNEST MONEY ═══════ -->
+<div class="panel" id="p3">
+  <div class="section-eyebrow">Section 3</div>
+  <h2 class="section-title">Due Diligence &amp; Earnest Money</h2>
+  <p class="section-intro">Due diligence and earnest money are two separate payments the buyer makes when an offer is accepted. They are often confused because they happen at the same time — but they are very different in terms of what they mean, where they go, and what happens to them.</p>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">1</span> Due Diligence Fee — The Buyer's "Right to Investigate"</div>
+    <div class="concept-body">
+      <p>When a buyer's offer is accepted, the buyer has a window of time called the due diligence period to investigate the property — inspections, appraisals, surveys, soil tests (for land), etc. During this window, the buyer has the right to walk away from the deal for any reason at all.</p>
+      <p>The due diligence fee is what the buyer pays the seller for that right. Think of it as renting the right to investigate the property before committing fully.</p>
+      <div class="callout callout-important"><strong>Key facts about the DD fee:</strong>
+        <br>• Paid directly to the seller — not to the attorney
+        <br>• Non-refundable — if the buyer walks away during DD, the seller keeps it
+        <br>• Negotiated as part of the offer — amount varies by transaction
+        <br>• On residential: paid at contract execution, typically within 24–48 hours
+        <br>• On land: same concept, but the DD period is usually longer because studies (soil, survey, environmental) take more time
+      </div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">2</span> Earnest Money — The Buyer's "Good Faith Deposit"</div>
+    <div class="concept-body">
+      <p>Earnest money is a deposit the buyer pays to show they are serious about completing the purchase. The amount varies — sometimes earnest money is larger than the DD fee, and sometimes the DD fee is larger. It depends on what is negotiated in the offer. Unlike the DD fee, earnest money is held by the closing attorney in a trust account — it is not given to the seller yet.</p>
+      <div class="callout callout-important"><strong>Key facts about earnest money:</strong>
+        <br>• Paid to the closing attorney — held in trust (escrow)
+        <br>• Applied toward the buyer's costs at closing if the deal closes
+        <br>• Refundable if the buyer terminates during the due diligence period
+        <br>• At risk if the buyer backs out after the DD period expires without a valid reason
+        <br>• Amount is negotiated — typically 1–2% of purchase price on residential; varies on land
+      </div>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">3</span> Side-by-Side Comparison</div>
+    <div class="concept-body">
+      <table class="compare-table">
+        <thead><tr><th></th><th>Due Diligence Fee</th><th>Earnest Money</th></tr></thead>
+        <tbody>
+          <tr><td><strong>What it is</strong></td><td>Payment for the right to investigate</td><td>Good faith deposit showing intent to close</td></tr>
+          <tr><td><strong>Paid to</strong></td><td>The seller directly</td><td>The closing attorney (held in trust)</td></tr>
+          <tr><td><strong>Refundable?</strong></td><td>No — seller keeps it regardless</td><td>Yes — if buyer terminates during DD period</td></tr>
+          <tr><td><strong>Applied at closing?</strong></td><td>Yes — credited toward buyer's closing costs at closing</td><td>Yes — credited toward buyer's closing costs at closing</td></tr>
+          <tr><td><strong>Your job as TC</strong></td><td>Confirm receipt by seller; get signed acknowledgement; upload to Legacy Gallery (03)</td><td>Confirm delivery to attorney; get signed acknowledgement; upload to Legacy Gallery (03)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">4</span> The Due Diligence Period — What Happens During It</div>
+    <div class="concept-body">
+      <p>The DD period runs from the date the contract is executed (signed by all parties) to the DD deadline date listed on the contract. During this window:</p>
+      <div class="example">
+        <div class="example-label">Residential Transactions</div>
+        <p>• Buyer schedules home inspection — inspector checks structure, systems, roof, plumbing, electrical, HVAC, etc.</p>
+        <p>• Buyer's lender orders appraisal (if financed)</p>
+          <p>• Advisor handles any repair negotiations with the seller — TC uploads the executed repair agreement once signed</p>
+      <p>• Buyer decides: proceed to close, negotiate repairs/price, or terminate</p>
+      </div>
+      <div class="example">
+        <div class="example-label">Land Transactions</div>
+        <p>• Buyer arranges soil/perk test (to determine if land can support a septic system)</p>
+        <p>• Buyer orders boundary or topographic survey</p>
+        <p>• Buyer confirms zoning, flood zone, wetlands, DOT access, utilities</p>
+        <p>• There are NO repair requests on land — buyer investigates and either proceeds or terminates</p>
+        <p>• DD period is typically longer than residential because studies take more time</p>
+      </div>
+      <div class="callout callout-dbre"><strong>DBRE-Specific — Your TC role at DD expiration:</strong> Three days before the DD deadline, you send an alert to the advisor. On the DD deadline itself, you confirm with the advisor whether the buyer is proceeding or terminating. If proceeding, the transaction continues. If terminating, the contract ends and you document accordingly.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ TAB 4: KEY DOCUMENTS ═══════ -->
+<div class="panel" id="p4">
+  <div class="section-eyebrow">Section 4</div>
+  <h2 class="section-title">Key Documents — What Each One Is</h2>
+  <p class="section-intro">Every document in the checklist exists for a specific reason. This section explains what each one does in plain language so you understand why it belongs in a particular gallery and why the closing attorney or advisor might ask for it.</p>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">1</span> Agency &amp; Representation Documents</div>
+    <div class="concept-body">
+      <div class="doc-row">
+        <span class="doc-tag tag-both">Both Sides</span>
+        <div class="doc-content">
+          <div class="doc-name">Working with Real Estate Agents Brochure (WWREA)</div>
+          <div class="doc-desc">A state-required brochure that explains the different types of agency relationships in North Carolina — buyer's agent, seller's agent, dual agent, etc. Must be reviewed with every client at first substantial contact. The client signs it to confirm they received and reviewed it. Required on both buyer and seller sides.</div>
+        </div>
+      </div>
+      <div class="doc-row">
+        <span class="doc-tag tag-seller">Seller Side</span>
+        <div class="doc-content">
+          <div class="doc-name">Exclusive Right to Sell Listing Agreement</div>
+          <div class="doc-desc">The contract between the seller and DBRE (as the listing firm) that gives DBRE the exclusive right to market and sell the property. It states the listing price, listing period, and the total commission the seller agrees to pay DBRE. This is what makes DBRE the official listing firm for the property.</div>
+        </div>
+      </div>
+      <div class="doc-row">
+        <span class="doc-tag tag-buyer">Buyer Side</span>
+        <div class="doc-content">
+          <div class="doc-name">Exclusive Buyer Agency Agreement</div>
+          <div class="doc-desc">The contract between the buyer and DBRE (as the buyer's firm) that establishes DBRE's representation of the buyer. It states what fee DBRE charges for buyer representation services and that the buyer will cover any portion of that fee not paid by the listing firm. This is NOT the same as Form 220.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">2</span> Commission Documents</div>
+    <div class="concept-body">
+      <div class="doc-row">
+        <span class="doc-tag tag-both">Both Sides</span>
+        <div class="doc-content">
+          <div class="doc-name">Cooperating Compensation Form 220</div>
+          <div class="doc-desc">The agreement between the listing firm and the buyer's agent's firm (cooperating/selling firm) documenting how much the listing firm will pay the cooperating firm from the commission. All four parties sign this: the seller, the listing advisor/DBRE, the buyer, and the buyer's agent/firm. The seller and buyer sign it even though it documents an arrangement between the two firms — it is a required acknowledgement that all parties are aware of the compensation agreement. It appears in both seller and buyer checklists. Important: this is NOT the total commission — it is only the listing firm's offer to the cooperating firm.</div>
+        </div>
+      </div>
+      <div class="doc-row">
+        <span class="doc-tag tag-both">Both Sides</span>
+        <div class="doc-content">
+          <div class="doc-name">Professional Services Disclosure and Election (Form 760)</div>
+          <div class="doc-desc">A disclosure form that documents what professional services are being performed in the transaction and by whom. Required in North Carolina for agency relationships. <strong>DBRE standard: required on all transactions</strong> — not advisor discretion. If this form is missing from a file, flag it to the advisor immediately.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">3</span> Disclosure Documents</div>
+    <div class="concept-body">
+      <div class="doc-row">
+        <span class="doc-tag tag-seller">Seller Side</span>
+        <div class="doc-content">
+          <div class="doc-name">Residential Property Disclosure Statement (RPOADS)</div>
+          <div class="doc-desc">A form the seller completes disclosing known issues with the property — roof condition, water damage, foundation issues, HVAC, appliances, etc. The seller fills this out honestly. The buyer reviews and signs it to confirm they received it. Residential transactions only.</div>
+        </div>
+      </div>
+      <div class="doc-row">
+        <span class="doc-tag tag-seller">Seller Side</span>
+        <div class="doc-content">
+          <div class="doc-name">Vacant Land Disclosure Statement</div>
+          <div class="doc-desc">The land equivalent of the RPOADS. The seller discloses known information about the land — zoning, utilities, environmental issues, easements, etc. Land transactions only.</div>
+        </div>
+      </div>
+      <div class="doc-row">
+        <span class="doc-tag tag-both">Both Sides</span>
+        <div class="doc-content">
+          <div class="doc-name">Mineral, Oil, and Gas Rights Disclosure (MOG)</div>
+          <div class="doc-desc">A NC-required disclosure that informs the buyer whether the seller owns the mineral, oil, and gas rights to the property — or whether those rights have been separated from the land. Required on both residential and land transactions, for both buyer and seller sides.</div>
+        </div>
+      </div>
+      <div class="doc-row">
+        <span class="doc-tag tag-seller">Seller Side</span>
+        <div class="doc-content">
+          <div class="doc-name">Lead-Based Paint Addendum</div>
+          <div class="doc-desc">Required only on homes built before 1978. Federal law requires sellers to disclose known lead-based paint hazards. The buyer has the right to test for lead-based paint during the DD period.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">4</span> Contract Documents</div>
+    <div class="concept-body">
+      <div class="doc-row">
+        <span class="doc-tag tag-buyer">Buyer Side</span>
+        <div class="doc-content">
+          <div class="doc-name">Offer to Purchase and Contract — Residential (Form 2-T)</div>
+          <div class="doc-desc">The main purchase contract for residential property. Once signed by all parties, this is the binding agreement. It contains the purchase price, DD fee, earnest money, DD deadline, closing date, and all terms. This is what makes the transaction "under contract."</div>
+        </div>
+      </div>
+      <div class="doc-row">
+        <span class="doc-tag tag-buyer">Buyer Side</span>
+        <div class="doc-content">
+          <div class="doc-name">Vacant Lot/Land Offer to Purchase and Contract (Form 12-T)</div>
+          <div class="doc-desc">The land equivalent of Form 2-T. Same purpose — the binding purchase contract — but specific to vacant lot and land transactions. Contains legal description, acreage, and parcel number in addition to the standard contract terms.</div>
+        </div>
+      </div>
+      <div class="doc-row">
+        <span class="doc-tag tag-buyer">Buyer Side</span>
+        <div class="doc-content">
+          <div class="doc-name">Due Diligence Repair Request (Form 310-T)</div>
+          <div class="doc-desc">Residential only. After the home inspection, the buyer may request that the seller make specific repairs before closing. This form documents those requests. The seller can agree, negotiate, or decline. Whatever is agreed upon becomes a binding addendum to the contract. Does NOT exist on land transactions — there are no repair requests on land.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">5</span> Closing Documents</div>
+    <div class="concept-body">
+      <div class="doc-row">
+        <span class="doc-tag tag-both">Both Sides</span>
+        <div class="doc-content">
+          <div class="doc-name">HUD Settlement Statement / Closing Disclosure (CD)</div>
+          <div class="doc-desc">The final financial summary of the entire transaction prepared by the closing attorney. Shows every dollar coming in and going out — purchase price, loan amount, closing costs, commission, prorations, and the seller's net proceeds. On financed transactions this is called the Closing Disclosure (CD). On cash transactions and land it may be an ALTA Settlement Statement. This goes in Heritage Gallery (04) after closing.</div>
+        </div>
+      </div>
+      <div class="doc-row">
+        <span class="doc-tag tag-buyer">Buyer Side</span>
+        <div class="doc-content">
+          <div class="doc-name">Buyer Engagement Letter</div>
+          <div class="doc-desc">A letter from the closing attorney to the buyer confirming the attorney has been engaged to handle the closing and outlining the attorney's role. The buyer signs this and it goes to Legacy Gallery (03).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ TAB 5: BUYER VS SELLER ═══════ -->
+<div class="panel" id="p5">
+  <div class="section-eyebrow">Section 5</div>
+  <h2 class="section-title">Buyer vs. Seller — Which Side Does What</h2>
+  <p class="section-intro">One of the most important things to keep straight as a TC is which actions, documents, and payments belong to the buyer's side and which belong to the seller's side. This section lays it all out in one place.</p>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">1</span> Documents by Side</div>
+    <div class="concept-body">
+      <table class="compare-table">
+        <thead><tr><th>Document</th><th class="col-seller">Seller Side</th><th class="col-buyer">Buyer Side</th></tr></thead>
+        <tbody>
+          <tr><td>Working with Real Estate Agents (WWREA)</td><td class="col-seller">✓ Required</td><td class="col-buyer">✓ Required</td></tr>
+          <tr><td>Exclusive Right to Sell Listing Agreement</td><td class="col-seller">✓ Seller signs with DBRE</td><td>—</td></tr>
+          <tr><td>Exclusive Buyer Agency Agreement</td><td>—</td><td class="col-buyer">✓ Buyer signs with DBRE</td></tr>
+          <tr><td>Cooperating Compensation Form 220</td><td class="col-seller">✓ (listing side)</td><td class="col-buyer">✓ (cooperating side)</td></tr>
+          <tr><td>Professional Services Disclosure Form 760</td><td class="col-seller">✓ Required</td><td class="col-buyer">✓ Required</td></tr>
+          <tr><td>RPOADS (Residential Property Disclosure)</td><td class="col-seller">✓ Seller completes and signs</td><td class="col-buyer">✓ Buyer signs to acknowledge receipt</td></tr>
+          <tr><td>Vacant Land Disclosure Statement</td><td class="col-seller">✓ Seller completes (land only)</td><td class="col-buyer">✓ Buyer acknowledges (land only)</td></tr>
+          <tr><td>MOG Disclosure</td><td class="col-seller">✓ Required on all types</td><td class="col-buyer">✓ Required on all types</td></tr>
+          <tr><td>Lead-Based Paint Addendum</td><td class="col-seller">✓ Pre-1978 homes only</td><td class="col-buyer">✓ Pre-1978 homes only</td></tr>
+          <tr><td>Form 2-T (Residential Contract)</td><td class="col-seller">✓ Seller signs to accept</td><td class="col-buyer">✓ Buyer prepares and signs</td></tr>
+          <tr><td>Form 12-T (Land Contract)</td><td class="col-seller">✓ Seller signs to accept</td><td class="col-buyer">✓ Buyer prepares and signs</td></tr>
+          <tr><td>Form 310-T (Repair Request)</td><td class="col-seller">✓ Seller responds (residential only)</td><td class="col-buyer">✓ Buyer submits (residential only)</td></tr>
+          <tr><td>Buyer Engagement Letter (from attorney)</td><td>—</td><td class="col-buyer">✓ Buyer signs</td></tr>
+          <tr><td>HUD / Closing Disclosure / ALTA</td><td class="col-seller">✓ Filed in Heritage Gallery</td><td class="col-buyer">✓ Filed in Heritage Gallery</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">2</span> Payments by Side</div>
+    <div class="concept-body">
+      <table class="compare-table">
+        <thead><tr><th>Payment</th><th>Who Pays</th><th>Paid To</th><th>Refundable?</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Due Diligence Fee</strong></td><td>Buyer</td><td>Seller directly</td><td>No</td></tr>
+          <tr><td><strong>Earnest Money</strong></td><td>Buyer</td><td>Closing attorney (held in trust)</td><td>Yes — if terminated during DD</td></tr>
+          <tr><td><strong>Total Commission</strong></td><td>Seller (from proceeds)</td><td>Closing attorney distributes to firms</td><td>N/A</td></tr>
+          <tr><td><strong>Buyer's Commission Gap</strong></td><td>Buyer (if applicable)</td><td>Closing attorney distributes to buyer's firm</td><td>No</td></tr>
+          <tr><td><strong>Closing Costs</strong></td><td>Buyer (mostly) and Seller (some)</td><td>Closing attorney</td><td>No</td></tr>
+          <tr><td><strong>Down Payment</strong></td><td>Buyer</td><td>Closing attorney</td><td>No</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">3</span> Residential vs. Land — Key Differences</div>
+    <div class="concept-body">
+      <table class="compare-table">
+        <thead><tr><th></th><th>Residential</th><th>Land / Acreage</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Main contract form</strong></td><td>Form 2-T</td><td>Form 12-T</td></tr>
+          <tr><td><strong>Disclosure form</strong></td><td>RPOADS</td><td>Vacant Land Disclosure</td></tr>
+          <tr><td><strong>DD inspections</strong></td><td>Home inspection, appraisal</td><td>Soil/perk test, survey, environmental, zoning, flood, wetlands, DOT, utilities</td></tr>
+          <tr><td><strong>Repair requests</strong></td><td>Yes — Form 310-T</td><td>No — there are no repairs on land</td></tr>
+          <tr><td><strong>DD period length</strong></td><td>Typically 14–30 days</td><td>Typically 30–60+ days — studies take longer</td></tr>
+          <tr><td><strong>Lockbox</strong></td><td>Yes — house key in lockbox</td><td>No — land does not get a lockbox</td></tr>
+          <tr><td><strong>Appraisal</strong></td><td>Required by lender if financed</td><td>Not always required — depends on lender</td></tr>
+          <tr><td><strong>Financing</strong></td><td>Mortgage / conventional / FHA / VA</td><td>Land loan or cash — harder to finance than residential</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ TAB 6: QUICK REFERENCE ═══════ -->
+<div class="panel" id="p6">
+  <div class="section-eyebrow">Section 6</div>
+  <h2 class="section-title">Quick Reference</h2>
+  <p class="section-intro">Use this tab when you need a fast answer without reading through the full explanations. These are the most common things that come up in day-to-day TC work.</p>
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">1</span> Terminology — Interchangeable Terms</div>
+    <div class="concept-body">
+      <table class="compare-table">
+        <thead><tr><th>Term</th><th>Same As</th><th>What It Means</th></tr></thead>
+        <tbody>
+          <tr><td>Listing agent</td><td>Seller's agent</td><td>The agent who represents the seller and listed the property</td></tr>
+          <tr><td>Buyer's agent</td><td>Selling agent, cooperating agent</td><td>The agent who represents the buyer</td></tr>
+          <tr><td>Listing firm</td><td>Seller's firm</td><td>The real estate company representing the seller (DBRE on seller-side transactions)</td></tr>
+          <tr><td>Selling firm</td><td>Cooperating firm, buyer's firm</td><td>The real estate company representing the buyer (DBRE on buyer-side transactions)</td></tr>
+          <tr><td>Closing Disclosure (CD)</td><td>HUD Settlement Statement, ALTA</td><td>The final financial summary prepared by the closing attorney</td></tr>
+          <tr><td>Under Contract</td><td>Pending, In Contract</td><td>Both parties have signed the purchase contract — the deal is active</td></tr>
+          <tr><td>Settlement agent</td><td>Closing attorney</td><td>The attorney who handles the closing in NC</td></tr>
+          <tr><td>RPOADS</td><td>Residential Property Disclosure</td><td>Seller's disclosure of known property conditions — residential only</td></tr>
+          <tr><td>Form 2-T</td><td>Residential contract, Offer to Purchase</td><td>The main purchase contract for residential property</td></tr>
+          <tr><td>Form 12-T</td><td>Land contract, Vacant lot contract</td><td>The main purchase contract for land/vacant lot</td></tr>
+          <tr><td>Form 310-T</td><td>Repair request</td><td>Buyer's written request for seller to make repairs — residential only</td></tr>
+          <tr><td>Form 220</td><td>Cooperating Compensation Agreement</td><td>Agreement between listing firm and cooperating firm on how commission is split</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">2</span> Commission — The 60-Second Summary</div>
+    <div class="concept-body">
+      <div class="callout callout-remember">
+        <strong>Remember this every time you see commission numbers:</strong><br><br>
+        <strong>Form 220</strong> = agreement between listing firm and buyer's agent's firm only. Has nothing to do with what the buyer owes directly.<br><br>
+        <strong>Buyer Agency Agreement</strong> = what the buyer's firm charges the buyer. If the listing firm doesn't cover the full amount, the buyer pays the gap.<br><br>
+        <strong>If you see a buyer responsible for 0.5%</strong> — that is NOT the total commission. It is only the gap. Total commission (paid by seller) is a separate, much larger number.<br><br>
+        <strong>All commission is distributed by the closing attorney at the closing table.</strong> No firm receives commission directly from the buyer or seller during the transaction.
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">3</span> DD Fee vs. Earnest Money — The 30-Second Summary</div>
+    <div class="concept-body">
+      <div class="callout callout-remember">
+        <strong>DD Fee</strong> — paid to the seller, non-refundable, buys the buyer the right to investigate and walk away<br><br>
+        <strong>Earnest Money</strong> — paid to the closing attorney, held in trust, refundable if buyer terminates during DD period, applied to buyer's costs at closing<br><br>
+        <strong>Both require a signed Acknowledgement of Receipt</strong> — that's your job to obtain and upload to Legacy Gallery (03)
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">4</span> Gallery Guide — Where Does It Go?</div>
+    <div class="concept-body">
+      <table class="compare-table">
+        <thead><tr><th>Gallery</th><th>Seller Side</th><th>Buyer Side</th></tr></thead>
+        <tbody>
+          <tr><td><strong>01 — Property / Search Gallery</strong></td><td>Listing docs, disclosures, ownership verification, photography</td><td>WWREA, buyer agency agreement, pre-approval, property research</td></tr>
+          <tr><td><strong>02 — Offer Gallery</strong></td><td>All offers received (including rejected), pre-approval docs, Form 220, offer comparison sheet</td><td>Unsigned offer, Form 220, buyer-signed disclosures</td></tr>
+          <tr><td><strong>03 — Legacy Gallery</strong></td><td>Executed contract, repair agreements, all fully signed documents</td><td>Executed contract, buyer engagement letter, inspection report, repair agreement, DD/EM acknowledgement</td></tr>
+          <tr><td><strong>04 — Heritage Gallery</strong></td><td>HUD/CD/ALTA at closing, client testimonial, post-closing correspondence</td><td>HUD/CD/ALTA at closing, closing gift record, client testimonial</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="concept">
+    <div class="concept-label"><span class="concept-num">5</span> When to Contact the Advisor vs. Handle It Yourself</div>
+    <div class="concept-body">
+      <table class="compare-table">
+        <thead><tr><th>Situation</th><th>What to Do</th></tr></thead>
+        <tbody>
+          <tr><td>A document is missing from the file</td><td>Flag to advisor — they cure within 24 hours</td></tr>
+          <tr><td>A deadline is approaching</td><td>Send alert to advisor (3-day alert on DD deadline)</td></tr>
+          <tr><td>Closing attorney requests a document</td><td>Check the gallery first — if it's there, send it. If not, flag to advisor.</td></tr>
+          <tr><td>A client contacts you directly with a question</td><td>Direct them to the advisor — you do not advise clients</td></tr>
+          <tr><td>Commission numbers look confusing</td><td>Check this guide first. If still unclear, contact Dana only.</td></tr>
+          <tr><td>You're not sure which gallery a document belongs in</td><td>Check the Gallery Guide in this tab. Still unsure — ask the advisor.</td></tr>
+          <tr><td>Wire fraud concern (someone sends new wire instructions)</td><td>Stop immediately. Alert advisor and Dana. Never act on emailed wire instructions without verbal confirmation from the closing attorney directly.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer class="ftr">
+  <div class="ftr-l">DBRE TC Reference Guide v1.0 — 2026 · Internal Use Only · MJ Pagalan</div>
+  <div class="ftr-r">Confidential</div>
+</footer>
+
+</body>
+</html>
