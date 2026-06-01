@@ -6,7 +6,7 @@
 <title>TC Buyer — Land — DBRE</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--gold:#C9A84C;--gold-mid:#B8892A;--gold-border:rgba(201,168,76,0.22);--charcoal:#1A1A1A;--charcoal-mid:#2A2A2A;--charcoal-soft:#333;--cream:#FAF7F2;--cream-dark:#F0EBE0;--white:#fff;--body:#3A3A3A;--muted:#7A7268;--body-mid:#5A5A5A;--green:#2E7D52;--green-light:#EAF5EE;}
+:root{--gold:#C9A84C;--gold-mid:#B8892A;--gold-border:rgba(201,168,76,0.22);--charcoal:#1A1A1A;--charcoal-mid:#2A2A2A;--charcoal-soft:#333;--cream:#FAF7F2;--cream-dark:#F0EBE0;--white:#fff;--body:#3A3A3A;--muted:#7A7268;--body-mid:#5A5A5A;--green:#2E7D52;--green-light:#EAF5EE;--ref-bg:#F5F2EC;--ref-border:rgba(184,137,42,0.18);--ref-text:#8A8178;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--body);font-size:13.5px;line-height:1.7;}
 .hdr{background:var(--charcoal);padding:12px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:100;}
@@ -58,6 +58,31 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--bod
 .empty{text-align:center;padding:56px 0;color:var(--muted);}
 .empty-icon{font-size:28px;margin-bottom:12px;color:rgba(201,168,76,0.4);}
 .empty-title{font-size:13px;font-weight:600;color:var(--body-mid);margin-bottom:6px;}
+
+/* ADVISOR-LED REFERENCE PHASES */
+.ref-section-label{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.ref-section-label-text{font-size:8.5px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+.ref-section-label-line{flex:1;height:1px;background:var(--ref-border);}
+.ref-phase{opacity:0.7;}
+.ref-phase .phase-hdr{background:var(--ref-bg) !important;}
+.ref-phase .phase-hdr:hover{background:#EDE9E1 !important;}
+.ref-hdr .phase-title{color:var(--ref-text) !important;font-weight:600;}
+.ref-hdr .chevron{color:var(--muted) !important;}
+.ref-num{background:rgba(184,137,42,0.25) !important;color:var(--gold-mid) !important;}
+.ref-cnt{color:var(--muted) !important;}
+.ref-item{display:flex;align-items:flex-start;gap:10px;padding:8px 18px;border-bottom:1px solid rgba(201,168,76,0.05);}
+.ref-item:last-child{border-bottom:none;}
+.ref-dot{color:var(--ref-border);font-size:16px;flex-shrink:0;margin-top:1px;line-height:1.4;}
+.ref-txt{font-size:12px;color:var(--ref-text);line-height:1.6;flex:1;}
+.ref-txt .note{font-size:10.5px;color:rgba(122,114,104,0.7);}
+
+/* HANDOFF DIVIDER */
+.handoff-divider{display:flex;align-items:center;gap:14px;margin:20px 0 16px;}
+.handoff-line{flex:1;height:1px;background:linear-gradient(to right, var(--gold), rgba(201,168,76,0.2));}
+.handoff-label{font-size:8.5px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);white-space:nowrap;padding:4px 12px;border:1px solid rgba(201,168,76,0.35);border-radius:2px;background:rgba(201,168,76,0.06);}
+.handoff-line-r{flex:1;height:1px;background:linear-gradient(to left, var(--gold), rgba(201,168,76,0.2));}
+
+/* TC ACTIVE PHASES */
 .phase{margin-bottom:8px;border-radius:5px;overflow:hidden;border:1px solid var(--gold-border);}
 .phase-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:var(--white);cursor:pointer;user-select:none;gap:10px;}
 .phase-hdr:hover{background:var(--cream);}
@@ -88,6 +113,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--bod
 .tag-u{background:rgba(46,125,82,0.1);color:var(--green);}
 .tag-w{background:rgba(192,57,43,0.1);color:#c0392b;}
 .tag-n{background:rgba(201,168,76,0.14);color:var(--gold-mid);}
+.tag-adv{background:rgba(122,114,104,0.12);color:var(--muted);}
 .ftr{background:var(--charcoal);padding:16px 40px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--gold-border);margin-top:60px;}
 .ftr-l{font-size:11px;color:rgba(255,255,255,0.3);}
 .ftr-r{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.18);}
@@ -114,7 +140,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--bod
       <div class="hero-sub" id="txn-name">Select or create a transaction below</div>
     </div>
     <div class="prog-wrap">
-      <div class="prog-lbl">Progress</div>
+      <div class="prog-lbl">TC Progress</div>
       <div class="prog-bar-outer"><div class="prog-bar-inner" id="prog-bar"></div></div>
       <div class="prog-count"><span id="prog-done">0</span> / <span id="prog-total">0</span> <span>completed</span></div>
     </div>
@@ -128,7 +154,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--bod
 <div class="overlay" id="modal-new">
   <div class="modal">
     <h2>New Transaction</h2>
-    <p>Enter the buyer name to identify this checklist.</p>
+    <p>Enter the buyer name and/or address to identify this file.</p>
     <input class="modal-input" type="text" id="new-input" placeholder="e.g. Smith Family · 123 Oak St" maxlength="80">
     <div class="modal-btns">
       <button class="btn-secondary" id="btn-new-cancel">Cancel</button>
@@ -152,10 +178,10 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--bod
   <div class="how-to">
     <div class="how-to-title">How to Use This Checklist</div>
     <div class="how-to-grid">
-      <div><strong>＋ New transaction</strong> — Click + above and enter the buyer name and/or address.</div>
-      <div><strong>Switch transactions</strong> — Click any tab to load that file instantly.</div>
-      <div><strong>Auto-saved</strong> — Progress saves in this browser automatically.</div>
-      <div><strong>Reset / Delete</strong> — Reset clears all items. Delete removes the transaction entirely.</div>
+      <div><strong>＋ New transaction</strong> — Click + above and enter the buyer name / address.</div>
+      <div><strong>Advisor-led phases</strong> — Shown for reference only. Verify these were completed when the file arrives.</div>
+      <div><strong>TC phases</strong> — Your active checklist. Check off items as you complete them.</div>
+      <div><strong>Auto-saved</strong> — Progress saves in this browser automatically per transaction.</div>
     </div>
   </div>
 
@@ -167,92 +193,103 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--bod
 
   <div id="checklist" style="display:none">
 
-    <div class="phase" id="ph-1"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">1</div><div class="phase-title">Consultation, File Setup &amp; Pre-Offer Research</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-1">0/8</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-1"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Signed WWREA Brochure obtained → Search Gallery (01)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-2"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Exclusive Buyers Agent Agreement executed → Search Gallery (01)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-3"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Professional Services Disclosure and Election (Form 760) → Search Gallery (01)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-4"><span class="chkbox"></span><span class="txt">Buyer transaction file created in Buyers Boutique — named per naming convention</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-5"><span class="chkbox"></span><span class="txt">Financing type confirmed: cash or land loan</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-6"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Land Loan Prequalification OR Proof of Funds — ALL account numbers redacted → Offer Gallery (02)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-7"><span class="chkbox"></span><span class="txt">Pre-offer property research conducted: zoning, flood zone, perk test, survey, easements, DOT, wetlands, utilities, environmental<span class="note">Reference DBRE Land Research Checklist</span></span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-8"><span class="chkbox"></span><span class="txt">Buyer expectations set: DD period longer and more complex than residential; all DD study costs are buyer's responsibility</span></label></div>
+    <div class="ref-section-label">
+      <span class="ref-section-label-text">Advisor-Led · For Reference Only</span>
+      <span class="ref-section-label-line"></span>
+    </div>
+
+
+    <div class="phase ref-phase" id="rph-1"><div class="phase-hdr ref-hdr"><div class="phase-hdr-l"><div class="phase-num ref-num">1</div><div class="phase-title">Consultation &amp; Pre-Offer Research</div></div><div class="phase-hdr-r"><span class="phase-cnt ref-cnt">7 items</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Signed WWREA Brochure obtained and filed</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Exclusive Buyers Agent Agreement executed and filed</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Professional Services Disclosure (Form 760) filed</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Financing type confirmed: cash or land loan</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Land Loan Prequalification or Proof of Funds obtained — account numbers redacted</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Pre-offer property research conducted: zoning, flood, perk, survey, easements, DOT, wetlands, utilities, environmental<span class="note">Reference DBRE Land Research Checklist</span></span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Buyer expectations set: DD period longer and more complex; all DD study costs are buyer's responsibility</span></div>
     </div></div></div>
 
-    <div class="phase" id="ph-2"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">2</div><div class="phase-title">Offer &amp; Contract Execution</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-2">0/9</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
-      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-1"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Cooperating Compensation Form 220 confirmed before offer — all four parties → Offer Gallery (02)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-2"><span class="chkbox"></span><span class="txt">Form 12-T (Vacant Lot/Land Offer to Purchase) prepared — correct legal description, acreage, parcel number, DD period, EM and DD fee amounts confirmed</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-3"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Buyer-signed MOG Disclosure → Offer Gallery (02)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-4"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Buyer-signed Vacant Land Disclosure Statement → Offer Gallery (02)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-5"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> All counteroffers documented → Offer Gallery (02)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-6"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Fully executed Form 12-T → Offer Gallery (02)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-7"><span class="chkbox"></span><span class="txt">Executed contract distributed to: closing attorney; buyer's lender (if loan)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-8"><span class="chkbox"></span><span class="txt">TC adds DD deadline and proposed closing date to Transaction Calendar in Teams</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-9"><span class="chkbox"></span><span class="txt">TC sets 3-day advisor alert before DD deadline</span></label></div>
+    <div class="phase ref-phase" id="rph-2"><div class="phase-hdr ref-hdr"><div class="phase-hdr-l"><div class="phase-num ref-num">2</div><div class="phase-title">Offer &amp; Contract Execution</div></div><div class="phase-hdr-r"><span class="phase-cnt ref-cnt">6 items</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Cooperating Compensation Form 220 confirmed before offer — all four parties signed</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Form 12-T (Vacant Lot/Land Offer to Purchase) prepared — legal description, acreage, parcel, DD period, EM and DD fee confirmed</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Buyer-signed MOG Disclosure and Vacant Land Disclosure Statement uploaded → Offer Gallery (02)</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> All counteroffers documented and uploaded → Offer Gallery (02)</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Fully executed Form 12-T uploaded → Offer Gallery (02)</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Executed contract distributed to: closing attorney; buyer's lender if applicable</span></div>
     </div></div></div>
 
-    <div class="phase" id="ph-3"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">3</div><div class="phase-title">Transaction Setup &amp; Activation</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-3">0/6</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
-      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-1"><span class="chkbox"></span><span class="txt">Operations Specialist initiates Wise Agent buyer communication sequence</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-2"><span class="chkbox"></span><span class="txt">Transaction added to team Transaction Calendar (closing date)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-3"><span class="chkbox"></span><span class="txt">Leadership transaction calendar updated: property address, buyer, sale price, agent, closing date, attorney</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-4"><span class="chkbox"></span><span class="txt">Buyer added to Master Client Database in The Vault</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-5"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Buyer Engagement Letter coordinated with closing attorney — buyer signs → Legacy Gallery (03)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-6"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> DD fee and Earnest Money delivery confirmed — Acknowledgement of Receipt → Legacy Gallery (03)</span></label></div>
+
+    <div class="handoff-divider">
+      <span class="handoff-line"></span>
+      <span class="handoff-label">TC Handoff · Contract Execution</span>
+      <span class="handoff-line-r"></span>
+    </div>
+
+
+    <div class="phase" id="ph-1"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">1</div><div class="phase-title">Transaction Setup &amp; Activation</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-1">0/7</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-1"><span class="chkbox"></span><span class="txt">TC adds DD deadline and proposed closing date to Transaction Calendar in Teams</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-2"><span class="chkbox"></span><span class="txt">TC sets 3-day advisor alert before DD deadline</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-3"><span class="chkbox"></span><span class="txt">Operations Specialist initiates Wise Agent buyer communication sequence</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-4"><span class="chkbox"></span><span class="txt">Leadership transaction calendar updated: property, buyer, sale price, advisor, closing date, attorney</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-5"><span class="chkbox"></span><span class="txt">Buyer added to Master Client Database in The Vault</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-6"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Buyer Engagement Letter coordinated with closing attorney — buyer signs → Legacy Gallery (03)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-7"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> DD fee and Earnest Money delivery confirmed — Acknowledgement of Receipt → Legacy Gallery (03)</span></label></div>
     </div></div></div>
 
-    <div class="phase" id="ph-4"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">4</div><div class="phase-title">Due Diligence Period</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-4">0/13</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-1"><span class="chkbox"></span><span class="txt">Property access confirmed with listing agent — documented in writing</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-2"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Soil / Perk Test: buyer arranges with qualified soil scientist — results → Legacy Gallery (03)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-3"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Survey: buyer orders boundary / topographic survey from licensed NC surveyor → Legacy Gallery (03)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-4"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Environmental Study: Phase I ESA if warranted — findings → Legacy Gallery (03)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-5"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Zoning confirmation: current zoning, permitted uses, setbacks, overlay districts → Property Gallery (01)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-6"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Flood zone: FEMA FIRM map confirmed — designation documented → Property Gallery (01)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-7"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Easement and title research coordinated with closing attorney — findings → Property Gallery (01)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-8"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> DOT / road frontage: verified, driveway permits confirmed → Property Gallery (01)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-9"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Wetlands research: NRCS / USACE verification — USACE Wilmington District (910) 251-4511 if warranted → Property Gallery (01)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-10"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Utility availability confirmed: electric, water, sewer/septic, gas, internet → Property Gallery (01)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-11"><span class="chkbox"></span><span class="txt">DD decision reviewed with buyer before deadline: proceed / Additional Provisions Addendum / terminate</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-12"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Additional Provisions Addendum executed if applicable → Legacy Gallery (03)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-13"><span class="chkbox"></span><span class="txt">DD expiration confirmed — transaction proceeding to close</span></label></div>
+    <div class="phase" id="ph-2"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">2</div><div class="phase-title">Due Diligence Period</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-2">0/13</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
+      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-1"><span class="chkbox"></span><span class="txt">Property access confirmed with listing agent — documented in writing</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-2"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Soil / Perk Test: buyer arranges with qualified soil scientist — results → Legacy Gallery (03)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-3"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Survey: buyer orders boundary / topographic survey from licensed NC surveyor → Legacy Gallery (03)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-4"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Environmental Study: Phase I ESA if warranted → Legacy Gallery (03)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-5"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Zoning confirmation: current zoning, permitted uses, setbacks, overlay districts → Property Gallery (01)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-6"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Flood zone: FEMA FIRM map confirmed — designation documented → Property Gallery (01)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-7"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Easement and title research coordinated with closing attorney → Property Gallery (01)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-8"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> DOT / road frontage: verified, driveway permits confirmed → Property Gallery (01)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-9"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Wetlands research: NRCS / USACE verification — USACE Wilmington District (910) 251-4511 if warranted → Property Gallery (01)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-10"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Utility availability confirmed: electric, water, sewer/septic, gas, internet → Property Gallery (01)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-11"><span class="chkbox"></span><span class="txt">DD decision reviewed with buyer before deadline: proceed / Additional Provisions Addendum / terminate</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-12"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Additional Provisions Addendum executed if applicable → Legacy Gallery (03)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-13"><span class="chkbox"></span><span class="txt">DD expiration confirmed — transaction proceeding to close</span></label></div>
     </div></div></div>
 
-    <div class="phase" id="ph-5"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">5</div><div class="phase-title">File Management Check</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-5">0/4</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
-      <div class="item"><label><input type="checkbox" data-ph="5" id="t5-1"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Search Gallery (01): WWREA Brochure, Buyer Agency Agreement, Professional Services Disclosure (Form 760), Land Loan Prequalification / Proof of Funds (redacted)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="5" id="t5-2"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Property Gallery (01): All research documentation (zoning, flood, perk, survey, easements, DOT, wetlands, utilities, environmental)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="5" id="t5-3"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Offer Gallery (02): Form 12-T (all offers), Form 220, buyer-signed MOG and Vacant Land Disclosure, counteroffers, executed Form 12-T</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="5" id="t5-4"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Legacy Gallery (03): Buyer Engagement Letter, DD/EM Acknowledgement, all DD study results, any addendums</span></label></div>
+    <div class="phase" id="ph-3"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">3</div><div class="phase-title">File Management Check</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-3">0/4</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
+      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-1"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Search Gallery (01): WWREA Brochure, Buyer Agency Agreement, Form 760, Land Loan Prequalification / Proof of Funds (redacted)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-2"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Property Gallery (01): All research docs (zoning, flood, perk, survey, easements, DOT, wetlands, utilities, environmental)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-3"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Offer Gallery (02): Form 12-T (all offers), Form 220, buyer-signed MOG and Vacant Land Disclosure, counteroffers, executed Form 12-T</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-4"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Legacy Gallery (03): Buyer Engagement Letter, DD/EM Acknowledgement, all DD study results, any addendums</span></label></div>
     </div></div></div>
 
-    <div class="phase" id="ph-6"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">6</div><div class="phase-title">Pre-Closing Coordination</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-6">0/9</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
-      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-1"><span class="chkbox"></span><span class="txt">Closing attorney confirmed with buyer — attorney contact information provided</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-2"><span class="chkbox"></span><span class="txt">Title search monitored — any issues communicated to buyer promptly</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-3"><span class="chkbox"></span><span class="txt">If land loan: loan approval confirmed with lender — closing date coordinated with lender timeline</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-4"><span class="chkbox"></span><span class="txt">If cash: wire / funds confirmation confirmed with buyer</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-5"><span class="chkbox"></span><span class="txt">Final site visit scheduled with buyer — property condition confirmed as expected</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-6"><span class="chkbox"></span><span class="txt">Draft ALTA Settlement Statement reviewed — sale price, prorations, costs, commission confirmed</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-7"><span class="chkbox"></span><span class="txt">Closing date, time, and location confirmed with buyer, attorney, and listing agent</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-8"><span class="chkbox"></span><span class="txt">Pre-closing file check complete — all galleries complete before closing day</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-9"><span class="chkbox"></span><span class="txt">Advisor emails Derrick requesting wiring instructions sent to closing attorney</span></label></div>
+    <div class="phase" id="ph-4"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">4</div><div class="phase-title">Pre-Closing Coordination</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-4">0/9</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
+      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-1"><span class="chkbox"></span><span class="txt">Closing attorney confirmed with buyer — contact information provided</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-2"><span class="chkbox"></span><span class="txt">Title search monitored — any issues communicated to buyer promptly</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-3"><span class="chkbox"></span><span class="txt">If land loan: loan approval confirmed with lender — closing date coordinated with lender timeline</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-4"><span class="chkbox"></span><span class="txt">If cash: wire / funds confirmation confirmed with buyer</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-5"><span class="chkbox"></span><span class="txt">Final site visit scheduled with buyer — property condition confirmed as expected</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-6"><span class="chkbox"></span><span class="txt">Draft ALTA Settlement Statement reviewed — sale price, prorations, costs, commission confirmed</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-7"><span class="chkbox"></span><span class="txt">Closing date, time, and location confirmed with buyer, attorney, and listing agent</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-8"><span class="chkbox"></span><span class="txt">Pre-closing file check complete — all galleries complete before closing day</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-9"><span class="chkbox"></span><span class="txt">Advisor emails Derrick requesting wiring instructions sent to closing attorney</span></label></div>
     </div></div></div>
 
-    <div class="phase" id="ph-7"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">7</div><div class="phase-title">Closing</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-7">0/5</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
-      <div class="item"><label><input type="checkbox" data-ph="7" id="t7-1"><span class="chkbox"></span><span class="txt">Agent attends closing (or coordinates remote signing)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="7" id="t7-2"><span class="chkbox"></span><span class="txt">Final ALTA Settlement Statement reviewed at closing table — all figures confirmed</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="7" id="t7-3"><span class="chkbox"></span><span class="txt">All closing documents executed by buyer</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="7" id="t7-4"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Final ALTA Settlement Statement → Legacy Gallery (03)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="7" id="t7-5"><span class="chkbox"></span><span class="txt">Closing announcement posted in 05 · The Closing Table (with client permission)</span></label></div>
+    <div class="phase" id="ph-5"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">5</div><div class="phase-title">Closing</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-5">0/5</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
+      <div class="item"><label><input type="checkbox" data-ph="5" id="t5-1"><span class="chkbox"></span><span class="txt">Agent attends closing or coordinates remote signing</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="5" id="t5-2"><span class="chkbox"></span><span class="txt">Final ALTA Settlement Statement reviewed at closing table — all figures confirmed</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="5" id="t5-3"><span class="chkbox"></span><span class="txt">All closing documents executed by buyer</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="5" id="t5-4"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Final ALTA Settlement Statement → Legacy Gallery (03)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="5" id="t5-5"><span class="chkbox"></span><span class="txt">Closing announcement posted in 05 · The Closing Table (with client permission)</span></label></div>
     </div></div></div>
 
-    <div class="phase" id="ph-8"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">8</div><div class="phase-title">Post-Closing</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-8">0/10</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-1"><span class="chkbox"></span><span class="txt">TC file audit complete — all documents in correct galleries</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-2"><span class="chkbox"></span><span class="txt">CRM updated — post-closing follow-up sequence triggered</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-3"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Client review / testimonial → Heritage Gallery (04) when received</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-4"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Closing gift coordinated and delivered — logged in Heritage Gallery (04)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-5"><span class="chkbox"></span><span class="txt">Handwritten thank you note sent to buyer within 3 business days</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-6"><span class="chkbox"></span><span class="txt">Review request sent (Google or Zillow) via personalized message</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-7"><span class="chkbox"></span><span class="txt">30-Day follow-up sent: check in on property — next steps, permits, builders, etc.</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-8"><span class="chkbox"></span><span class="txt">1-Year Anniversary follow-up scheduled or sent</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-9"><span class="chkbox"></span><span class="txt">Master Client Database updated in The Vault — all post-closing contact and follow-up dates logged</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-10"><span class="chkbox"></span><span class="txt">Transaction file marked closed — all documents archived</span></label></div>
+    <div class="phase" id="ph-6"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">6</div><div class="phase-title">Post-Closing</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-6">0/10</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
+      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-1"><span class="chkbox"></span><span class="txt">TC file audit complete — all documents in correct galleries</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-2"><span class="chkbox"></span><span class="txt">CRM updated — post-closing follow-up sequence triggered</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-3"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Client review / testimonial → Heritage Gallery (04) when received</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-4"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Closing gift coordinated and delivered — logged in Heritage Gallery (04)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-5"><span class="chkbox"></span><span class="txt">Handwritten thank you note sent to buyer within 3 business days</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-6"><span class="chkbox"></span><span class="txt">Review request sent (Google or Zillow) via personalized message</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-7"><span class="chkbox"></span><span class="txt">30-Day follow-up sent: check in on property — next steps, permits, builders, etc.</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-8"><span class="chkbox"></span><span class="txt">1-Year Anniversary follow-up scheduled or sent</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-9"><span class="chkbox"></span><span class="txt">Master Client Database updated in The Vault</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-10"><span class="chkbox"></span><span class="txt">Transaction file marked closed — all documents archived</span></label></div>
     </div></div></div>
 
   </div>
@@ -303,7 +340,7 @@ function updateProgress(){
   document.getElementById('prog-total').textContent=total;
   document.getElementById('prog-done').textContent=done;
   document.getElementById('prog-bar').style.width=(total?Math.round(done/total*100):0)+'%';
-  for(var p=1;p<=8;p++){
+  for(var p=1;p<=6;p++){
     var pA=document.querySelectorAll('[data-ph="'+p+'"]');
     var pD=document.querySelectorAll('[data-ph="'+p+'"]:checked');
     var cnt=document.getElementById('cnt-'+p);if(cnt)cnt.textContent=pD.length+'/'+pA.length;
@@ -311,6 +348,12 @@ function updateProgress(){
       if(pD.length===pA.length&&pA.length>0)ph.classList.add('done');else ph.classList.remove('done');
     }
   }
+}
+function showConfirm(title,msg,cb){
+  confirmCallback=cb;
+  document.getElementById('confirm-title').textContent=title;
+  document.getElementById('confirm-msg').textContent=msg;
+  showOv('modal-confirm');
 }
 document.querySelectorAll('.phase-hdr').forEach(function(hdr){
   hdr.addEventListener('click',function(){hdr.closest('.phase').classList.toggle('open');});
@@ -333,7 +376,7 @@ document.getElementById('new-input').addEventListener('keydown',function(e){
 });
 document.getElementById('btn-reset').addEventListener('click',function(){
   if(!current)return;
-  showConfirm('Reset Transaction','Reset all items for "'+current+'"? This cannot be undone.',function(){
+  showConfirm('Reset Transaction','Reset all TC items for "'+current+'"? This cannot be undone.',function(){
     var data=load();data[current]={};save(data);switchTo(current);
   });
 });
@@ -354,12 +397,6 @@ document.getElementById('btn-confirm-ok').addEventListener('click',function(){
 });
 document.getElementById('modal-new').addEventListener('click',function(e){if(e.target===this)hideOv('modal-new');});
 document.getElementById('modal-confirm').addEventListener('click',function(e){if(e.target===this)hideOv('modal-confirm');});
-function showConfirm(title,msg,cb){
-  confirmCallback=cb;
-  document.getElementById('confirm-title').textContent=title;
-  document.getElementById('confirm-msg').textContent=msg;
-  showOv('modal-confirm');
-}
 var initData=load();var initKeys=Object.keys(initData);
 renderTabs();
 if(initKeys.length>0){switchTo(initKeys[0]);}else{updateProgress();}

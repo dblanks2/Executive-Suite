@@ -6,7 +6,7 @@
 <title>TC Seller — Residential — DBRE</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--gold:#C9A84C;--gold-mid:#B8892A;--gold-border:rgba(201,168,76,0.22);--charcoal:#1A1A1A;--charcoal-mid:#2A2A2A;--charcoal-soft:#333;--cream:#FAF7F2;--cream-dark:#F0EBE0;--white:#fff;--body:#3A3A3A;--muted:#7A7268;--body-mid:#5A5A5A;--green:#2E7D52;--green-light:#EAF5EE;}
+:root{--gold:#C9A84C;--gold-mid:#B8892A;--gold-border:rgba(201,168,76,0.22);--charcoal:#1A1A1A;--charcoal-mid:#2A2A2A;--charcoal-soft:#333;--cream:#FAF7F2;--cream-dark:#F0EBE0;--white:#fff;--body:#3A3A3A;--muted:#7A7268;--body-mid:#5A5A5A;--green:#2E7D52;--green-light:#EAF5EE;--ref-bg:#F5F2EC;--ref-border:rgba(184,137,42,0.18);--ref-text:#8A8178;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--body);font-size:13.5px;line-height:1.7;}
 .hdr{background:var(--charcoal);padding:12px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:100;}
@@ -58,6 +58,31 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--bod
 .empty{text-align:center;padding:56px 0;color:var(--muted);}
 .empty-icon{font-size:28px;margin-bottom:12px;color:rgba(201,168,76,0.4);}
 .empty-title{font-size:13px;font-weight:600;color:var(--body-mid);margin-bottom:6px;}
+
+/* ADVISOR-LED REFERENCE PHASES */
+.ref-section-label{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.ref-section-label-text{font-size:8.5px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+.ref-section-label-line{flex:1;height:1px;background:var(--ref-border);}
+.ref-phase{opacity:0.7;}
+.ref-phase .phase-hdr{background:var(--ref-bg) !important;}
+.ref-phase .phase-hdr:hover{background:#EDE9E1 !important;}
+.ref-hdr .phase-title{color:var(--ref-text) !important;font-weight:600;}
+.ref-hdr .chevron{color:var(--muted) !important;}
+.ref-num{background:rgba(184,137,42,0.25) !important;color:var(--gold-mid) !important;}
+.ref-cnt{color:var(--muted) !important;}
+.ref-item{display:flex;align-items:flex-start;gap:10px;padding:8px 18px;border-bottom:1px solid rgba(201,168,76,0.05);}
+.ref-item:last-child{border-bottom:none;}
+.ref-dot{color:var(--ref-border);font-size:16px;flex-shrink:0;margin-top:1px;line-height:1.4;}
+.ref-txt{font-size:12px;color:var(--ref-text);line-height:1.6;flex:1;}
+.ref-txt .note{font-size:10.5px;color:rgba(122,114,104,0.7);}
+
+/* HANDOFF DIVIDER */
+.handoff-divider{display:flex;align-items:center;gap:14px;margin:20px 0 16px;}
+.handoff-line{flex:1;height:1px;background:linear-gradient(to right, var(--gold), rgba(201,168,76,0.2));}
+.handoff-label{font-size:8.5px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);white-space:nowrap;padding:4px 12px;border:1px solid rgba(201,168,76,0.35);border-radius:2px;background:rgba(201,168,76,0.06);}
+.handoff-line-r{flex:1;height:1px;background:linear-gradient(to left, var(--gold), rgba(201,168,76,0.2));}
+
+/* TC ACTIVE PHASES */
 .phase{margin-bottom:8px;border-radius:5px;overflow:hidden;border:1px solid var(--gold-border);}
 .phase-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:var(--white);cursor:pointer;user-select:none;gap:10px;}
 .phase-hdr:hover{background:var(--cream);}
@@ -88,6 +113,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--bod
 .tag-u{background:rgba(46,125,82,0.1);color:var(--green);}
 .tag-w{background:rgba(192,57,43,0.1);color:#c0392b;}
 .tag-n{background:rgba(201,168,76,0.14);color:var(--gold-mid);}
+.tag-adv{background:rgba(122,114,104,0.12);color:var(--muted);}
 .ftr{background:var(--charcoal);padding:16px 40px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--gold-border);margin-top:60px;}
 .ftr-l{font-size:11px;color:rgba(255,255,255,0.3);}
 .ftr-r{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.18);}
@@ -114,7 +140,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--bod
       <div class="hero-sub" id="txn-name">Select or create a transaction below</div>
     </div>
     <div class="prog-wrap">
-      <div class="prog-lbl">Progress</div>
+      <div class="prog-lbl">TC Progress</div>
       <div class="prog-bar-outer"><div class="prog-bar-inner" id="prog-bar"></div></div>
       <div class="prog-count"><span id="prog-done">0</span> / <span id="prog-total">0</span> <span>completed</span></div>
     </div>
@@ -128,7 +154,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--bod
 <div class="overlay" id="modal-new">
   <div class="modal">
     <h2>New Transaction</h2>
-    <p>Enter the seller name to identify this checklist.</p>
+    <p>Enter the seller name and/or address to identify this file.</p>
     <input class="modal-input" type="text" id="new-input" placeholder="e.g. Smith Family · 123 Oak St" maxlength="80">
     <div class="modal-btns">
       <button class="btn-secondary" id="btn-new-cancel">Cancel</button>
@@ -152,10 +178,10 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--bod
   <div class="how-to">
     <div class="how-to-title">How to Use This Checklist</div>
     <div class="how-to-grid">
-      <div><strong>＋ New transaction</strong> — Click + above and enter the seller name and/or address.</div>
-      <div><strong>Switch transactions</strong> — Click any tab to load that file instantly.</div>
-      <div><strong>Auto-saved</strong> — Progress saves in this browser automatically.</div>
-      <div><strong>Reset / Delete</strong> — Reset clears all items. Delete removes the transaction entirely.</div>
+      <div><strong>＋ New transaction</strong> — Click + above and enter the seller name / address.</div>
+      <div><strong>Advisor-led phases</strong> — Shown for reference only. Verify these were completed when the file arrives.</div>
+      <div><strong>TC phases</strong> — Your active checklist. Check off items as you complete them.</div>
+      <div><strong>Auto-saved</strong> — Progress saves in this browser automatically per transaction.</div>
     </div>
   </div>
 
@@ -167,114 +193,128 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--bod
 
   <div id="checklist" style="display:none">
 
-    <div class="phase" id="ph-1"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">1</div><div class="phase-title">Pre-Listing Preparation</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-1">0/17</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-1"><span class="chkbox"></span><span class="txt">Seller Listing Questionnaire link sent to seller — completed before listing agreement</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-2"><span class="chkbox"></span><span class="txt">CMA completed — listing price agreed with seller</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-3"><span class="chkbox"></span><span class="txt">Listing presentation conducted if appropriate</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-4"><span class="chkbox"></span><span class="txt">Seller's Estimated Net Sheet prepared in zipForms and reviewed with seller</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-5"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Seller ownership verified through tax records → Property Gallery (01)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-6"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Will or ownership documentation uploaded if heirs' property → Property Gallery (01)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-7"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Exclusive Right to Sell Listing Agreement (fully executed) → Property Gallery (01)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-8"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Signed WWREA Brochure → Property Gallery (01)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-9"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Residential Property Disclosure Statement (RPOADS) — completed, signed → Property Gallery (01)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-10"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Mineral, Oil, and Gas Rights Disclosure (MOG) — completed, signed → Property Gallery (01)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-11"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Professional Services Disclosure and Election (Form 760) → Property Gallery (01)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-12"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Cooperating Compensation Form 220 — seller and listing advisor signed → Property Gallery (01)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-13"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Seller Net Sheet → Property Gallery (01)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-14"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> HOA / Restrictive Covenants if applicable → Property Gallery (01)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-15"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Lead-Based Paint Addendum if applicable → Property Gallery (01)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-16"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Additional Signatures Addendum if applicable → Property Gallery (01)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-17"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Professional photography scheduled — received and uploaded → Property Gallery (01)</span></label></div>
+    <div class="ref-section-label">
+      <span class="ref-section-label-text">Advisor-Led · For Reference Only</span>
+      <span class="ref-section-label-line"></span>
+    </div>
+
+
+    <div class="phase ref-phase" id="rph-1"><div class="phase-hdr ref-hdr"><div class="phase-hdr-l"><div class="phase-num ref-num">1</div><div class="phase-title">Pre-Listing Preparation</div></div><div class="phase-hdr-r"><span class="phase-cnt ref-cnt">17 items</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Seller Listing Questionnaire link sent to seller — completed before listing agreement</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> CMA completed — listing price agreed with seller</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Listing presentation conducted if appropriate</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Seller's Estimated Net Sheet prepared in zipForms and reviewed with seller</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Seller ownership verified through tax records — uploaded to Property Gallery (01)</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Will or ownership documentation uploaded if heirs' property → Property Gallery (01)</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Exclusive Right to Sell Listing Agreement (fully executed) → Property Gallery (01)</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Signed WWREA Brochure → Property Gallery (01)</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Residential Property Disclosure Statement (RPOADS) — completed, signed → Property Gallery (01)</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Mineral, Oil, and Gas Rights Disclosure (MOG) — completed, signed → Property Gallery (01)</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Professional Services Disclosure and Election (Form 760) → Property Gallery (01)</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Cooperating Compensation Form 220 — seller and listing advisor signed → Property Gallery (01)</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Seller Net Sheet → Property Gallery (01)</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> HOA / Restrictive Covenants if applicable → Property Gallery (01)</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Lead-Based Paint Addendum if applicable → Property Gallery (01)</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Additional Signatures Addendum if applicable → Property Gallery (01)</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Professional photography scheduled — received and uploaded → Property Gallery (01)</span></div>
     </div></div></div>
 
-    <div class="phase" id="ph-2"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">2</div><div class="phase-title">Listing Launch</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-2">0/5</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
-      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-1"><span class="chkbox"></span><span class="txt">MLS Data Entry Form submitted to Dana / Operations Specialist</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-2"><span class="chkbox"></span><span class="txt">MLS listing entered within 3 business days of executed listing agreement</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-3"><span class="chkbox"></span><span class="txt">MLS entry confirmation received — listing details verified for accuracy</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-4"><span class="chkbox"></span><span class="txt">Seller notified of listing going live — MLS link shared</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-5"><span class="chkbox"></span><span class="txt">Weekly Pulse Connection Report scheduled — submit every Friday while listing is active</span></label></div>
+    <div class="phase ref-phase" id="rph-2"><div class="phase-hdr ref-hdr"><div class="phase-hdr-l"><div class="phase-num ref-num">2</div><div class="phase-title">Listing Launch</div></div><div class="phase-hdr-r"><span class="phase-cnt ref-cnt">5 items</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> MLS Data Entry Form submitted to Dana / Operations Specialist</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> MLS listing entered within 3 business days of executed listing agreement</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> MLS entry confirmation received — listing details verified for accuracy</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Seller notified of listing going live — MLS link shared</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Weekly Pulse Connection Report scheduled</span></div>
     </div></div></div>
 
-    <div class="phase" id="ph-3"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">3</div><div class="phase-title">Active Market — Showings &amp; Offers</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-3">0/8</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
-      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-1"><span class="chkbox"></span><span class="txt">Regular showing feedback and market updates provided to seller</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-2"><span class="chkbox"></span><span class="txt">Every offer acknowledged to buyer's agent promptly</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-3"><span class="chkbox"></span><span class="txt">Seller notified of every offer same day received — no exceptions</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-4"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> All offers (including rejected) → Offer Gallery (02)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-5"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Pre-approval / proof of funds for each offer → Offer Gallery (02)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-6"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Cooperating Compensation Form 220 (buyer's agent signed) → Offer Gallery (02)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-7"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Offer comparison sheet if multiple offers → Offer Gallery (02)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-8"><span class="chkbox"></span><span class="txt">Counteroffers prepared in writing and documented</span></label></div>
+    <div class="phase ref-phase" id="rph-3"><div class="phase-hdr ref-hdr"><div class="phase-hdr-l"><div class="phase-num ref-num">3</div><div class="phase-title">Active Market — Showings &amp; Offers</div></div><div class="phase-hdr-r"><span class="phase-cnt ref-cnt">8 items</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Regular showing feedback and market updates provided to seller</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Every offer acknowledged to buyer's agent promptly</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Seller notified of every offer same day received</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> All offers (including rejected) uploaded → Offer Gallery (02)</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Pre-approval / proof of funds uploaded for each offer → Offer Gallery (02)</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Cooperating Compensation Form 220 (buyer's agent signed) → Offer Gallery (02)</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Offer comparison sheet prepared if multiple offers → Offer Gallery (02)</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Counteroffers prepared in writing and documented</span></div>
     </div></div></div>
 
-    <div class="phase" id="ph-4"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">4</div><div class="phase-title">Contract Execution — Immediate Steps</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-4">0/15</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-1"><span class="chkbox"></span><span class="txt">All pages of all executed documents reviewed — signatures and initials confirmed</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-2"><span class="chkbox"></span><span class="txt">Fully executed contract sent to buyer's agent (buyer's agent distributes to lender and attorney)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-3"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Fully executed Offer to Purchase and Contract (Form 2-T) → Legacy Gallery (03)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-4"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Fully executed RPOADS → Legacy Gallery (03)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-5"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Fully executed MOG Disclosure → Legacy Gallery (03)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-6"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Executed copies of all applicable disclosures → Legacy Gallery (03)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-7"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Cooperating Compensation Form 220 — all parties signed → Legacy Gallery (03)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-8"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> FHA/VA Financing Addendum if applicable → Legacy Gallery (03)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-9"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Any additional addendums → Legacy Gallery (03)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-10"><span class="chkbox"></span><span class="txt">DD fee receipt arranged to seller — Earnest Money arranged to settlement agent</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-11"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Signed Acknowledgement of Receipt of DD/Earnest Money → Legacy Gallery (03)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-12"><span class="chkbox"></span><span class="txt">TC adds DD deadline and proposed closing date to Transaction Calendar in Teams</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-13"><span class="chkbox"></span><span class="txt">TC sets 3-day advisor alert before DD deadline</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-14"><span class="chkbox"></span><span class="txt">Operations Specialist notified of binding contract with full transaction details</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-15"><span class="chkbox"></span><span class="txt">MLS status updated to Under Contract — same day as binding contract</span></label></div>
+
+    <div class="handoff-divider">
+      <span class="handoff-line"></span>
+      <span class="handoff-label">TC Handoff · Contract Execution</span>
+      <span class="handoff-line-r"></span>
+    </div>
+
+
+    <div class="phase" id="ph-1"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">1</div><div class="phase-title">Contract Execution — Immediate Steps</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-1">0/15</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-1"><span class="chkbox"></span><span class="txt">All pages of all executed documents reviewed — signatures and initials confirmed</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-2"><span class="chkbox"></span><span class="txt">Fully executed contract sent to buyer's agent (buyer's agent distributes to lender and attorney)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-3"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Fully executed Offer to Purchase and Contract (Form 2-T) → Legacy Gallery (03)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-4"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Fully executed RPOADS → Legacy Gallery (03)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-5"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Fully executed MOG Disclosure → Legacy Gallery (03)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-6"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Executed copies of all applicable disclosures → Legacy Gallery (03)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-7"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Cooperating Compensation Form 220 — all parties signed → Legacy Gallery (03)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-8"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> FHA/VA Financing Addendum if applicable → Legacy Gallery (03)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-9"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Any additional addendums → Legacy Gallery (03)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-10"><span class="chkbox"></span><span class="txt">DD fee receipt arranged to seller — Earnest Money arranged to settlement agent</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-11"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Signed Acknowledgement of Receipt of DD/Earnest Money → Legacy Gallery (03)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-12"><span class="chkbox"></span><span class="txt">TC adds DD deadline and proposed closing date to Transaction Calendar in Teams</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-13"><span class="chkbox"></span><span class="txt">TC sets 3-day advisor alert before DD deadline</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-14"><span class="chkbox"></span><span class="txt">Operations Specialist notified of binding contract with full transaction details</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-15"><span class="chkbox"></span><span class="txt">MLS status updated to Under Contract — same day as binding contract</span></label></div>
     </div></div></div>
 
-    <div class="phase" id="ph-5"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">5</div><div class="phase-title">Coordination — Intro &amp; Parties</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-5">0/2</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
-      <div class="item"><label><input type="checkbox" data-ph="5" id="t5-1"><span class="chkbox"></span><span class="txt">TC sends intro email: closing attorney, buyer's agent, buyer's lender, TC</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="5" id="t5-2"><span class="chkbox"></span><span class="txt">TC confirms attorney / title work opened</span></label></div>
+    <div class="phase" id="ph-2"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">2</div><div class="phase-title">Coordination — Intro &amp; Parties</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-2">0/2</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
+      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-1"><span class="chkbox"></span><span class="txt">TC sends intro email: closing attorney, buyer's agent, buyer's lender, TC</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-2"><span class="chkbox"></span><span class="txt">TC confirms attorney / title work opened</span></label></div>
     </div></div></div>
 
-    <div class="phase" id="ph-6"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">6</div><div class="phase-title">Due Diligence Period</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-6">0/7</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
-      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-1"><span class="chkbox"></span><span class="txt">Buyer inspection access coordinated — advisor arranges with seller</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-2"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Due Diligence Repair Request (Form 310-T) received → Legacy Gallery (03)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-3"><span class="chkbox"></span><span class="txt">Repair request reviewed with seller — negotiation strategy agreed</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-4"><span class="chkbox"></span><span class="txt">Seller's repair response negotiated and agreed before DD expiration date</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-5"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Fully executed repair agreement → Legacy Gallery (03) — all parties signed</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-6"><span class="chkbox"></span><span class="txt">Seller arranges all agreed repairs with licensed contractor before closing</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-7"><span class="chkbox"></span><span class="txt">DD deadline confirmed — advisor alert sent — buyer proceeding or termination received</span></label></div>
+    <div class="phase" id="ph-3"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">3</div><div class="phase-title">Due Diligence Period</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-3">0/7</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
+      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-1"><span class="chkbox"></span><span class="txt">Buyer inspection access coordinated — advisor arranges with seller</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-2"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Due Diligence Repair Request (Form 310-T) received → Legacy Gallery (03)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-3"><span class="chkbox"></span><span class="txt">Repair request reviewed with seller — negotiation strategy agreed</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-4"><span class="chkbox"></span><span class="txt">Seller's repair response negotiated and agreed before DD expiration date</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-5"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Fully executed repair agreement → Legacy Gallery (03)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-6"><span class="chkbox"></span><span class="txt">Seller arranges all agreed repairs with licensed contractor before closing</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-7"><span class="chkbox"></span><span class="txt">DD deadline confirmed — advisor alert sent — buyer proceeding or termination received</span></label></div>
     </div></div></div>
 
-    <div class="phase" id="ph-7"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">7</div><div class="phase-title">Pre-Closing</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-7">0/12</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
-      <div class="item"><label><input type="checkbox" data-ph="7" id="t7-1"><span class="chkbox"></span><span class="txt">TC confirms appraisal ordered — flags value concerns to advisor</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="7" id="t7-2"><span class="chkbox"></span><span class="txt">TC coordinates final walkthrough — advisor confirms seller access</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="7" id="t7-3"><span class="chkbox"></span><span class="txt">Seller confirms agreed repairs are complete</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="7" id="t7-4"><span class="chkbox"></span><span class="txt">Seller confirms property vacated and personal belongings removed</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="7" id="t7-5"><span class="chkbox"></span><span class="txt">Seller confirms keys, garage openers, and access codes ready for buyer</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="7" id="t7-6"><span class="chkbox"></span><span class="txt">Seller has disconnected or transferred all doorbell / security cameras and smart home devices</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="7" id="t7-7"><span class="chkbox"></span><span class="txt">TC confirms closing time, date, and location with all parties</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="7" id="t7-8"><span class="chkbox"></span><span class="txt">TC coordinates deed signing: attorney's office or mail-away — confirmed with advisor</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="7" id="t7-9"><span class="chkbox"></span><span class="txt">Seller reviews CD or HUD with advisor — proceeds delivery method confirmed</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="7" id="t7-10"><span class="chkbox"></span><span class="txt"><span class="tag tag-w">Wire</span> If wire: seller calls closing attorney DIRECTLY to verify wire instructions<span class="note">No exceptions</span></span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="7" id="t7-11"><span class="chkbox"></span><span class="txt">Advisor emails Derrick requesting wiring instructions sent to closing attorney</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="7" id="t7-12"><span class="chkbox"></span><span class="txt">Commission instruction form completed and returned to closing attorney</span></label></div>
+    <div class="phase" id="ph-4"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">4</div><div class="phase-title">Pre-Closing</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-4">0/12</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
+      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-1"><span class="chkbox"></span><span class="txt">TC confirms appraisal ordered — flags value concerns to advisor</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-2"><span class="chkbox"></span><span class="txt">TC coordinates final walkthrough — advisor confirms seller access</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-3"><span class="chkbox"></span><span class="txt">Seller confirms agreed repairs are complete</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-4"><span class="chkbox"></span><span class="txt">Seller confirms property vacated and personal belongings removed</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-5"><span class="chkbox"></span><span class="txt">Seller confirms keys, garage openers, and access codes ready for buyer</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-6"><span class="chkbox"></span><span class="txt">Seller has disconnected or transferred all doorbell / security cameras and smart home devices</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-7"><span class="chkbox"></span><span class="txt">TC confirms closing time, date, and location with all parties</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-8"><span class="chkbox"></span><span class="txt">TC coordinates deed signing: attorney's office or mail-away — confirmed with advisor</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-9"><span class="chkbox"></span><span class="txt">Seller reviews CD or HUD with advisor — proceeds delivery method confirmed</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-10"><span class="chkbox"></span><span class="txt"><span class="tag tag-w">Wire</span> If wire: seller calls closing attorney DIRECTLY to verify wire instructions<span class="note">No exceptions</span></span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-11"><span class="chkbox"></span><span class="txt">Advisor emails Derrick requesting wiring instructions sent to closing attorney</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="4" id="t4-12"><span class="chkbox"></span><span class="txt">Commission instruction form completed and returned to closing attorney</span></label></div>
     </div></div></div>
 
-    <div class="phase" id="ph-8"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">8</div><div class="phase-title">Closing</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-8">0/6</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-1"><span class="chkbox"></span><span class="txt">TC closing day check-in with advisor</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-2"><span class="chkbox"></span><span class="txt">TC coordinates deed signing arrangement — attorney's office or mail-away</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-3"><span class="chkbox"></span><span class="txt">All closing documents executed by seller</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-4"><span class="chkbox"></span><span class="txt">Commission disbursement confirmed with closing attorney</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-5"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> HUD Settlement Statement / Closing Disclosure → Heritage Gallery (04)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-6"><span class="chkbox"></span><span class="txt">MLS status updated to Closed — final sales price confirmed accurate</span></label></div>
+    <div class="phase" id="ph-5"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">5</div><div class="phase-title">Closing</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-5">0/6</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
+      <div class="item"><label><input type="checkbox" data-ph="5" id="t5-1"><span class="chkbox"></span><span class="txt">TC closing day check-in with advisor</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="5" id="t5-2"><span class="chkbox"></span><span class="txt">TC coordinates deed signing arrangement — attorney's office or mail-away</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="5" id="t5-3"><span class="chkbox"></span><span class="txt">All closing documents executed by seller</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="5" id="t5-4"><span class="chkbox"></span><span class="txt">Commission disbursement confirmed with closing attorney</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="5" id="t5-5"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> HUD Settlement Statement / Closing Disclosure → Heritage Gallery (04)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="5" id="t5-6"><span class="chkbox"></span><span class="txt">MLS status updated to Closed — final sales price confirmed accurate</span></label></div>
     </div></div></div>
 
-    <div class="phase" id="ph-9"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">9</div><div class="phase-title">Post-Closing</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-9">0/11</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
-      <div class="item"><label><input type="checkbox" data-ph="9" id="t9-1"><span class="chkbox"></span><span class="txt">TC file audit complete — all documents in correct galleries</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="9" id="t9-2"><span class="chkbox"></span><span class="txt">CRM updated — client review sequence triggered in Wise Agent</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="9" id="t9-3"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Client review / testimonial → Heritage Gallery (04) when received</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="9" id="t9-4"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Post-closing correspondence → Heritage Gallery (04)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="9" id="t9-5"><span class="chkbox"></span><span class="txt">Closing announcement posted in 05 · The Closing Table (with client permission)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="9" id="t9-6"><span class="chkbox"></span><span class="txt">Handwritten thank you note sent to seller within 3 business days</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="9" id="t9-7"><span class="chkbox"></span><span class="txt">Personal post-closing message sent inviting seller to leave review</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="9" id="t9-8"><span class="chkbox"></span><span class="txt">30-Day Sold Story Follow-Up sent approximately 30 days post-closing</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="9" id="t9-9"><span class="chkbox"></span><span class="txt">1-Year Anniversary check-in scheduled or sent</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="9" id="t9-10"><span class="chkbox"></span><span class="txt">Operations Specialist updated Master Client Database in The Vault</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="9" id="t9-11"><span class="chkbox"></span><span class="txt">Commission statement posted to advisor Boardroom within 3 business days</span></label></div>
+    <div class="phase" id="ph-6"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">6</div><div class="phase-title">Post-Closing</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-6">0/11</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
+      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-1"><span class="chkbox"></span><span class="txt">TC file audit complete — all documents in correct galleries</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-2"><span class="chkbox"></span><span class="txt">CRM updated — client review sequence triggered in Wise Agent</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-3"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Client review / testimonial → Heritage Gallery (04) when received</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-4"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Post-closing correspondence → Heritage Gallery (04)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-5"><span class="chkbox"></span><span class="txt">Closing announcement posted in 05 · The Closing Table (with client permission)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-6"><span class="chkbox"></span><span class="txt">Handwritten thank you note sent to seller within 3 business days</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-7"><span class="chkbox"></span><span class="txt">Personal post-closing message sent inviting seller to leave review</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-8"><span class="chkbox"></span><span class="txt">30-Day Sold Story Follow-Up sent approximately 30 days post-closing</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-9"><span class="chkbox"></span><span class="txt">1-Year Anniversary check-in scheduled or sent</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-10"><span class="chkbox"></span><span class="txt">Operations Specialist updated Master Client Database in The Vault</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="6" id="t6-11"><span class="chkbox"></span><span class="txt">Commission statement posted to advisor Boardroom within 3 business days</span></label></div>
     </div></div></div>
 
   </div>
@@ -325,7 +365,7 @@ function updateProgress(){
   document.getElementById('prog-total').textContent=total;
   document.getElementById('prog-done').textContent=done;
   document.getElementById('prog-bar').style.width=(total?Math.round(done/total*100):0)+'%';
-  for(var p=1;p<=9;p++){
+  for(var p=1;p<=6;p++){
     var pA=document.querySelectorAll('[data-ph="'+p+'"]');
     var pD=document.querySelectorAll('[data-ph="'+p+'"]:checked');
     var cnt=document.getElementById('cnt-'+p);if(cnt)cnt.textContent=pD.length+'/'+pA.length;
@@ -333,6 +373,12 @@ function updateProgress(){
       if(pD.length===pA.length&&pA.length>0)ph.classList.add('done');else ph.classList.remove('done');
     }
   }
+}
+function showConfirm(title,msg,cb){
+  confirmCallback=cb;
+  document.getElementById('confirm-title').textContent=title;
+  document.getElementById('confirm-msg').textContent=msg;
+  showOv('modal-confirm');
 }
 document.querySelectorAll('.phase-hdr').forEach(function(hdr){
   hdr.addEventListener('click',function(){hdr.closest('.phase').classList.toggle('open');});
@@ -355,7 +401,7 @@ document.getElementById('new-input').addEventListener('keydown',function(e){
 });
 document.getElementById('btn-reset').addEventListener('click',function(){
   if(!current)return;
-  showConfirm('Reset Transaction','Reset all items for "'+current+'"? This cannot be undone.',function(){
+  showConfirm('Reset Transaction','Reset all TC items for "'+current+'"? This cannot be undone.',function(){
     var data=load();data[current]={};save(data);switchTo(current);
   });
 });
@@ -376,12 +422,6 @@ document.getElementById('btn-confirm-ok').addEventListener('click',function(){
 });
 document.getElementById('modal-new').addEventListener('click',function(e){if(e.target===this)hideOv('modal-new');});
 document.getElementById('modal-confirm').addEventListener('click',function(e){if(e.target===this)hideOv('modal-confirm');});
-function showConfirm(title,msg,cb){
-  confirmCallback=cb;
-  document.getElementById('confirm-title').textContent=title;
-  document.getElementById('confirm-msg').textContent=msg;
-  showOv('modal-confirm');
-}
 var initData=load();var initKeys=Object.keys(initData);
 renderTabs();
 if(initKeys.length>0){switchTo(initKeys[0]);}else{updateProgress();}

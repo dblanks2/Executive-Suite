@@ -6,7 +6,7 @@
 <title>TC Buyer — Residential — DBRE</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--gold:#C9A84C;--gold-mid:#B8892A;--gold-border:rgba(201,168,76,0.22);--charcoal:#1A1A1A;--charcoal-mid:#2A2A2A;--charcoal-soft:#333;--cream:#FAF7F2;--cream-dark:#F0EBE0;--white:#fff;--body:#3A3A3A;--muted:#7A7268;--body-mid:#5A5A5A;--green:#2E7D52;--green-light:#EAF5EE;}
+:root{--gold:#C9A84C;--gold-mid:#B8892A;--gold-border:rgba(201,168,76,0.22);--charcoal:#1A1A1A;--charcoal-mid:#2A2A2A;--charcoal-soft:#333;--cream:#FAF7F2;--cream-dark:#F0EBE0;--white:#fff;--body:#3A3A3A;--muted:#7A7268;--body-mid:#5A5A5A;--green:#2E7D52;--green-light:#EAF5EE;--ref-bg:#F5F2EC;--ref-border:rgba(184,137,42,0.18);--ref-text:#8A8178;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--body);font-size:13.5px;line-height:1.7;}
 .hdr{background:var(--charcoal);padding:12px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--gold);position:sticky;top:0;z-index:100;}
@@ -58,6 +58,31 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--bod
 .empty{text-align:center;padding:56px 0;color:var(--muted);}
 .empty-icon{font-size:28px;margin-bottom:12px;color:rgba(201,168,76,0.4);}
 .empty-title{font-size:13px;font-weight:600;color:var(--body-mid);margin-bottom:6px;}
+
+/* ADVISOR-LED REFERENCE PHASES */
+.ref-section-label{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.ref-section-label-text{font-size:8.5px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+.ref-section-label-line{flex:1;height:1px;background:var(--ref-border);}
+.ref-phase{opacity:0.7;}
+.ref-phase .phase-hdr{background:var(--ref-bg) !important;}
+.ref-phase .phase-hdr:hover{background:#EDE9E1 !important;}
+.ref-hdr .phase-title{color:var(--ref-text) !important;font-weight:600;}
+.ref-hdr .chevron{color:var(--muted) !important;}
+.ref-num{background:rgba(184,137,42,0.25) !important;color:var(--gold-mid) !important;}
+.ref-cnt{color:var(--muted) !important;}
+.ref-item{display:flex;align-items:flex-start;gap:10px;padding:8px 18px;border-bottom:1px solid rgba(201,168,76,0.05);}
+.ref-item:last-child{border-bottom:none;}
+.ref-dot{color:var(--ref-border);font-size:16px;flex-shrink:0;margin-top:1px;line-height:1.4;}
+.ref-txt{font-size:12px;color:var(--ref-text);line-height:1.6;flex:1;}
+.ref-txt .note{font-size:10.5px;color:rgba(122,114,104,0.7);}
+
+/* HANDOFF DIVIDER */
+.handoff-divider{display:flex;align-items:center;gap:14px;margin:20px 0 16px;}
+.handoff-line{flex:1;height:1px;background:linear-gradient(to right, var(--gold), rgba(201,168,76,0.2));}
+.handoff-label{font-size:8.5px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);white-space:nowrap;padding:4px 12px;border:1px solid rgba(201,168,76,0.35);border-radius:2px;background:rgba(201,168,76,0.06);}
+.handoff-line-r{flex:1;height:1px;background:linear-gradient(to left, var(--gold), rgba(201,168,76,0.2));}
+
+/* TC ACTIVE PHASES */
 .phase{margin-bottom:8px;border-radius:5px;overflow:hidden;border:1px solid var(--gold-border);}
 .phase-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:var(--white);cursor:pointer;user-select:none;gap:10px;}
 .phase-hdr:hover{background:var(--cream);}
@@ -88,6 +113,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--bod
 .tag-u{background:rgba(46,125,82,0.1);color:var(--green);}
 .tag-w{background:rgba(192,57,43,0.1);color:#c0392b;}
 .tag-n{background:rgba(201,168,76,0.14);color:var(--gold-mid);}
+.tag-adv{background:rgba(122,114,104,0.12);color:var(--muted);}
 .ftr{background:var(--charcoal);padding:16px 40px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--gold-border);margin-top:60px;}
 .ftr-l{font-size:11px;color:rgba(255,255,255,0.3);}
 .ftr-r{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.18);}
@@ -114,7 +140,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--bod
       <div class="hero-sub" id="txn-name">Select or create a transaction below</div>
     </div>
     <div class="prog-wrap">
-      <div class="prog-lbl">Progress</div>
+      <div class="prog-lbl">TC Progress</div>
       <div class="prog-bar-outer"><div class="prog-bar-inner" id="prog-bar"></div></div>
       <div class="prog-count"><span id="prog-done">0</span> / <span id="prog-total">0</span> <span>completed</span></div>
     </div>
@@ -128,7 +154,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--bod
 <div class="overlay" id="modal-new">
   <div class="modal">
     <h2>New Transaction</h2>
-    <p>Enter the buyer name to identify this checklist.</p>
+    <p>Enter the buyer name and/or address to identify this file.</p>
     <input class="modal-input" type="text" id="new-input" placeholder="e.g. Smith Family · 123 Oak St" maxlength="80">
     <div class="modal-btns">
       <button class="btn-secondary" id="btn-new-cancel">Cancel</button>
@@ -152,10 +178,10 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--bod
   <div class="how-to">
     <div class="how-to-title">How to Use This Checklist</div>
     <div class="how-to-grid">
-      <div><strong>＋ New transaction</strong> — Click + above and enter the buyer name and/or address.</div>
-      <div><strong>Switch transactions</strong> — Click any tab to load that file instantly.</div>
-      <div><strong>Auto-saved</strong> — Progress saves in this browser automatically.</div>
-      <div><strong>Reset / Delete</strong> — Reset clears all items. Delete removes the transaction entirely.</div>
+      <div><strong>＋ New transaction</strong> — Click + above and enter the buyer name / address.</div>
+      <div><strong>Advisor-led phases</strong> — Shown for reference only. Verify these were completed when the file arrives.</div>
+      <div><strong>TC phases</strong> — Your active checklist. Check off items as you complete them.</div>
+      <div><strong>Auto-saved</strong> — Progress saves in this browser automatically per transaction.</div>
     </div>
   </div>
 
@@ -167,18 +193,42 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--bod
 
   <div id="checklist" style="display:none">
 
+    <div class="ref-section-label">
+      <span class="ref-section-label-text">Advisor-Led · For Reference Only</span>
+      <span class="ref-section-label-line"></span>
+    </div>
+
+
+    <div class="phase ref-phase" id="rph-1"><div class="phase-hdr ref-hdr"><div class="phase-hdr-l"><div class="phase-num ref-num">1</div><div class="phase-title">Pre-Contract — Advisor Led</div></div><div class="phase-hdr-r"><span class="phase-cnt ref-cnt">7 items</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> First call completed — discovery conversation, buyer information collected</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Buyer Information Sheet email sent — HOME Buyer Guide attached</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Buyer Consultation conducted — agency disclosure, search criteria, pre-approval confirmed</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Exclusive Buyer Agency Agreement executed</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Private MLS subscription set up in Hive MLS — buyer opt-in confirmed</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Showings scheduled and conducted</span></div>
+      <div class="ref-item"><span class="ref-dot">·</span><span class="ref-txt"><span class="tag tag-adv">Advisor</span> Offer strategy discussed with buyer — offer submitted</span></div>
+    </div></div></div>
+
+
+    <div class="handoff-divider">
+      <span class="handoff-line"></span>
+      <span class="handoff-label">TC Handoff · Contract Execution</span>
+      <span class="handoff-line-r"></span>
+    </div>
+
+
     <div class="phase" id="ph-1"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">1</div><div class="phase-title">Contract Received</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-1">0/5</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
       <div class="item"><label><input type="checkbox" data-ph="1" id="t1-1"><span class="chkbox"></span><span class="txt">Advisor confirms fully executed contract received</span></label></div>
       <div class="item"><label><input type="checkbox" data-ph="1" id="t1-2"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Executed Offer to Purchase (Form 2-T) + all applicable disclosures → Legacy Gallery (03)</span></label></div>
       <div class="item"><label><input type="checkbox" data-ph="1" id="t1-3"><span class="chkbox"></span><span class="txt">TC opens transaction file in Buyers Boutique</span></label></div>
       <div class="item"><label><input type="checkbox" data-ph="1" id="t1-4"><span class="chkbox"></span><span class="txt">TC adds DD deadline and proposed closing date to Transaction Calendar in Teams</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-5"><span class="chkbox"></span><span class="txt">TC sets 3-day advisor alert before DD deadline in calendar</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="1" id="t1-5"><span class="chkbox"></span><span class="txt">TC sets 3-day advisor alert before DD deadline</span></label></div>
     </div></div></div>
 
     <div class="phase" id="ph-2"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">2</div><div class="phase-title">Compliance — Doc Checklist</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-2">0/17</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
       <div class="item"><label><input type="checkbox" data-ph="2" id="t2-1"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Search Gallery (01) — Signed WWREA Brochure</span></label></div>
       <div class="item"><label><input type="checkbox" data-ph="2" id="t2-2"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Search Gallery (01) — Exclusive Buyer Agency Agreement (executed)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-3"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Search Gallery (01) — Professional Services Disclosure and Election (Form 760)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="2" id="t2-3"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Search Gallery (01) — Professional Services Disclosure (Form 760)</span></label></div>
       <div class="item"><label><input type="checkbox" data-ph="2" id="t2-4"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Search Gallery (01) — Property research</span></label></div>
       <div class="item"><label><input type="checkbox" data-ph="2" id="t2-5"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Search Gallery (01) — Pre-approval letter or Proof of Funds (account numbers redacted)<span class="note">Advisor discretion: 01 or 02</span></span></label></div>
       <div class="item"><label><input type="checkbox" data-ph="2" id="t2-6"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Offer Gallery (02) — Unsigned Offer to Purchase</span></label></div>
@@ -197,9 +247,9 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--bod
 
     <div class="phase" id="ph-3"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">3</div><div class="phase-title">Coordination</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-3">0/7</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
       <div class="item"><label><input type="checkbox" data-ph="3" id="t3-1"><span class="chkbox"></span><span class="txt">TC sends intro email: closing attorney, lender, listing agent, TC</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-2"><span class="chkbox"></span><span class="txt">Closing attorney begins title work (buyer's chosen attorney)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-3"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> TC confirms attorney engagement letter forwarded to buyer — executed copy → Legacy Gallery (03)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-4"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> TC confirms Seller Information Sheet completed by advisor → Legacy Gallery (03)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-2"><span class="chkbox"></span><span class="txt">Closing attorney begins title work</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-3"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Attorney engagement letter executed — copy → Legacy Gallery (03)</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="3" id="t3-4"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Seller Information Sheet completed by advisor → Legacy Gallery (03)</span></label></div>
       <div class="item"><label><input type="checkbox" data-ph="3" id="t3-5"><span class="chkbox"></span><span class="txt">Advisor arranges Due Diligence fee delivery to seller</span></label></div>
       <div class="item"><label><input type="checkbox" data-ph="3" id="t3-6"><span class="chkbox"></span><span class="txt">Advisor arranges Earnest Money delivery to closing attorney</span></label></div>
       <div class="item"><label><input type="checkbox" data-ph="3" id="t3-7"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Acknowledgement of Receipt of DD/Earnest Money → Legacy Gallery (03)</span></label></div>
@@ -241,7 +291,7 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--bod
       <div class="item"><label><input type="checkbox" data-ph="7" id="t7-4"><span class="chkbox"></span><span class="txt">Commission disbursement confirmed with closing attorney</span></label></div>
     </div></div></div>
 
-    <div class="phase" id="ph-8"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">8</div><div class="phase-title">Post-Closing</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-8">0/14</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
+    <div class="phase" id="ph-8"><div class="phase-hdr"><div class="phase-hdr-l"><div class="phase-num">8</div><div class="phase-title">Post-Closing</div></div><div class="phase-hdr-r"><span class="phase-cnt" id="cnt-8">0/13</span><span class="chevron">▼</span></div></div><div class="phase-body"><div class="items">
       <div class="item"><label><input type="checkbox" data-ph="8" id="t8-1"><span class="chkbox"></span><span class="txt">TC file audit complete — all documents in correct galleries</span></label></div>
       <div class="item"><label><input type="checkbox" data-ph="8" id="t8-2"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> TC confirms Legacy Gallery (03) — all transaction docs present</span></label></div>
       <div class="item"><label><input type="checkbox" data-ph="8" id="t8-3"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> TC confirms Heritage Gallery (04) — HUD/CD filed</span></label></div>
@@ -249,13 +299,12 @@ body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--bod
       <div class="item"><label><input type="checkbox" data-ph="8" id="t8-5"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Closing gift delivered — documented in Heritage Gallery (04)</span></label></div>
       <div class="item"><label><input type="checkbox" data-ph="8" id="t8-6"><span class="chkbox"></span><span class="txt"><span class="tag tag-u">Upload</span> Client review / testimonial → Heritage Gallery (04) when received</span></label></div>
       <div class="item"><label><input type="checkbox" data-ph="8" id="t8-7"><span class="chkbox"></span><span class="txt">Closing announcement posted in 05 · The Closing Table (with client permission)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-8"><span class="chkbox"></span><span class="txt">Just Sold post published to social media (with client permission)</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-9"><span class="chkbox"></span><span class="txt">Handwritten thank you note sent to buyer within 3 business days</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-10"><span class="chkbox"></span><span class="txt">Personal post-closing message sent inviting buyer to leave review</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-11"><span class="chkbox"></span><span class="txt">30-Day follow-up sent approximately 30 days post-closing</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-12"><span class="chkbox"></span><span class="txt">1-Year Anniversary check-in scheduled or sent</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-13"><span class="chkbox"></span><span class="txt">Operations Specialist updated Master Client Database in The Vault</span></label></div>
-      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-14"><span class="chkbox"></span><span class="txt">Commission statement received and reviewed by advisor</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-8"><span class="chkbox"></span><span class="txt">Handwritten thank you note sent to buyer within 3 business days</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-9"><span class="chkbox"></span><span class="txt">Personal post-closing message sent inviting buyer to leave review</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-10"><span class="chkbox"></span><span class="txt">30-Day follow-up sent approximately 30 days post-closing</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-11"><span class="chkbox"></span><span class="txt">1-Year Anniversary check-in scheduled or sent</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-12"><span class="chkbox"></span><span class="txt">Operations Specialist updated Master Client Database in The Vault</span></label></div>
+      <div class="item"><label><input type="checkbox" data-ph="8" id="t8-13"><span class="chkbox"></span><span class="txt">Commission statement received and reviewed by advisor</span></label></div>
     </div></div></div>
 
   </div>
@@ -315,6 +364,12 @@ function updateProgress(){
     }
   }
 }
+function showConfirm(title,msg,cb){
+  confirmCallback=cb;
+  document.getElementById('confirm-title').textContent=title;
+  document.getElementById('confirm-msg').textContent=msg;
+  showOv('modal-confirm');
+}
 document.querySelectorAll('.phase-hdr').forEach(function(hdr){
   hdr.addEventListener('click',function(){hdr.closest('.phase').classList.toggle('open');});
 });
@@ -336,7 +391,7 @@ document.getElementById('new-input').addEventListener('keydown',function(e){
 });
 document.getElementById('btn-reset').addEventListener('click',function(){
   if(!current)return;
-  showConfirm('Reset Transaction','Reset all items for "'+current+'"? This cannot be undone.',function(){
+  showConfirm('Reset Transaction','Reset all TC items for "'+current+'"? This cannot be undone.',function(){
     var data=load();data[current]={};save(data);switchTo(current);
   });
 });
@@ -357,12 +412,6 @@ document.getElementById('btn-confirm-ok').addEventListener('click',function(){
 });
 document.getElementById('modal-new').addEventListener('click',function(e){if(e.target===this)hideOv('modal-new');});
 document.getElementById('modal-confirm').addEventListener('click',function(e){if(e.target===this)hideOv('modal-confirm');});
-function showConfirm(title,msg,cb){
-  confirmCallback=cb;
-  document.getElementById('confirm-title').textContent=title;
-  document.getElementById('confirm-msg').textContent=msg;
-  showOv('modal-confirm');
-}
 var initData=load();var initKeys=Object.keys(initData);
 renderTabs();
 if(initKeys.length>0){switchTo(initKeys[0]);}else{updateProgress();}
