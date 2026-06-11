@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DBRE™ County & Municipal Resources</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1C1C1C;
+    --navy-mid: #282828;
+    --gold: #B89A5A;
+    --gold-light: #D4B87A;
+    --gold-pale: #F5EDD8;
+    --cream: #FAF7F2;
+    --white: #FFFFFF;
+    --text: #1A1A1A;
+    --text-mid: #444;
+    --text-soft: #777;
+    --border: #E0D8CC;
+    --border-strong: #C8B990;
+    --tag-bg: #EEE9DF;
+
+    --nhc-accent: #1C3050;
+    --bruns-accent: #2A3E28;
+    --pender-accent: #3A2810;
+    --state-accent: #2A1C38;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--navy);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.35);
+  }
+  .header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .brand { display: flex; flex-direction: column; gap: 1px; }
+  .brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--gold-light);
+    letter-spacing: 0.04em;
+  }
+  .brand-sub {
+    font-size: 10px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.06em;
+    text-align: center;
+    flex: 1;
+  }
+  .county-pills {
+    display: flex;
+    gap: 8px;
+  }
+  .county-pill {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(184,154,90,0.4);
+    color: var(--gold);
+    cursor: pointer;
+    transition: all 0.2s;
+    background: transparent;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .county-pill:hover,
+  .county-pill.active {
+    background: var(--gold);
+    color: var(--navy);
+    border-color: var(--gold);
+  }
+  .county-pill[data-county="all"] { border-color: rgba(255,255,255,0.25); color: rgba(255,255,255,0.6); }
+  .county-pill[data-county="all"].active { background: rgba(255,255,255,0.15); color: white; border-color: rgba(255,255,255,0.4); }
+
+  /* ── SEARCH BAR ── */
+  .search-bar {
+    background: var(--navy-mid);
+    border-top: 1px solid rgba(184,154,90,0.15);
+    padding: 12px 40px;
+  }
+  .search-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    max-width: 460px;
+  }
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255,255,255,0.3);
+    font-size: 14px;
+    pointer-events: none;
+  }
+  #searchInput {
+    width: 100%;
+    padding: 9px 16px 9px 38px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(184,154,90,0.25);
+    border-radius: 6px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  #searchInput::placeholder { color: rgba(255,255,255,0.3); }
+  #searchInput:focus { border-color: rgba(184,154,90,0.6); }
+
+  /* ── MAIN LAYOUT ── */
+  .main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 40px 40px 80px;
+  }
+
+  /* ── COUNTY BLOCK ── */
+  .county-block {
+    margin-bottom: 56px;
+  }
+  .county-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--gold);
+  }
+  .county-header.nhc  { background: rgba(28,48,80,0.06); border-left-color: #3A6EA8; }
+  .county-header.bruns { background: rgba(42,62,40,0.06); border-left-color: #4A7A48; }
+  .county-header.pender { background: rgba(58,40,16,0.06); border-left-color: #A07840; }
+  .county-header.state  { background: rgba(42,28,56,0.06); border-left-color: #7A5AA0; }
+
+  .county-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--navy);
+    letter-spacing: 0.04em;
+  }
+  .county-sub {
+    font-size: 11px;
+    color: var(--text-soft);
+    letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+  .county-badge {
+    margin-left: auto;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: var(--tag-bg);
+    color: var(--text-soft);
+  }
+
+  /* ── DEPT GRID ── */
+  .dept-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 12px;
+  }
+
+  /* ── DEPT CARD ── */
+  .dept-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    transition: box-shadow 0.2s, border-color 0.2s, transform 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+  .dept-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--gold);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .dept-card:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.09);
+    border-color: var(--border-strong);
+    transform: translateY(-1px);
+  }
+  .dept-card:hover::before { opacity: 1; }
+
+  .dept-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .dept-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+  .dept-type {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    border-radius: 3px;
+    background: var(--tag-bg);
+    color: var(--text-soft);
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-weight: 500;
+  }
+  .dept-type.gis    { background: rgba(58,110,168,0.12); color: #3A6EA8; }
+  .dept-type.plan   { background: rgba(74,122,72,0.12);  color: #4A7A48; }
+  .dept-type.env    { background: rgba(160,120,64,0.12); color: #A07840; }
+  .dept-type.deed   { background: rgba(122,90,160,0.12); color: #7A5AA0; }
+  .dept-type.tax    { background: rgba(168,58,58,0.12);  color: #A83A3A; }
+  .dept-type.school { background: rgba(58,148,168,0.12); color: #3A94A8; }
+  .dept-type.trans  { background: rgba(80,80,80,0.12);   color: #505050; }
+
+  .dept-links {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 12px;
+  }
+  .dept-link-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-soft);
+  }
+  .dept-link-row a {
+    color: var(--text-soft);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .dept-link-row a:hover { color: var(--gold); }
+  .link-icon { font-size: 11px; opacity: 0.6; flex-shrink: 0; }
+  .dept-link-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 6px;
+    margin-bottom: 2px;
+  }
+  .dept-note {
+    font-size: 11px;
+    color: var(--text-soft);
+    font-style: italic;
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  .dept-footer {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+  }
+  .dept-website {
+    font-size: 11px;
+    color: var(--text-soft);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .dept-website:hover { color: var(--gold); }
+  .dept-website span { opacity: 0.5; font-size: 10px; }
+
+  /* ── SECTION DIVIDER ── */
+  .dept-section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 16px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .dept-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: var(--navy);
+    padding: 28px 40px;
+    text-align: center;
+  }
+  .footer-inner { max-width: 1280px; margin: 0 auto; }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--gold-light);
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  .footer-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.1em;
+  }
+
+  .hidden { display: none !important; }
+
+  @media (max-width: 768px) {
+    .header-inner { padding: 14px 20px; flex-wrap: wrap; }
+    .header-title { display: none; }
+    .main { padding: 24px 20px 60px; }
+    .search-bar { padding: 10px 20px; }
+    .dept-grid { grid-template-columns: 1fr; }
+    .county-pills { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-name">County & Municipal Resources</div>
+      <div class="brand-sub">Dana Blanks Real Estate · DBRE™</div>
+    </div>
+    <div class="header-title">County & Municipal Resources</div>
+    <div class="county-pills">
+      <button class="county-pill active" data-county="all">All</button>
+      <button class="county-pill" data-county="New Hanover">New Hanover</button>
+      <button class="county-pill" data-county="Brunswick">Brunswick</button>
+      <button class="county-pill" data-county="Pender">Pender</button>
+      <button class="county-pill" data-county="Duplin">Duplin</button>
+      <button class="county-pill" data-county="Municipal">Municipalities</button>
+      <button class="county-pill" data-county="State">NC State</button>
+    </div>
+  </div>
+  <div class="search-bar">
+    <div class="search-inner">
+      <div class="search-wrap">
+        <span class="search-icon">⌕</span>
+        <input type="text" id="searchInput" placeholder="Search departments, resources, contacts…">
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="main" id="mainContent">
+
+  <!-- ══════════════════════════════════════
+       NEW HANOVER COUNTY
+  ══════════════════════════════════════ -->
+  <div class="county-block" data-county="New Hanover">
+    <div class="county-header nhc">
+      <div>
+        <div class="county-title">New Hanover County</div>
+        <div class="county-sub">Wilmington, NC · County Seat</div>
+      </div>
+      <span class="county-badge">NHC</span>
+    </div>
+
+    <div class="dept-section-label">GIS & Mapping</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="New Hanover" data-name="New Hanover County GIS">
+        <div class="dept-top">
+          <div class="dept-name">NHC GIS / ArcGIS Online</div>
+          <span class="dept-type gis">GIS</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-label">ArcGIS Online — Find A Parcel</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://experience.arcgis.com/experience/df90734a21244ccdbfec0f798697b356/page/Find-A-Parcel" target="_blank">experience.arcgis.com — NHC Find A Parcel</a></div>
+          <div class="dept-link-label">GIS Maps & Data</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.nhcgov.com/844/GIS-Maps-Data" target="_blank">nhcgov.com — GIS Maps & Data</a></div>
+        </div>
+        <div class="dept-footer">
+          <a class="dept-website" href="https://www.nhcgov.com/844/GIS-Maps-Data" target="_blank"><span>↗</span> nhcgov.com — GIS Maps & Data</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">Planning & Zoning</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="New Hanover" data-name="NHC Planning and Land Use">
+        <div class="dept-top">
+          <div class="dept-name">Planning & Land Use</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9107984125">910.798.4125</a></div>
+          <div class="dept-link-label">Zoning & Permits Portal</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.nhcgov.com/528/Planning-Land-Use/" target="_blank">nhcgov.com — Planning & Land Use</a></div>
+        </div>
+        <div class="dept-note">Use for zoning verification, rezoning inquiries, UDO lookups, and special use permits.</div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">Environmental Health</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="New Hanover" data-name="NHC Environmental Health">
+        <div class="dept-top">
+          <div class="dept-name">Environmental Health</div>
+          <span class="dept-type env">Environmental</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9107984591">910.798.4591</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.nhcgov.com/488/Environmental-Health" target="_blank">nhcgov.com — Environmental Health</a></div>
+        </div>
+        <div class="dept-note">Septic permits, well permits, soil evaluations, perc tests, food/lodging inspections.</div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">Register of Deeds</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="New Hanover" data-name="NHC Register of Deeds">
+        <div class="dept-top">
+          <div class="dept-name">Register of Deeds</div>
+          <span class="dept-type deed">Deeds</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9107984530">910.798.4530</a></div>
+          <div class="dept-link-label">Document Search</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://search.newhanoverdeeds.com/NameSearch.php?Accept=Accept" target="_blank">search.newhanoverdeeds.com</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.nhcgov.com/166/Register-of-Deeds" target="_blank">nhcgov.com — Register of Deeds</a></div>
+        </div>
+        <div class="dept-note">Deeds, liens, plats, easements, powers of attorney.</div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">Tax Assessment & Administration</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="New Hanover" data-name="NHC Tax Administration">
+        <div class="dept-top">
+          <div class="dept-name">Tax Administration</div>
+          <span class="dept-type tax">Tax</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9107984365">910.798.4365</a></div>
+          <div class="dept-link-label">Property Tax Search</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://tax.nhcgov.com/" target="_blank">tax.nhcgov.com</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.nhcgov.com/328/Tax-Department" target="_blank">nhcgov.com — Tax Department</a></div>
+        </div>
+        <div class="dept-note">Tax values, tax bills, exemptions, appeals, delinquent taxes.</div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">School System</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="New Hanover" data-name="New Hanover County Schools">
+        <div class="dept-top">
+          <div class="dept-name">New Hanover County Schools</div>
+          <span class="dept-type school">Schools</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9107635431">910.763.5431</a></div>
+          <div class="dept-link-label">School Locator / Attendance Zones</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.nhcs.net/divisions/student-support-services/enrollment/school-locator" target="_blank">nhcs.net — School Locator</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.nhcs.net" target="_blank">nhcs.net</a></div>
+        </div>
+        <div class="dept-note">Use the school locator to confirm assigned school by address for buyers.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       BRUNSWICK COUNTY
+  ══════════════════════════════════════ -->
+  <div class="county-block" data-county="Brunswick">
+    <div class="county-header bruns">
+      <div>
+        <div class="county-title">Brunswick County</div>
+        <div class="county-sub">Bolivia, NC · County Seat</div>
+      </div>
+      <span class="county-badge">BRC</span>
+    </div>
+
+    <div class="dept-section-label">GIS & Mapping</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Brunswick" data-name="Brunswick County GIS">
+        <div class="dept-top">
+          <div class="dept-name">Brunswick County GIS / ArcGIS Online</div>
+          <span class="dept-type gis">GIS</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-label">ArcGIS Online</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://experience.arcgis.com/experience/8077a789b6434ffe8f7beece3bde563e" target="_blank">experience.arcgis.com — Brunswick County</a></div>
+          <div class="dept-link-label">GIS Department</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.brunswickcountync.gov/318/Geographic-Information-Systems-GIS" target="_blank">brunswickcountync.gov — GIS</a></div>
+          <div class="dept-link-label">GIS Maps & Data</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.brunswickcountync.gov/876/GIS-Maps-Data" target="_blank">brunswickcountync.gov — GIS Maps & Data</a></div>
+        </div>
+        <div class="dept-footer">
+          <a class="dept-website" href="https://www.brunswickcountync.gov/318/Geographic-Information-Systems-GIS" target="_blank"><span>↗</span> brunswickcountync.gov — GIS</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">Planning & Zoning</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Brunswick" data-name="Brunswick County Planning">
+        <div class="dept-top">
+          <div class="dept-name">Planning & Community Development</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9102531025">910.253.1025</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.brunswickcountync.gov/381/Planning-Community-Enforcement" target="_blank">brunswickcountync.gov — Planning & Community Enforcement</a></div>
+        </div>
+        <div class="dept-note">Zoning, land use, subdivision review, building permits, floodplain management.</div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">Environmental Health</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Brunswick" data-name="Brunswick County Environmental Health">
+        <div class="dept-top">
+          <div class="dept-name">Environmental Health</div>
+          <span class="dept-type env">Environmental</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9102531022">910.253.1022</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.brunswickcountync.gov/250/Environmental-Health" target="_blank">brunswickcountync.gov — Environmental Health</a></div>
+        </div>
+        <div class="dept-note">Septic permits, well permits, site evaluations, repair permits.</div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">Register of Deeds</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Brunswick" data-name="Brunswick County Register of Deeds">
+        <div class="dept-top">
+          <div class="dept-name">Register of Deeds</div>
+          <span class="dept-type deed">Deeds</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9102531120">910.253.1120</a></div>
+          <div class="dept-link-label">Document Search</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://rodweb.brunswickcountync.gov/" target="_blank">rodweb.brunswickcountync.gov</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.brunswickcountync.gov/990/Register-of-Deeds" target="_blank">brunswickcountync.gov — Register of Deeds</a></div>
+        </div>
+        <div class="dept-note">Deeds, plats, liens, UCC filings, foreclosures.</div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">Tax Assessment & Administration</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Brunswick" data-name="Brunswick County Tax Administration">
+        <div class="dept-top">
+          <div class="dept-name">Tax Administration</div>
+          <span class="dept-type tax">Tax</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9102531170">910.253.1170</a></div>
+          <div class="dept-link-label">Property Tax Search</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://taxweb.brunswickcountync.gov/" target="_blank">taxweb.brunswickcountync.gov</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.brunswickcountync.gov/directory.aspx?did=90" target="_blank">brunswickcountync.gov — Tax Administration</a></div>
+        </div>
+        <div class="dept-note">Tax values, bills, exemptions, municipal fire districts, delinquent taxes.</div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">School System</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Brunswick" data-name="Brunswick County Schools">
+        <div class="dept-top">
+          <div class="dept-name">Brunswick County Schools</div>
+          <span class="dept-type school">Schools</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9102532900">910.253.2900</a></div>
+          <div class="dept-link-label">School Locator / Attendance Zones</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://edutracker.bcswan.net/liveweb/webquery/" target="_blank">edutracker.bcswan.net — School Locator</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.bcswan.net" target="_blank">bcswan.net</a></div>
+        </div>
+        <div class="dept-note">Review attendance zone maps to confirm assigned school by address for buyers.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PENDER COUNTY
+  ══════════════════════════════════════ -->
+  <div class="county-block" data-county="Pender">
+    <div class="county-header pender">
+      <div>
+        <div class="county-title">Pender County</div>
+        <div class="county-sub">Burgaw, NC · County Seat</div>
+      </div>
+      <span class="county-badge">PC</span>
+    </div>
+
+    <div class="dept-section-label">GIS & Mapping</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Pender" data-name="Pender County GIS">
+        <div class="dept-top">
+          <div class="dept-name">Pender County GIS / ArcGIS Online</div>
+          <span class="dept-type gis">GIS</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-label">ArcGIS Online / Interactive Maps</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://gis.pendercountync.gov/maps/" target="_blank">gis.pendercountync.gov/maps</a></div>
+          <div class="dept-link-label">Land Records & Mapping</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.pendercountync.gov/365/Land-Records-Mapping" target="_blank">pendercountync.gov — Land Records & Mapping</a></div>
+        </div>
+        <div class="dept-footer">
+          <a class="dept-website" href="https://www.pendercountync.gov/365/Land-Records-Mapping" target="_blank"><span>↗</span> pendercountync.gov — Land Records & Mapping</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">Planning & Zoning</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Pender" data-name="Pender County Planning">
+        <div class="dept-top">
+          <div class="dept-name">Planning & Community Development</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9102593930">910.259.3930</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://pendercountync.gov/248/Planning-Community-Development" target="_blank">pendercountync.gov — Planning & Community Development</a></div>
+        </div>
+        <div class="dept-note">Zoning, variance requests, subdivision review, building permits.</div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">Environmental Health</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Pender" data-name="Pender County Environmental Health">
+        <div class="dept-top">
+          <div class="dept-name">Environmental Health</div>
+          <span class="dept-type env">Environmental</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9102593105">910.259.3105</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://pendercountync.gov/226/Environmental-Health" target="_blank">pendercountync.gov — Environmental Health</a></div>
+        </div>
+        <div class="dept-note">Septic system permits, improvement permits, well permits, site evaluations.</div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">Register of Deeds</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Pender" data-name="Pender County Register of Deeds">
+        <div class="dept-top">
+          <div class="dept-name">Register of Deeds</div>
+          <span class="dept-type deed">Deeds</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9102593025">910.259.3025</a></div>
+          <div class="dept-link-label">Document Search</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://us5.courthousecomputersystems.com/pendernc/" target="_blank">courthousecomputersystems.com — Pender ROD Search</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://pendercountync.gov/269/Register-of-Deeds" target="_blank">pendercountync.gov — Register of Deeds</a></div>
+        </div>
+        <div class="dept-note">Deeds, plats, maps, liens, easements, affidavits of heirship.</div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">Tax Assessment & Administration</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Pender" data-name="Pender County Tax Administration">
+        <div class="dept-top">
+          <div class="dept-name">Tax Administration</div>
+          <span class="dept-type tax">Tax</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9102593090">910.259.3090</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.pendercountync.gov/tax/" target="_blank">pendercountync.gov — Tax Administration</a></div>
+        </div>
+        <div class="dept-note">Tax values, tax bills, exemptions, delinquent taxes, deferred taxes.</div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">School System</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Pender" data-name="Pender County Schools">
+        <div class="dept-top">
+          <div class="dept-name">Pender County Schools</div>
+          <span class="dept-type school">Schools</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9102593191">910.259.3191</a></div>
+          <div class="dept-link-label">School Locator / Attendance Zones</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="http://transportation.pendercountyschools.net/livewq/webquery/" target="_blank">pendercountyschools.net — School Locator</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.pender.k12.nc.us" target="_blank">pender.k12.nc.us</a></div>
+        </div>
+        <div class="dept-note">Review attendance zones to confirm assigned school by address for buyers.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       DUPLIN COUNTY
+  ══════════════════════════════════════ -->
+  <div class="county-block" data-county="Duplin">
+    <div class="county-header" style="background: rgba(40,28,20,0.06); border-left: 4px solid #8A6040;">
+      <div>
+        <div class="county-title">Duplin County</div>
+        <div class="county-sub">Kenansville, NC · County Seat</div>
+      </div>
+      <span class="county-badge">DC</span>
+    </div>
+
+    <div class="dept-section-label">GIS & Mapping</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Duplin" data-name="Duplin County GIS">
+        <div class="dept-top">
+          <div class="dept-name">Duplin County GIS / ArcGIS Online</div>
+          <span class="dept-type gis">GIS</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-label">ArcGIS Online / Interactive Maps</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://gis.duplinnc.gov/maps/default.htm" target="_blank">gis.duplinnc.gov — Maps</a></div>
+          <div class="dept-link-label">GIS Department</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://gis.duplinnc.gov/" target="_blank">gis.duplinnc.gov</a></div>
+        </div>
+        <div class="dept-footer">
+          <a class="dept-website" href="https://gis.duplinnc.gov/" target="_blank"><span>↗</span> gis.duplinnc.gov</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">Environmental Health</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Duplin" data-name="Duplin County Environmental Health">
+        <div class="dept-top">
+          <div class="dept-name">Environmental Health</div>
+          <span class="dept-type env">Environmental</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9102964965">910.296.4965</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.duplinnc.gov/359/Environmental-Health" target="_blank">duplinnc.gov — Environmental Health</a></div>
+        </div>
+        <div class="dept-note">Septic system permits, improvement permits, well permits, site evaluations. Priority contact for rural land transactions in Duplin.</div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">Register of Deeds</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Duplin" data-name="Duplin County Register of Deeds">
+        <div class="dept-top">
+          <div class="dept-name">Register of Deeds</div>
+          <span class="dept-type deed">Deeds</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9102963049">910.296.3049</a></div>
+          <div class="dept-link-label">Document Search</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.duplinrod.com/" target="_blank">duplinrod.com — Records Search</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.duplinnc.gov/207/Register-of-Deeds" target="_blank">duplinnc.gov — Register of Deeds</a></div>
+        </div>
+        <div class="dept-note">Deeds, plats, liens, affidavits of heirship, easements.</div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">Tax Assessment & Administration</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Duplin" data-name="Duplin County Tax Administration">
+        <div class="dept-top">
+          <div class="dept-name">Tax Administration</div>
+          <span class="dept-type tax">Tax</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9102963067">910.296.3067</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.duplinnc.gov/215/Tax-Administration" target="_blank">duplinnc.gov — Tax Administration</a></div>
+        </div>
+        <div class="dept-note">Tax values, tax bills, delinquent taxes, exemptions.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       MUNICIPALITIES
+  ══════════════════════════════════════ -->
+  <div class="county-block" data-county="Municipal">
+    <div class="county-header" style="background: rgba(20,30,50,0.06); border-left: 4px solid #4A6080;">
+      <div>
+        <div class="county-title">Municipalities</div>
+        <div class="county-sub">City & Town Planning Departments — Coastal Carolinas</div>
+      </div>
+      <span class="county-badge">CITY/TOWN</span>
+    </div>
+
+    <div class="dept-section-label">City of Wilmington</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Municipal" data-name="City of Wilmington Planning">
+        <div class="dept-top">
+          <div class="dept-name">City of Wilmington</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.wilmingtonnc.gov/Home" target="_blank">wilmingtonnc.gov</a></div>
+        </div>
+        <div class="dept-note">New Hanover County · City limits planning, zoning, permits, and development services.</div>
+      </div>
+      <div class="dept-card" data-county="Municipal" data-name="Town of Carolina Beach">
+        <div class="dept-top">
+          <div class="dept-name">Town of Carolina Beach — Maps & GIS</div>
+          <span class="dept-type gis">GIS</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.carolinabeach.gov/175/Maps-GIS" target="_blank">carolinabeach.gov — Maps & GIS</a></div>
+        </div>
+        <div class="dept-note">New Hanover County · Zoning, planning, and GIS mapping for Carolina Beach town limits.</div>
+      </div>
+      <div class="dept-card" data-county="Municipal" data-name="Town of Wrightsville Beach Planning">
+        <div class="dept-top">
+          <div class="dept-name">Town of Wrightsville Beach — Planning & Inspections</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.townofwrightsvillebeach.com/189/Planning-Inspections" target="_blank">townofwrightsvillebeach.com — Planning & Inspections</a></div>
+        </div>
+        <div class="dept-note">New Hanover County · Zoning, permits, and development within Wrightsville Beach town limits.</div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">Brunswick County Municipalities</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Municipal" data-name="Town of Leland Planning">
+        <div class="dept-top">
+          <div class="dept-name">Town of Leland — Planning & Inspections</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.townofleland.com/planning-inspections" target="_blank">townofleland.com — Planning & Inspections</a></div>
+        </div>
+      </div>
+      <div class="dept-card" data-county="Municipal" data-name="Town of Shallotte Planning">
+        <div class="dept-top">
+          <div class="dept-name">Town of Shallotte — Planning & Zoning</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.townofshallotte.org/planning_zoning" target="_blank">townofshallotte.org — Planning & Zoning</a></div>
+        </div>
+      </div>
+      <div class="dept-card" data-county="Municipal" data-name="Town of Southport Planning">
+        <div class="dept-top">
+          <div class="dept-name">Town of Southport — Planning & Zoning</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.cityofsouthport.gov/departments/development_services/planning_zoning.php" target="_blank">cityofsouthport.gov — Planning & Zoning</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">Pender County Municipalities</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Municipal" data-name="Town of Burgaw Planning">
+        <div class="dept-top">
+          <div class="dept-name">Town of Burgaw — Planning</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://burgawnc.gov/162/Planning" target="_blank">burgawnc.gov — Planning</a></div>
+        </div>
+        <div class="dept-note">Pender County seat · Zoning, permits, and land use within Burgaw town limits.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       NC STATE / NCDOT
+  ══════════════════════════════════════ -->
+  <div class="county-block" data-county="State">
+    <div class="county-header state">
+      <div>
+        <div class="county-title">NC State Resources</div>
+        <div class="county-sub">Statewide — North Carolina</div>
+      </div>
+      <span class="county-badge">NC</span>
+    </div>
+
+    <div class="dept-section-label">NC Department of Transportation</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="State" data-name="NC DOT">
+        <div class="dept-top">
+          <div class="dept-name">NC Dept. of Transportation (NCDOT)</div>
+          <span class="dept-type trans">NCDOT</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:8773680329">877.368.0329</a> (Customer Service)</div>
+          <div class="dept-link-label">Road Maintenance & Adoption</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.ncdot.gov/contact/Pages/report-road-problem.aspx" target="_blank">ncdot.gov — Report a Road Problem</a></div>
+          <div class="dept-link-label">Right-of-Way & Encroachments</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.ncdot.gov/divisions/highway/right-of-way/" target="_blank">ncdot.gov — Right of Way Division</a></div>
+          <div class="dept-link-label">Road Classification / State Maintenance</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.ncdot.gov/divisions/highway/Pages/default.aspx" target="_blank">ncdot.gov — Highway Division</a></div>
+        </div>
+        <div class="dept-note">Use for road maintenance responsibility lookups, access permits, encroachment agreements, and subdivision road acceptance.</div>
+        <div class="dept-footer">
+          <a class="dept-website" href="https://www.ncdot.gov" target="_blank"><span>↗</span> ncdot.gov</a>
+        </div>
+      </div>
+
+      <div class="dept-card" data-county="State" data-name="NCDOT Division 3">
+        <div class="dept-top">
+          <div class="dept-name">NCDOT Division 3 — Wilmington District</div>
+          <span class="dept-type trans">NCDOT</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9103419100">910.341.9100</a></div>
+          <div class="dept-note">Covers New Hanover, Brunswick, Pender, Columbus, and Bladen counties. For local road maintenance, encroachment, and access inquiries.</div>
+        </div>
+        <div class="dept-footer">
+          <a class="dept-website" href="https://www.ncdot.gov/divisions/highway/d3/" target="_blank"><span>↗</span> ncdot.gov — Division 3</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">NC REAL ID &amp; DMV</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="State" data-name="NC DMV">
+        <div class="dept-top">
+          <div class="dept-name">NC Division of Motor Vehicles</div>
+          <span class="dept-type trans">DMV</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9197159000">919.715.9000</a></div>
+          <div class="dept-link-label">Title &amp; Registration</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.ncdmv.gov/vehicle-title" target="_blank">ncdmv.gov — Vehicle Title</a></div>
+        </div>
+        <div class="dept-note">Relevant for manufactured home title transfers and mobile home on land transactions.</div>
+        <div class="dept-footer">
+          <a class="dept-website" href="https://www.ncdmv.gov" target="_blank"><span>↗</span> ncdmv.gov</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">DBRE™ — Dana Blanks Real Estate</div>
+    <div class="footer-sub">New Hanover · Brunswick · Pender · Duplin · Municipalities &nbsp;·&nbsp; Internal Resource — County & Municipal Resources</div>
+  </div>
+</footer>
+
+<script>
+  const searchInput  = document.getElementById('searchInput');
+  const countyPills  = document.querySelectorAll('.county-pill');
+  const countyBlocks = document.querySelectorAll('.county-block');
+
+  let activeCounty = 'all';
+  let searchTerm   = '';
+
+  function normalize(s) { return (s || '').toLowerCase(); }
+
+  function runFilter() {
+    countyBlocks.forEach(block => {
+      const county = block.dataset.county;
+      const countyOk = activeCounty === 'all' || county === activeCounty;
+
+      if (!countyOk) { block.classList.add('hidden'); return; }
+
+      if (!searchTerm) { block.classList.remove('hidden'); return; }
+
+      const cards = block.querySelectorAll('.dept-card');
+      let anyVisible = false;
+      cards.forEach(card => {
+        const text = normalize(card.textContent);
+        const show = text.includes(searchTerm);
+        card.classList.toggle('hidden', !show);
+        if (show) anyVisible = true;
+      });
+      block.classList.toggle('hidden', !anyVisible);
+    });
+  }
+
+  searchInput.addEventListener('input', () => {
+    searchTerm = normalize(searchInput.value.trim());
+    runFilter();
+  });
+
+  countyPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      countyPills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      activeCounty = pill.dataset.county;
+      runFilter();
+    });
+  });
+</script>
+</body>
+</html>
