@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DBRE™ County & Municipal Resources</title>
+<title>DBRE® County & Municipal Resources</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --navy: #1C1C1C;
@@ -22,7 +22,7 @@
     --border-strong: #C8B990;
     --tag-bg: #EEE9DF;
 
-    --nhc-accent: #1C3050;
+    --nhc-accent: #3C3C3C;
     --bruns-accent: #2A3E28;
     --pender-accent: #3A2810;
     --state-accent: #2A1C38;
@@ -65,7 +65,8 @@
     letter-spacing: 0.04em;
   }
   .brand-sub {
-    font-size: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
     font-weight: 300;
     color: rgba(255,255,255,0.45);
     letter-spacing: 0.14em;
@@ -170,7 +171,8 @@
     border-radius: 8px;
     border-left: 4px solid var(--gold);
   }
-  .county-header.nhc  { background: rgba(28,48,80,0.06); border-left-color: #3A6EA8; }
+  .county-header.nhc  { background: rgba(60,60,60,0.06); border-left-color: #6B6B6B; }
+  .county-header.wake { background: rgba(184,154,90,0.10); border-left-color: #B89A5A; }
   .county-header.bruns { background: rgba(42,62,40,0.06); border-left-color: #4A7A48; }
   .county-header.pender { background: rgba(58,40,16,0.06); border-left-color: #A07840; }
   .county-header.state  { background: rgba(42,28,56,0.06); border-left-color: #7A5AA0; }
@@ -260,12 +262,12 @@
     flex-shrink: 0;
     font-weight: 500;
   }
-  .dept-type.gis    { background: rgba(58,110,168,0.12); color: #3A6EA8; }
+  .dept-type.gis    { background: rgba(184,154,90,0.18); color: #8A6D2F; }
   .dept-type.plan   { background: rgba(74,122,72,0.12);  color: #4A7A48; }
   .dept-type.env    { background: rgba(160,120,64,0.12); color: #A07840; }
   .dept-type.deed   { background: rgba(122,90,160,0.12); color: #7A5AA0; }
   .dept-type.tax    { background: rgba(168,58,58,0.12);  color: #A83A3A; }
-  .dept-type.school { background: rgba(58,148,168,0.12); color: #3A94A8; }
+  .dept-type.school { background: rgba(107,107,107,0.12); color: #6B6B6B; }
   .dept-type.trans  { background: rgba(80,80,80,0.12);   color: #505050; }
 
   .dept-links {
@@ -348,8 +350,9 @@
   }
   .footer-inner { max-width: 1280px; margin: 0 auto; }
   .footer-brand {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
     color: var(--gold-light);
     letter-spacing: 0.06em;
     margin-bottom: 6px;
@@ -379,7 +382,7 @@
   <div class="header-inner">
     <div class="brand">
       <div class="brand-name">County & Municipal Resources</div>
-      <div class="brand-sub">Dana Blanks Real Estate · DBRE™</div>
+      <div class="brand-sub">Dana Blanks Real Estate · DBRE®</div>
     </div>
     <div class="header-title">County & Municipal Resources</div>
     <div class="county-pills">
@@ -388,6 +391,7 @@
       <button class="county-pill" data-county="Brunswick">Brunswick</button>
       <button class="county-pill" data-county="Pender">Pender</button>
       <button class="county-pill" data-county="Duplin">Duplin</button>
+      <button class="county-pill" data-county="Wake">Wake</button>
       <button class="county-pill" data-county="Municipal">Municipalities</button>
       <button class="county-pill" data-county="State">NC State</button>
     </div>
@@ -824,14 +828,135 @@
     </div>
   </div>
 
+  <!-- WAKE COUNTY -->
+  <div class="county-block" data-county="Wake">
+    <div class="county-header wake">
+      <div>
+        <div class="county-title">Wake County</div>
+        <div class="county-sub">Raleigh, NC · County Seat</div>
+      </div>
+      <span class="county-badge">WC</span>
+    </div>
+
+    <div class="dept-section-label">GIS & Mapping</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Wake" data-name="Wake County GIS">
+        <div class="dept-top">
+          <div class="dept-name">Wake County GIS / iMAPS</div>
+          <span class="dept-type gis">GIS</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9198566370">919.856.6370</a></div>
+          <div class="dept-link-label">Interactive Map</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://maps.raleighnc.gov/iMAPS/" target="_blank">maps.raleighnc.gov — iMAPS</a></div>
+          <div class="dept-link-label">Real Estate Records Search</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="http://services.wake.gov/realestate/" target="_blank">services.wake.gov — Real Estate Search</a></div>
+        </div>
+        <div class="dept-footer">
+          <a class="dept-website" href="https://www.wake.gov/departments-government/geographic-information-services-gis" target="_blank"><span>↗</span> wake.gov — GIS</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">Planning & Zoning</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Wake" data-name="Wake County Planning and Development Services">
+        <div class="dept-top">
+          <div class="dept-name">Planning & Development Services</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9198566310">919.856.6310</a> (Main)</div>
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9198566335">919.856.6335</a> (Zoning &amp; Subdivision)</div>
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9198566222">919.856.6222</a> (Inspections)</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.wake.gov/departments-government/planning-and-development-services" target="_blank">wake.gov — Planning & Development Services</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.wake.gov/departments-government/zoning-and-subdivision" target="_blank">wake.gov — Zoning & Subdivision</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.wake.gov/departments-government/permits-and-inspections" target="_blank">wake.gov — Permits & Inspections</a></div>
+        </div>
+        <div class="dept-note">County zoning, subdivision, permits, and inspections. Property inside a town's limits is handled by that town's planning department — see Wake County Municipalities below.</div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">Environmental Health</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Wake" data-name="Wake County Onsite Water Protection">
+        <div class="dept-top">
+          <div class="dept-name">Onsite Water Protection</div>
+          <span class="dept-type env">Environmental</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9198567434">919.856.7434</a></div>
+          <div class="dept-link-row"><span class="link-icon">✉</span><a href="mailto:wastewater@wake.gov">wastewater@wake.gov</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.wake.gov/departments-government/onsite-water-protection" target="_blank">wake.gov — Onsite Water Protection</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.wake.gov/departments-government/onsite-water-protection/septic-system-permitting/wastewater-contacts" target="_blank">wake.gov — Septic Permitting Contacts</a></div>
+        </div>
+        <div class="dept-note">Septic permits and approvals, well permits, groundwater protection. Used mainly for properties not on public water or sewer.</div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">Register of Deeds</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Wake" data-name="Wake County Register of Deeds">
+        <div class="dept-top">
+          <div class="dept-name">Register of Deeds</div>
+          <span class="dept-type deed">Deeds</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9198565460">919.856.5460</a></div>
+          <div class="dept-link-label">Document Search</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://rodrecords.wake.gov/web/" target="_blank">rodrecords.wake.gov</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.wake.gov/departments-government/register-deeds" target="_blank">wake.gov — Register of Deeds</a></div>
+        </div>
+        <div class="dept-note">Deeds, plats, liens, easements, powers of attorney.</div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">Tax Assessment & Administration</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Wake" data-name="Wake County Tax Administration">
+        <div class="dept-top">
+          <div class="dept-name">Tax Administration</div>
+          <span class="dept-type tax">Tax</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9198565400">919.856.5400</a></div>
+          <div class="dept-link-label">Property Tax Search</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://services.wake.gov/ptax/main/billing/" target="_blank">services.wake.gov — Search Tax Bills</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.wake.gov/departments-government/tax-administration" target="_blank">wake.gov — Tax Administration</a></div>
+        </div>
+        <div class="dept-note">Tax values, tax bills, exemptions, appeals, delinquent taxes.</div>
+      </div>
+    </div>
+
+    <div class="dept-section-label">School System</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Wake" data-name="Wake County Public School System">
+        <div class="dept-top">
+          <div class="dept-name">Wake County Public School System (WCPSS)</div>
+          <span class="dept-type school">Schools</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9194317333">919.431.7333</a> (Student Assignment)</div>
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9194317400">919.431.7400</a> (Customer Service)</div>
+          <div class="dept-link-label">School Locator / Attendance Zones</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://osageo.wcpss.net/assignment-lookup/" target="_blank">wcpss.net — Find Base School Assignment by Address</a></div>
+          <div class="dept-link-label">Enrollment</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.wcpss.net/enroll" target="_blank">wcpss.net — Enrollment</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.wcpss.net/" target="_blank">wcpss.net</a></div>
+        </div>
+        <div class="dept-note">Use the address lookup to confirm base schools for buyers. The tool is not a legal document, so call Student Assignment to verify. Assignments for the next school year are typically activated after the Board of Education approves the plan, usually in November.</div>
+      </div>
+    </div>
+  </div>
+
   <!-- ══════════════════════════════════════
        MUNICIPALITIES
   ══════════════════════════════════════ -->
   <div class="county-block" data-county="Municipal">
-    <div class="county-header" style="background: rgba(20,30,50,0.06); border-left: 4px solid #4A6080;">
+    <div class="county-header" style="background: rgba(40,40,40,0.06); border-left: 4px solid #6B6B6B;">
       <div>
         <div class="county-title">Municipalities</div>
-        <div class="county-sub">City & Town Planning Departments — Coastal Carolinas</div>
+        <div class="county-sub">City & Town Planning Departments — Coastal Carolinas & Wake County</div>
       </div>
       <span class="county-badge">CITY/TOWN</span>
     </div>
@@ -914,6 +1039,149 @@
         <div class="dept-note">Pender County seat · Zoning, permits, and land use within Burgaw town limits.</div>
       </div>
     </div>
+
+    <div class="dept-section-label">Wake County Municipalities</div>
+    <div class="dept-grid">
+      <div class="dept-card" data-county="Municipal" data-name="Town of Wake Forest Planning">
+        <div class="dept-top">
+          <div class="dept-name">Town of Wake Forest — Planning</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9194359517">919.435.9517</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.wakeforestnc.gov/planning" target="_blank">wakeforestnc.gov — Planning</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.wakeforestnc.gov/planning/zoning" target="_blank">wakeforestnc.gov — Zoning</a></div>
+        </div>
+        <div class="dept-note">Wake County · Zoning, permits, and development within Wake Forest town limits. Portions of the town may fall in Franklin County — confirm the county by parcel.</div>
+      </div>
+      <div class="dept-card" data-county="Municipal" data-name="City of Raleigh Planning and Development">
+        <div class="dept-top">
+          <div class="dept-name">City of Raleigh — Planning & Development</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9199962682">919.996.2682</a> (Planning &amp; Zoning)</div>
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9199962500">919.996.2500</a> (Permits &amp; Inspections)</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://raleighnc.gov/planning" target="_blank">raleighnc.gov — Planning</a></div>
+        </div>
+        <div class="dept-note">Wake County seat · City limits planning, zoning, and development services. Portions of the city may fall in Durham County — confirm the county by parcel.</div>
+      </div>
+      <div class="dept-card" data-county="Municipal" data-name="Town of Cary Planning">
+        <div class="dept-top">
+          <div class="dept-name">Town of Cary — Planning & Development Services</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9194694000">919.469.4000</a> (311 within Cary)</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.carync.gov/connect-engage/town-departments-offices/planning-department" target="_blank">carync.gov — Planning & Development Services</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.carync.gov/business-development/developing-in-cary/development-regulations/zoning-compliance" target="_blank">carync.gov — Zoning Compliance</a></div>
+        </div>
+        <div class="dept-note">Wake County · Zoning, planning, and development within Cary town limits. Portions of the town may fall in Chatham County — confirm the county by parcel.</div>
+      </div>
+      <div class="dept-card" data-county="Municipal" data-name="Town of Apex Planning">
+        <div class="dept-top">
+          <div class="dept-name">Town of Apex — Planning</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9192493426">919.249.3426</a> (Planning)</div>
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9192493400">919.249.3400</a> (Town Hall)</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.apexnc.org/180/Planning" target="_blank">apexnc.org — Planning</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.apexnc.org/989/Maps" target="_blank">apexnc.org — Planning Maps</a></div>
+        </div>
+        <div class="dept-note">Wake County · Zoning and development within Apex town limits.</div>
+      </div>
+      <div class="dept-card" data-county="Municipal" data-name="Town of Holly Springs Development Services">
+        <div class="dept-top">
+          <div class="dept-name">Town of Holly Springs — Development Services</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9195773111">919.577.3111</a> (311 within Town limits)</div>
+          <div class="dept-link-row"><span class="link-icon">✉</span><a href="mailto:developmentservices@hollyspringsnc.gov">developmentservices@hollyspringsnc.gov</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.hollyspringsnc.gov/2170/Development-Services" target="_blank">hollyspringsnc.gov — Development Services</a></div>
+        </div>
+        <div class="dept-note">Wake County · Planning, zoning, and development within Holly Springs town limits. Town Hall: 128 S. Main St.</div>
+      </div>
+      <div class="dept-card" data-county="Municipal" data-name="Town of Morrisville Planning">
+        <div class="dept-top">
+          <div class="dept-name">Town of Morrisville — Planning</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9194636210">919.463.6210</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.morrisvillenc.gov/Government/Departments-Services/Planning" target="_blank">morrisvillenc.gov — Planning</a></div>
+        </div>
+        <div class="dept-note">Wake County · Zoning and development within Morrisville town limits. Portions of the town may fall in Durham County — confirm the county by parcel.</div>
+      </div>
+      <div class="dept-card" data-county="Municipal" data-name="Town of Fuquay-Varina Planning">
+        <div class="dept-top">
+          <div class="dept-name">Town of Fuquay-Varina — Planning</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9195521429">919.552.1429</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.fuquay-varina.org/280/Planning" target="_blank">fuquay-varina.org — Planning</a></div>
+        </div>
+        <div class="dept-note">Wake County · Zoning and development within Fuquay-Varina town limits.</div>
+      </div>
+      <div class="dept-card" data-county="Municipal" data-name="Town of Garner Planning">
+        <div class="dept-top">
+          <div class="dept-name">Town of Garner — Planning</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9197734449">919.773.4449</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.garnernc.gov/departments/planning-1764" target="_blank">garnernc.gov — Planning</a></div>
+        </div>
+        <div class="dept-note">Wake County · Zoning and development within Garner town limits.</div>
+      </div>
+      <div class="dept-card" data-county="Municipal" data-name="Town of Wendell Planning">
+        <div class="dept-top">
+          <div class="dept-name">Town of Wendell — Planning</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9193654448">919.365.4448</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://townofwendellnc.gov/departments/planning/index.php" target="_blank">townofwendellnc.gov — Planning</a></div>
+        </div>
+        <div class="dept-note">Wake County · Zoning, permits, and development within Wendell town limits.</div>
+      </div>
+      <div class="dept-card" data-county="Municipal" data-name="Town of Rolesville Planning">
+        <div class="dept-top">
+          <div class="dept-name">Town of Rolesville — Planning</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9195546517">919.554.6517</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.rolesvillenc.gov/locations-and-phone-numbers" target="_blank">rolesvillenc.gov — Locations & Phone Numbers</a></div>
+        </div>
+        <div class="dept-note">Wake County · Planning office at 211 S. Main Street. Zoning and development within Rolesville town limits.</div>
+      </div>
+      <div class="dept-card" data-county="Municipal" data-name="Town of Zebulon Planning">
+        <div class="dept-top">
+          <div class="dept-name">Town of Zebulon — Planning</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9192697455">919.269.7455</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.townofzebulon.org/o/planning/" target="_blank">townofzebulon.org — Planning</a></div>
+        </div>
+        <div class="dept-note">Wake County · Zoning, permits, and development within Zebulon town limits. Office: 1003 N. Arendell Avenue.</div>
+      </div>
+      <div class="dept-card" data-county="Municipal" data-name="Town of Knightdale Development Services">
+        <div class="dept-top">
+          <div class="dept-name">Town of Knightdale — Development Services</div>
+          <span class="dept-type plan">Planning</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:9192172200">919.217.2200</a> (Town Hall)</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.knightdalenc.gov/development-services/development-services-staff" target="_blank">knightdalenc.gov — Development Services</a></div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://www.knightdalenc.gov/development-services/permits-and-inspections" target="_blank">knightdalenc.gov — Permits & Inspections</a></div>
+        </div>
+        <div class="dept-note">Wake County · Development Services covers town limits and the extra-territorial jurisdiction (ETJ) — parts of unincorporated Wake County that follow Knightdale's zoning and building rules, not the county's.</div>
+      </div>
+    </div>
   </div>
 
   <!-- ══════════════════════════════════════
@@ -963,6 +1231,18 @@
           <a class="dept-website" href="https://www.ncdot.gov/divisions/highway/d3/" target="_blank"><span>↗</span> ncdot.gov — Division 3</a>
         </div>
       </div>
+
+      <div class="dept-card" data-county="State" data-name="NCDOT Division 5 Wake County Maintenance">
+        <div class="dept-top">
+          <div class="dept-name">NCDOT Division 5 — Wake County Maintenance</div>
+          <span class="dept-type trans">NCDOT</span>
+        </div>
+        <div class="dept-links">
+          <div class="dept-link-row"><span class="link-icon">📞</span><a href="tel:8773680329">877.368.0329</a> (NCDOT Customer Service)</div>
+          <div class="dept-link-row"><span class="link-icon">↗</span><a href="https://apps.ncdot.gov/dot/directory/authenticated/UnitPage.aspx?id=12689" target="_blank">ncdot.gov — Wake County Maintenance</a></div>
+        </div>
+        <div class="dept-note">Wake County falls under Highway Division 5. For local road maintenance, encroachment, and access inquiries in Wake County. Office: 1301 Blue Ridge Road, Raleigh.</div>
+      </div>
     </div>
 
     <div class="dept-section-label">NC REAL ID &amp; DMV</div>
@@ -990,8 +1270,9 @@
 <!-- FOOTER -->
 <footer class="site-footer">
   <div class="footer-inner">
-    <div class="footer-brand">DBRE™ — Dana Blanks Real Estate</div>
-    <div class="footer-sub">New Hanover · Brunswick · Pender · Duplin · Municipalities &nbsp;·&nbsp; Internal Resource — County & Municipal Resources</div>
+    <div class="footer-brand">DBRE® — Dana Blanks Real Estate</div>
+    <div class="footer-sub">New Hanover · Brunswick · Pender · Duplin · Wake · Municipalities &nbsp;·&nbsp; Internal Resource — County & Municipal Resources</div>
+    <div class="footer-sub" style="margin-top:4px;">&copy; 2026 Dana Blanks Real Estate&reg;. All Rights Reserved.</div>
   </div>
 </footer>
 
